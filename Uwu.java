@@ -102,3 +102,24 @@ diagram stanów 𝓱𝓾𝓫𝓮𝓻𝓽 𝓷 𝓲 𝓶𝓪𝓻𝓽𝔂𝓷𝓪 
 2. zmiana tury gracza do przeciwnika  tzn pojawia się opcja jak w herosach
  czekaj, obrona, atak, leczenie się itp
  */
+
+/*
+// STANY EKSPLORACJI
+exploring
+justPickedUpItem
+inLevelTransition
+inFightTransition
+
+// STANY WALKI
+waitingForPlayerMove
+playerChoosingAttack
+playerChoosingDefense
+playerChoosingHeal
+waitingForOpponentMove
+opponentAttack
+opponentDefense
+opponentHeal
+postWin
+postFinalWin
+postLose
+*/
