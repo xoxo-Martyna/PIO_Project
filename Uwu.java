@@ -1,17 +1,16 @@
 
 public interface IItem {
+    private String name;
+    private Sprite sprite;
+
     private int durability;
 
-    public void use( Player player );
+    public String getName();
 
     public int getDurability();
 }
 
 public class Item implements IItem {
-    private String name;
-    private Sprite sprite;
-
-    public String getName();
 }
 
 // LISTA BRONI
@@ -122,6 +121,7 @@ public class Player extends IFightMember {
     public void move( Level level, int dx, int dy );
 
     public void addItem( IItem item );
+    public void dropItem( IItem item );
     public void discardDestroyedItems();
 }
 
