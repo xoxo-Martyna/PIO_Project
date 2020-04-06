@@ -40,11 +40,9 @@ public class DefenseItem implements IItem {
 public class Fight {
     private Game game;
     
-    private Player player;
     private Opponent opponent;
     private boolean isPlayersTurn;
 
-    public Player getPlayer();
     public Opponent getOpponent();
     public boolean getIsPlayersTurn();
 }
@@ -153,6 +151,8 @@ public class Game {
     private GameState state;
     private boolean isInFight;
 
+    private Player player;
+
     private Level[] levels;
     private Level currentLevel;
     private Level nextLevel;
@@ -164,6 +164,8 @@ public class Game {
 
     public void handleGameLoop();
     public int getTime();
+
+    public Player getPlayer();
 
     public GameState getState();
     public void setState( GameState state );
