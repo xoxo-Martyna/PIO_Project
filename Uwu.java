@@ -26,8 +26,6 @@ public class OffenseItem extends Item {
 public class HealthItem implements IItem {
     private int recoverPoints;
 
-    public static HealthItem( int recoverPoints );
-
     public int getRecoverPoints();
 }
 
@@ -35,8 +33,6 @@ public class HealthItem implements IItem {
 // czapka, zbroja, tarcza
 public class DefenseItem implements IItem {
     private int protectPoints;
-
-    public static DefenseItem( int protectPoints );
 
     public int getProtectPoints();
 }
@@ -47,6 +43,10 @@ public class Fight {
     private Player player;
     private Opponent opponent;
     private boolean isPlayersTurn;
+
+    public Player getPlayer();
+    public Opponent getOpponent();
+    public boolean getIsPlayersTurn();
 }
 
 public interface ISpawner {
@@ -97,6 +97,9 @@ public class Level {
 public interface IFightMember {
     private int healthPoints;
     private int defensePoints;
+
+    public int getHealthPoints();
+    public int getDefensePoints();
 }
 
 public class Opponent extends IFightMember {
@@ -104,7 +107,7 @@ public class Opponent extends IFightMember {
     private String name;
 
     public IItem[] getLoot();
-
+    public String getName();
 }
 
 public class Player extends IFightMember {
