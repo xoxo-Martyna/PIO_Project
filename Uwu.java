@@ -2,11 +2,9 @@
 public interface IItem {
     private int durability;
 
-    public void pickUpItem( Player player );
-    public void dropItem();
-    public void useItem();
+    public void use( Player player );
 
-    public boolean isDestroyed();
+    public int getDurability();
 }
 
 public class Item implements IItem {
@@ -64,6 +62,7 @@ public class Floor {
     private String id;
     private Sprite sprite;
     private ISpawner spawner;
+
 
     public String getId();
     public Sprite getSprite();
@@ -160,14 +159,18 @@ public class Game {
     private int currentTime;
     private int referenceTime;
 
-    public GameState getState();
-    public void setState(GameState state);
-
-    public Level getLevelFromId(String id);
-    public Level getCurrentLevel();
-
     public void handleGameLoop();
     public int getTime();
+
+    public GameState getState();
+    public void setState( GameState state );
+
+    public Level getLevelFromId( String id );
+    public Level getCurrentLevel();
+
+    public Fight getCurrentFight();
+    public void startFight( Fight fight );
+    public void endFight();
 }
 
 public class Sprite {
@@ -178,46 +181,3 @@ public class Sprite {
 public class Frame extends JFrame {}
 
 public class Panel extends JPanel {}
-
-/*
-diagram klas - KACPER SEREDYNEK <3 I ARTUR 
-
-// LOGIKA GRY
-zawodnik, przeciwnik, poziom, tok walki, przedmioty
-
-// GRAFIKA
-Frame, Panel, Sprite
-
-
-diagram sekwencji 𝓴𝓪𝓬𝓹𝓮𝓻 𝓪 & 𝓸𝓵𝓪 𝓴
-1. ruch - przemieszczanie 
-2. walka / wybrany fragment 
-
-
-diagram stanów 𝓱𝓾𝓫𝓮𝓻𝓽 𝓷 𝓲 𝓶𝓪𝓻𝓽𝔂𝓷𝓪 𝓳
-
-1. przejście z eksploracji do walki 
-2. zmiana tury gracza do przeciwnika  tzn pojawia się opcja jak w herosach
- czekaj, obrona, atak, leczenie się itp
- */
-
-/*
-// STANY EKSPLORACJI
-exploring
-justPickedUpItem
-inLevelTransition
-inFightTransition
-
-// STANY WALKI
-waitingForPlayerMove
-playerChoosingAttack
-playerChoosingDefense
-playerChoosingHeal
-waitingForOpponentMove
-opponentAttack
-opponentDefense
-opponentHeal
-postWin
-postFinalWin
-postLose
-*/
