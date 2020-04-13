@@ -1,4 +1,4 @@
-
+import java.util.List;
 
 public class Player implements IFightMember {
     private int x;
@@ -19,4 +19,5 @@ public class Player implements IFightMember {
     public void addItem( IItem item );
     public void dropItem( IItem item );
     public void discardDestroyedItems();
+   
 }
