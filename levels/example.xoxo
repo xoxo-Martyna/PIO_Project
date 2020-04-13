@@ -1,0 +1,14 @@
+// PRZYKŁADOWY PLIK POZIOMU XOXO, MARTYNA
+
+// Dimensions <szerokość> <wysokość>
+Dimensions 2 2
+
+// SpawnPoint <X> <Y>
+SpawnPoint 0 0
+
+// Tile <ID kafelka> <X1> <Y1> <X2> <Y2> ...
+Tile GenericGroundTile 0 0 0 1 1 0 1 1
+
+// Po ułożeniu kafelków można ustawić przeciwników, którzy nie będą random encounterami
+// Opponent <ID przeciwnika> <X> <Y>
+Opponent GenericOpponent 1 1
