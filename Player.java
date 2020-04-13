@@ -3,6 +3,9 @@ import java.util.List;
 public class Player implements IFightMember {
     private int x;
     private int y;
+    
+    private int healthPoints;
+    private int defensePoints;
 
     private List<IItem> items;
     
