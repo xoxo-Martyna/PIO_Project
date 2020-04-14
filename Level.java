@@ -2,8 +2,18 @@
 
 public class Level {
     private String id;
-    private ILevelTile[][] tiles;
+    private Tile[][] tiles;
+    private int height;
+    private int width;
 
     public String getId();
-    public ILevelTile getTile( int x, int y);
+    public Tile getTile( int x, int y);
+
+    public int getHeight(){
+        return height;
+    }
+
+    public int getWidth(){
+        return width;
+    }
 }
