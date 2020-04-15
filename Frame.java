@@ -1,8 +1,9 @@
 import javax.swing.JFrame;
 
-public class Frame extends JFrame {
-    
+public class Frame extends JFrame {    
     private Panel expPanel;
+
+    private Game game;
 
     public Frame( Player player ){
         expPanel = new Panel( player );
@@ -11,9 +12,18 @@ public class Frame extends JFrame {
     public Frame(){
         super("GAME");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        expPanel = new Panel();
+
+        game = new Game();
+        game.addLevel(
+            Level.getTestLevel()
+        );
+
+        expPanel = new Panel(
+            game.setLevel("test")
+        );
         add( expPanel );
         pack();
+
         setVisible(true);
     }
 

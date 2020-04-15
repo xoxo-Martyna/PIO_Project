@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 
 public class Game {
     private GameState state;
@@ -6,7 +6,7 @@ public class Game {
 
     private Player player;
 
-    private Level[] levels;
+    private ArrayList<Level> levels;
     private Level currentLevel;
     private Level nextLevel;
 
@@ -15,8 +15,24 @@ public class Game {
     private int currentTime;
     private int referenceTime;
 
+    public Game() {
+        state = GameState.exploration;
+
+        levels = new ArrayList<Level>();
+    }
+
     public void handleGameLoop(){
 
+    }
+
+    public void addLevel( Level level ) {
+        levels.add(level);
+    }
+
+    public Level setLevel( String id ) {
+        currentLevel = getLevel(id);
+
+        return currentLevel;
     }
 
     public int getTime(){
@@ -35,7 +51,12 @@ public class Game {
 
     }
 
-    public Level getLevelFromId( String id ){
+    public Level getLevel( String id ){
+        for (Level l : levels) {
+            if (l.getId() == id)
+                return l;
+        }
+
         return null;
     }
 

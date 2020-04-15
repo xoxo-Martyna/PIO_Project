@@ -20,11 +20,30 @@ public class Level {
         }
     }
 
+    public static Level getTestLevel() {
+        Level level = new Level("test");
+
+        for (int x = 0; x < level.getWidth(); x++) {
+            for (int y = 0; y < level.getHeight(); y++) {
+                level.setTile(
+                    x, y,
+                    new GenericFloorTile("testblue")
+                );
+            }
+        }
+
+        return level;
+    }
+
     public String getId(){
         return id;
     }
     public Tile getTile( int x, int y){
-        return tiles[y][x];
+        return tiles[x][y];
+    }
+
+    public void setTile( int x, int y, Tile tile ) {
+        tiles[x][y] = tile;
     }
 
     public int getHeight(){
