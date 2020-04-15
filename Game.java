@@ -15,18 +15,43 @@ public class Game {
     private int currentTime;
     private int referenceTime;
 
-    public void handleGameLoop();
-    public int getTime();
+    public void handleGameLoop(){
 
-    public Player getPlayer();
+    }
 
-    public GameState getState();
-    public void setState( GameState state );
+    public int getTime(){
+        return currentTime;
+    }
 
-    public Level getLevelFromId( String id );
-    public Level getCurrentLevel();
+    public Player getPlayer(){
+        return player;
+    }
 
-    public Fight getCurrentFight();
-    public void startFight( Fight fight );
-    public void endFight();
+    public GameState getState(){
+        return null;
+    }
+
+    public void setState( GameState state ){
+
+    }
+
+    public Level getLevelFromId( String id ){
+        return null;
+    }
+
+    public Level getCurrentLevel(){
+        return null;
+    }
+
+    public Fight getCurrentFight(){
+        return null;
+    }
+
+    public void startFight( Fight fight ){
+
+    }
+
+    public void endFight(){
+
+    }
 }

@@ -1,25 +1,26 @@
+import java.awt.image.BufferedImage;
 
 public class Tile{ //implements ISpawner {
     private String id;
-    private Sprite sprite;
+    private BufferedImage image;
     private boolean collideable;
-    private ISpawner spawner;
+    //private ISpawner spawner;
 
     public String getId(){
         return id;
     }
 
-    public Sprite getSprite(){
-        return sprite;
+    public BufferedImage getImage(){
+        return image;
     }
 
     public boolean getCollideable(){
         return collideable;
     }
 
-    public ISpawner getSpawner(){
+    /*public ISpawner getSpawner(){
         return spawner;
-    }
+    }*/
 
     public boolean canPlayerEnter(){
         return !collideable;
