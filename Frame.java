@@ -26,7 +26,7 @@ public class Frame extends JFrame {
         } catch (IOException e) {}
 
         expPanel = new Panel(
-            game.setLevel("test")
+            game.setLevel("example")
         );
         add( expPanel );
         pack();
