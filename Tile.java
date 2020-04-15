@@ -1,9 +1,9 @@
 import java.awt.image.BufferedImage;
 
-public class Tile{ //implements ISpawner {
-    private String id;
+public class Tile { //implements ISpawner {
+    protected String id;
     private BufferedImage image;
-    private boolean collideable;
+    protected boolean collideable;
     //private ISpawner spawner;
 
     public String getId(){

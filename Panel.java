@@ -15,10 +15,10 @@ public class Panel extends JPanel {
         setPreferredSize( new Dimension(imageSize*levelSize, imageSize*levelSize) );
     }
 
-    public Panel(){
+    public Panel( Level level ){
         setPreferredSize( new Dimension(imageSize*levelSize, imageSize*levelSize) );
 
-        level = new Level("test");
+        this.level = level;
     }
 
     public void setLevel( Level level ){
@@ -30,14 +30,26 @@ public class Panel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D)g;
         
-        for( int i = 0; i < level.getHeight(); i++ )
-            for( int j = 0; j < level.getWidth(); j++ ){
-                Tile tile = level.getTile(j, i);
+        for( int y = 0; y < level.getHeight(); y++ )
+            for( int x = 0; x < level.getWidth(); x++ ){
+                Tile tile = level.getTile(x, y);
                 if (tile == null) continue;
 
                 BufferedImage image = (tile.getImage());
 
-                g2d.drawImage( image, imageSize*j, imageSize*i, this );
+                if (image == null) {
+                    Rectangle rect = new Rectangle(
+                        imageSize * x, imageSize * y,
+                        imageSize, imageSize
+                    );
+
+                    g2d.setColor(
+                        new Color(1.0f, 0.0f, 1.0f)
+                    );
+                    g2d.fill(rect);
+                } else {
+                    g2d.drawImage( image, imageSize*x, imageSize*y, this );
+                }
             }
 
         //w przyszlosci dodatkowo rysowanie przedmiotow lezacych na planszy
