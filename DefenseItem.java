@@ -5,8 +5,14 @@
 public class DefenseItem implements IItem {
     private int protectPoints;
 
-    public String getName();
-    public int getDurability();
+    public String getName() {
+        return "";
+    }
+    public int getDurability() {
+        return 0;
+    }
 
-    public int getProtectPoints();
+    public int getProtectPoints() {
+        return 0;
+    }
 }
