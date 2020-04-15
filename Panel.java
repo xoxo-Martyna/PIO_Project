@@ -17,6 +17,8 @@ public class Panel extends JPanel {
 
     public Panel(){
         setPreferredSize( new Dimension(imageSize*levelSize, imageSize*levelSize) );
+
+        level = new Level("test");
     }
 
     public void setLevel( Level level ){
@@ -31,6 +33,8 @@ public class Panel extends JPanel {
         for( int i = 0; i < level.getHeight(); i++ )
             for( int j = 0; j < level.getWidth(); j++ ){
                 Tile tile = level.getTile(j, i);
+                if (tile == null) continue;
+
                 BufferedImage image = (tile.getImage());
 
                 g2d.drawImage( image, imageSize*j, imageSize*i, this );

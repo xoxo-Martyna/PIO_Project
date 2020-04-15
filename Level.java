@@ -6,6 +6,20 @@ public class Level {
     private int height;
     private int width;
 
+    public Level(String levelId) {
+        id = levelId;
+
+        width = 10;
+        height = 10;
+        tiles = new Tile[width][height];
+
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                tiles[x][y] = null;
+            }
+        }
+    }
+
     public String getId(){
         return id;
     }
