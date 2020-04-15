@@ -1,15 +1,35 @@
 
-public class Tile implements ISpawner{
+public class Tile{ //implements ISpawner {
     private String id;
     private Sprite sprite;
     private boolean collideable;
     private ISpawner spawner;
 
-    public String getId();
-    public Sprite getSprite();
-    public boolean getCollideable();
-    public ISpawner getSpawner();
-    public boolean canPlayerEnter();
-    public void handlePlayerEnter(Game);
-    public void handlePlayerStay(Game);
+    public String getId(){
+        return id;
+    }
+
+    public Sprite getSprite(){
+        return sprite;
+    }
+
+    public boolean getCollideable(){
+        return collideable;
+    }
+
+    public ISpawner getSpawner(){
+        return spawner;
+    }
+
+    public boolean canPlayerEnter(){
+        return !collideable;
+    }
+
+    public void handlePlayerEnter(Game game){
+
+    }
+
+    public void handlePlayerStay(Game game){
+
+    }
 }

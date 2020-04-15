@@ -6,8 +6,12 @@ public class Level {
     private int height;
     private int width;
 
-    public String getId();
-    public Tile getTile( int x, int y);
+    public String getId(){
+        return id;
+    }
+    public Tile getTile( int x, int y){
+        return tiles[y][x];
+    }
 
     public int getHeight(){
         return height;
