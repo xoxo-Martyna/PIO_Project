@@ -49,7 +49,12 @@ public class LevelLoader {
 
         if (args[0].equals("Tile") && args.length > 2) {
             String tileId = args[1];
-            Tile tile = new GenericFloorTile(tileId);
+            Tile tile = null;
+
+            if (tileId.startsWith("f_"))
+                tile = new GenericFloorTile(tileId);
+            else if (tileId.startsWith("w_"))
+                tile = new GenericWallTile(tileId);
 
             for (int i = 2; i < args.length; i += 2) {
                 if (i + 1 >= args.length) break;
