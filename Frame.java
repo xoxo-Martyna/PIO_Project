@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 import javax.swing.JFrame;
 
 public class Frame extends JFrame {    
@@ -14,9 +16,14 @@ public class Frame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         game = new Game();
-        game.addLevel(
-            Level.getTestLevel()
-        );
+
+        LevelLoader loader = new LevelLoader();
+
+        try {
+            game.addLevel(
+                loader.loadFromFile("example")
+            );
+        } catch (IOException e) {}
 
         expPanel = new Panel(
             game.setLevel("test")

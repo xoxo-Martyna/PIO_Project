@@ -1,5 +1,3 @@
-
-
 public class Level {
     private String id;
     private Tile[][] tiles;
@@ -18,21 +16,6 @@ public class Level {
                 tiles[x][y] = null;
             }
         }
-    }
-
-    public static Level getTestLevel() {
-        Level level = new Level("test");
-
-        for (int x = 0; x < level.getWidth(); x++) {
-            for (int y = 0; y < level.getHeight(); y++) {
-                level.setTile(
-                    x, y,
-                    new GenericFloorTile("testblue")
-                );
-            }
-        }
-
-        return level;
     }
 
     public String getId(){
