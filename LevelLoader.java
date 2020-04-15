@@ -12,11 +12,10 @@ public class LevelLoader {
             )
         );
 
-        String line = reader.readLine();
-        parseScriptLine(line, level);
+        while (true) {
+            String line = reader.readLine();
+            if (line == null) break;
 
-        while (line != null) {
-            line = reader.readLine();
             parseScriptLine(line, level);
         }
 
@@ -41,6 +40,31 @@ public class LevelLoader {
     }
 
     private void parseScriptLine(String line, Level target) {
-        System.out.println(line);
+        if (
+            line.startsWith("//") ||
+            line.length() == 0
+        ) return;
+
+        String[] args = line.split("\s+");
+
+        if (args[0].equals("Tile") && args.length > 2) {
+            String tileId = args[1];
+            Tile tile = new GenericFloorTile(tileId);
+
+            for (int i = 2; i < args.length; i += 2) {
+                if (i + 1 >= args.length) break;
+
+                int x = Integer.parseInt(args[i]);
+                int y = Integer.parseInt(args[i + 1]);
+
+                if (
+                    x >= target.getWidth() ||
+                    y >= target.getHeight()
+                )
+                    break;
+                
+                target.setTile(x, y, tile);
+            }
+        }
     }
 }

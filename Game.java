@@ -53,7 +53,7 @@ public class Game {
 
     public Level getLevel( String id ){
         for (Level l : levels) {
-            if (l.getId() == id)
+            if (l.getId().equals(id))
                 return l;
         }
 
