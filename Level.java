@@ -1,5 +1,6 @@
 public class Level {
     private String id;
+
     private Tile[][] tiles;
     private int height;
     private int width;
