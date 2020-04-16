@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 
 public class Game {
     private GameState state;
@@ -6,7 +6,7 @@ public class Game {
 
     private Player player;
 
-    private Level[] levels;
+    private ArrayList<Level> levels;
     private Level currentLevel;
     private Level nextLevel;
 
@@ -15,18 +15,64 @@ public class Game {
     private int currentTime;
     private int referenceTime;
 
-    public void handleGameLoop();
-    public int getTime();
+    public Game() {
+        state = GameState.exploration;
 
-    public Player getPlayer();
+        levels = new ArrayList<Level>();
+    }
 
-    public GameState getState();
-    public void setState( GameState state );
+    public void handleGameLoop(){
 
-    public Level getLevelFromId( String id );
-    public Level getCurrentLevel();
+    }
 
-    public Fight getCurrentFight();
-    public void startFight( Fight fight );
-    public void endFight();
+    public void addLevel( Level level ) {
+        levels.add(level);
+    }
+
+    public Level setLevel( String id ) {
+        currentLevel = getLevel(id);
+
+        return currentLevel;
+    }
+
+    public int getTime(){
+        return currentTime;
+    }
+
+    public Player getPlayer(){
+        return player;
+    }
+
+    public GameState getState(){
+        return null;
+    }
+
+    public void setState( GameState state ){
+
+    }
+
+    public Level getLevel( String id ){
+        for (Level l : levels) {
+            if (l.getId().equals(id))
+                return l;
+        }
+
+        return null;
+    }
+
+    public Level getCurrentLevel(){
+        return null;
+    }
+
+    public Fight getCurrentFight(){
+        return null;
+    }
+
+    public void startFight( Fight fight ){
+
+    }
+
+    public void endFight(){
+
+    }
 }

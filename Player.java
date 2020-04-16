@@ -1,10 +1,11 @@
 //import java.util.List;
+import java.awt.image.BufferedImage;
 
-public class Player implements IFightMember {
+public class Player { //implements IFightMember {
     private int x;
     private int y;
 
-    private Sprite sprite;
+    private BufferedImage image;
     
     private int healthPoints;
     private int defensePoints;
@@ -27,8 +28,8 @@ public class Player implements IFightMember {
         this.y = y;
     }
 
-    public Sprite getSprite(){
-        return sprite;
+    public BufferedImage getImage(){
+        return image;
     }
 
     public int getHealthPoints(){

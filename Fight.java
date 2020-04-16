@@ -6,6 +6,10 @@ public class Fight {
     private Opponent opponent;
     private boolean isPlayersTurn;
 
-    public Opponent getOpponent();
-    public boolean getIsPlayersTurn();
+    public Opponent getOpponent() {
+        return null;
+    }
+    public boolean getIsPlayersTurn() {
+        return false;
+    }
 }
