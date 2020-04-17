@@ -9,9 +9,12 @@ public class Panel extends JPanel {
 
     private final int imageSize = 64;
     private final int levelSize = 10;
+    private final int d = 10;
+    private final int eqY = 320;
+    private final int hpY = 100;
 
     public Panel( Level level, Player player ){
-        setPreferredSize( new Dimension(imageSize*levelSize, imageSize*levelSize) );
+        setPreferredSize( new Dimension(imageSize*levelSize+4*d+3*imageSize, imageSize*levelSize) );
 
         this.player = player;
         this.level = level;
@@ -25,9 +28,10 @@ public class Panel extends JPanel {
 	protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D)g;
+        int y, x;
         
-        for( int y = 0; y < level.getHeight(); y++ )
-            for( int x = 0; x < level.getWidth(); x++ ){
+        for( y = 0; y < level.getHeight(); y++ )
+            for( x = 0; x < level.getWidth(); x++ ){
                 Tile tile = level.getTile(x, y);
                 if (tile == null) continue;
 
@@ -52,6 +56,29 @@ public class Panel extends JPanel {
         
         g2d.drawImage( player.getImage(), player.getX()*imageSize, player.getY()*imageSize, this );
 
-        //jeszcze ekwipunek i postac :o
+        //rysowanie hp
+        x = level.getWidth()*imageSize+d;
+        y = hpY;
+
+        g2d.setColor( Color.BLACK );
+        g2d.draw( new Rectangle( x-1, y-1, Player.maxHealthPoints*3+1, imageSize/2+1 ) );
+        g2d.setColor( Color.RED );
+        g2d.fill( new Rectangle( x, y, player.getHealthPoints()*3, imageSize/2 ) );
+
+        //rysowanie defense'a
+        y += imageSize/2+d;
+
+        g2d.setColor( Color.BLACK );
+        g2d.draw( new Rectangle( x-1, y-1, Player.maxDefensePoints*3+1, imageSize/2+1 ) );
+
+        g2d.setColor( Color.GRAY );
+        g2d.fill( new Rectangle( x, y, player.getDefensePoints()*3, imageSize/2 ) );
+
+        //rysowanie ekwipunku, na razie bez przedmiotow
+        g2d.setColor( Color.BLACK );
+        for( y = eqY; y < eqY+3*(imageSize+d); y += imageSize+d )
+            for( x = level.getWidth()*imageSize+d; x < getSize().width; x += imageSize+d )
+                g2d.draw( new Rectangle( x, y, imageSize, imageSize ) );
+
 	}
 }

@@ -27,6 +27,7 @@ public class Frame extends JFrame {
         add( expPanel );
         pack();
 
+        setResizable(false);
         setVisible(true);
     }
 
