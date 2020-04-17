@@ -10,14 +10,10 @@ public class Panel extends JPanel {
     private final int imageSize = 64;
     private final int levelSize = 10;
 
-    public Panel( Player player ){
+    public Panel( Level level, Player player ){
+        setPreferredSize( new Dimension(imageSize*levelSize, imageSize*levelSize) );
+
         this.player = player;
-        setPreferredSize( new Dimension(imageSize*levelSize, imageSize*levelSize) );
-    }
-
-    public Panel( Level level ){
-        setPreferredSize( new Dimension(imageSize*levelSize, imageSize*levelSize) );
-
         this.level = level;
     }
 
@@ -53,8 +49,8 @@ public class Panel extends JPanel {
             }
 
         //w przyszlosci dodatkowo rysowanie przedmiotow lezacych na planszy
-
-        //g2d.drawImage( player.getImage(), player.getX()*imageSize, player.getY()*imageSize, this );
+        
+        g2d.drawImage( player.getImage(), player.getX()*imageSize, player.getY()*imageSize, this );
 
         //jeszcze ekwipunek i postac :o
 	}

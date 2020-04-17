@@ -19,21 +19,22 @@ public class Player { //implements IFightMember {
     //private List<IItem> items;
 
     public Player(){
+        x = 3;
+        y = 3;
         try{
             down = ImageIO.read(new File ("res/g_front.png"));
-        } catch(IOException e){}
-    
-        try{
+        
             up = ImageIO.read(new File ("res/g_back.png"));
-        } catch(IOException e){}
-    
-        try{
+        
             left = ImageIO.read(new File ("res/g_left.png"));
-        } catch(IOException e){}
-    
-        try{
+        
             right = ImageIO.read(new File ("res/g_right.png"));
-        } catch(IOException e){}
+
+            def = down;
+            
+        } catch(IOException e){
+            e.printStackTrace();
+        }
     }
     
     public int getX(){
@@ -53,7 +54,7 @@ public class Player { //implements IFightMember {
     }
 
     public BufferedImage getImage(){    
-            return def;
+        return def;
     }
 
     public int getHealthPoints(){
