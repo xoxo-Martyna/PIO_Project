@@ -33,6 +33,8 @@ public class Game {
 
     public Level setLevel( String id ) {
         currentLevel = getLevel(id);
+        player.setX(currentLevel.getSpawnX());
+        player.setY(currentLevel.getSpawnY());
 
         return currentLevel;
     }
