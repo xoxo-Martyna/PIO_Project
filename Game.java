@@ -19,6 +19,8 @@ public class Game {
         state = GameState.exploration;
 
         levels = new ArrayList<Level>();
+
+        player = new Player();
     }
 
     public void handleGameLoop(){
@@ -31,6 +33,8 @@ public class Game {
 
     public Level setLevel( String id ) {
         currentLevel = getLevel(id);
+        player.setX(currentLevel.getSpawnX());
+        player.setY(currentLevel.getSpawnY());
 
         return currentLevel;
     }

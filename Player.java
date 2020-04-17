@@ -1,16 +1,44 @@
+
 //import java.util.List;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 
 public class Player { //implements IFightMember {
     private int x;
     private int y;
 
-    private BufferedImage image;
+    private BufferedImage def, down, up, left, right;
     
     private int healthPoints;
     private int defensePoints;
 
+    public static final int maxHealthPoints = 70;
+    public static final int maxDefensePoints = 70;
+
     //private List<IItem> items;
+
+    public Player(){
+        healthPoints = maxHealthPoints;
+        defensePoints = 0;
+        try{
+            down = ImageIO.read(new File ("res/g_front.png"));
+        
+            up = ImageIO.read(new File ("res/g_back.png"));
+        
+            left = ImageIO.read(new File ("res/g_left.png"));
+        
+            right = ImageIO.read(new File ("res/g_right.png"));
+
+            def = down;
+
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+    }
     
     public int getX(){
         return x;
@@ -28,8 +56,8 @@ public class Player { //implements IFightMember {
         this.y = y;
     }
 
-    public BufferedImage getImage(){
-        return image;
+    public BufferedImage getImage(){    
+        return def;
     }
 
     public int getHealthPoints(){
@@ -41,7 +69,7 @@ public class Player { //implements IFightMember {
     }
 
     public void move( Level level, int dx, int dy ){
-
+        // def = left ( jak w lewo) itp
     }
 
     //public void addItem( IItem item );

@@ -7,10 +7,6 @@ public class Frame extends JFrame {
 
     private Game game;
 
-    public Frame( Player player ){
-        expPanel = new Panel( player );
-    }
-
     public Frame(){
         super("GAME");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -26,11 +22,12 @@ public class Frame extends JFrame {
         } catch (IOException e) {}
 
         expPanel = new Panel(
-            game.setLevel("example")
+            game.setLevel("example"), game.getPlayer()
         );
         add( expPanel );
         pack();
 
+        setResizable(false);
         setVisible(true);
     }
 
