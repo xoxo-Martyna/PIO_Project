@@ -23,9 +23,7 @@ public class Player { //implements IFightMember {
 
     public Player(){
         healthPoints = maxHealthPoints;
-        defensePoints = 10;
-        x = 3;
-        y = 3;
+        defensePoints = 0;
         try{
             down = ImageIO.read(new File ("res/g_front.png"));
         
