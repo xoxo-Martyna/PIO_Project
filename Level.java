@@ -5,6 +5,9 @@ public class Level {
     private int height;
     private int width;
 
+    private int spawnX;
+    private int spawnY;
+
     public Level(String levelId) {
         id = levelId;
 
@@ -19,7 +22,23 @@ public class Level {
         }
     }
 
-    public String getId(){
+    public int getSpawnX() {
+        return spawnX;
+    }
+
+    public void setSpawnX(int spawnX) {
+        this.spawnX = spawnX;
+    }
+
+    public int getSpawnY() {
+        return spawnY;
+    }
+
+    public void setSpawnY(int spawnY) {
+        this.spawnY = spawnY;
+    }
+
+    public String getId() {
         return id;
     }
     public Tile getTile( int x, int y){

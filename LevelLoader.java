@@ -70,6 +70,9 @@ public class LevelLoader {
                 
                 target.setTile(x, y, tile);
             }
+        } else if (args[0].equals("SpawnPoint") && args.length == 3) {
+            target.setSpawnX(Integer.parseInt(args[1]));
+            target.setSpawnY(Integer.parseInt(args[2]));
         }
     }
 }
