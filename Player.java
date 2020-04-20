@@ -72,8 +72,10 @@ public class Player { //implements IFightMember {
         return defensePoints;
     }
 
-    public void move( Level level, int dx, int dy ){
-        // def = left ( jak w lewo) itp
+    public void move(int dx, int dy ){
+        this.x+=dx;
+        this.y+=dy;
+         // def = left ( jak w lewo) itp
         
     }
 

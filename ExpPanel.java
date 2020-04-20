@@ -1,9 +1,10 @@
 import java.awt.image.BufferedImage;
 import java.awt.*;
+import java.awt.event.*;
 
 import javax.swing.JPanel;
 
-public class ExpPanel extends JPanel {
+public class ExpPanel extends JPanel implements KeyListener  {
     private Level level;
     private Player player;
 
@@ -18,6 +19,9 @@ public class ExpPanel extends JPanel {
 
         this.player = player;
         this.level = level;
+        addKeyListener(this);
+        setFocusable(true);
+
     }
 
     public void setLevel( Level level ){
@@ -80,5 +84,37 @@ public class ExpPanel extends JPanel {
             for( x = level.getWidth()*imageSize+d; x < getSize().width; x += imageSize+d )
                 g2d.draw( new Rectangle( x, y, imageSize, imageSize ) );
 
-	}
+    }
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+
+        // nie jest plynnie, dla player.setVelX(5); jest lepiej
+        //(tak jak dla LEFT, UP, DOWN)
+        if(key == KeyEvent.VK_RIGHT) {
+            player.move(1, 0);
+            repaint();
+        }
+        if(key == KeyEvent.VK_LEFT) {
+            player.move(-1, 0);
+            repaint();
+        }
+        if(key == KeyEvent.VK_UP) {
+            player.move( 0, -1);
+            repaint();
+        }
+        if(key == KeyEvent.VK_DOWN) {
+            player.move(0, 1);
+            repaint();
+        }
+        
+    }
+
+    public void keyReleased(KeyEvent e) {
+
+    }
+
+    public void keyTyped(KeyEvent e) {
+
+    }
+    
 }
