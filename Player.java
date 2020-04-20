@@ -16,12 +16,16 @@ public class Player { //implements IFightMember {
     private int healthPoints;
     private int defensePoints;
 
+    private Game game;
+
     public static final int maxHealthPoints = 70;
     public static final int maxDefensePoints = 70;
 
     //private List<IItem> items;
 
-    public Player(){
+    public Player(Game game){
+        this.game = game;
+
         healthPoints = maxHealthPoints;
         defensePoints = 0;
         try{
@@ -70,6 +74,7 @@ public class Player { //implements IFightMember {
 
     public void move( Level level, int dx, int dy ){
         // def = left ( jak w lewo) itp
+        
     }
 
     //public void addItem( IItem item );

@@ -21,6 +21,8 @@ public class LevelLoader {
 
         reader.close();
 
+        System.out.println("Loaded " + level.getId());
+
         return level;
     }
 
