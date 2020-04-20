@@ -71,8 +71,15 @@ public class Player { //implements IFightMember {
     public void move(int dx, int dy ){
         this.x+=dx;
         this.y+=dy;
-         // def = left ( jak w lewo) itp
+        if(dx == 1)
+            def = right;
+        else if(dx == -1)
+            def = left;
 
+        if(dy == 1)
+            def = down;
+        else if(dy == -1)
+            def = up;
     }
 
     //public void addItem( IItem item );
