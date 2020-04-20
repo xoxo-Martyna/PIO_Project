@@ -65,7 +65,7 @@ public class Game {
     }
 
     public Level getCurrentLevel(){
-        return null;
+        return currentLevel;
     }
 
     public Fight getCurrentFight(){

@@ -10,7 +10,7 @@ public class Frame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         this.game = game;
-        expPanel = new ExpPanel( game.setLevel("example"), game.getPlayer() );
+        expPanel = new ExpPanel( game.getCurrentLevel(), game.getPlayer() );
 
         add( expPanel );
         pack();
