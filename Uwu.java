@@ -25,3 +25,4 @@ Artur: rysowanie planszy
 
 // OBRONA
 // czapka, zbroja, tarcza
+// owo
