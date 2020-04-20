@@ -1,29 +1,17 @@
-import java.io.IOException;
-
 import javax.swing.JFrame;
 
 public class Frame extends JFrame {    
-    private Panel expPanel;
+    private ExpPanel expPanel;
 
     private Game game;
 
-    public Frame(){
+    public Frame( Game game ){
         super("GAME");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        game = new Game();
+        this.game = game;
+        expPanel = new ExpPanel( game.setLevel("example"), game.getPlayer() );
 
-        LevelLoader loader = new LevelLoader();
-
-        try {
-            game.addLevel(
-                loader.loadFromFile("example")
-            );
-        } catch (IOException e) {}
-
-        expPanel = new Panel(
-            game.setLevel("example"), game.getPlayer()
-        );
         add( expPanel );
         pack();
 
@@ -31,12 +19,7 @@ public class Frame extends JFrame {
         setVisible(true);
     }
 
-    public Panel getExpPanel(){
+    public ExpPanel getExpPanel(){
         return expPanel;
-    }
-
-    public static void main( String[] args ){
-        // panel.setlevel najpierw
-        new Frame();
     }
 }
