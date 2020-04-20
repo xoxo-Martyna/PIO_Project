@@ -3,7 +3,7 @@ import java.awt.*;
 
 import javax.swing.JPanel;
 
-public class Panel extends JPanel {
+public class ExpPanel extends JPanel {
     private Level level;
     private Player player;
 
@@ -13,7 +13,7 @@ public class Panel extends JPanel {
     private final int eqY = 320;
     private final int hpY = 100;
 
-    public Panel( Level level, Player player ){
+    public ExpPanel( Level level, Player player ){
         setPreferredSize( new Dimension(imageSize*levelSize+4*d+3*imageSize, imageSize*levelSize) );
 
         this.player = player;
