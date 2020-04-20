@@ -25,4 +25,8 @@ Artur: rysowanie planszy
 
 // OBRONA
 // czapka, zbroja, tarcza
+<<<<<<< HEAD
 // owo
+=======
+// TEST 
+>>>>>>> 747db75b0c71dfebb3e5e512230269224730934e
