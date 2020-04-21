@@ -25,4 +25,4 @@ Artur: rysowanie planszy
 
 // OBRONA
 // czapka, zbroja, tarcza
-// JD NIERZĄDNICE
+//TEST

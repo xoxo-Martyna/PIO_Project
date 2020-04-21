@@ -20,7 +20,7 @@ public class Game {
 
         levels = new ArrayList<Level>();
 
-        player = new Player(this);
+        player = new Player();
     }
 
     public void handleGameLoop(){
