@@ -10,9 +10,9 @@ public class Main {
         String firstLevel = "example"; //pozniej to usuniemy
 
         try {
-            game.addLevel( loader.loadFromFile( firstLevel ) );
+            loader.loadAllLevels(game);
         } catch (IOException e) {
-            System.out.println(e + "\nNie mozna uruchomic pliku z poziomami");
+            System.out.println(e + "\nNie mozna uruchomic plików z poziomami");
             return;
         }
         game.setLevel( firstLevel );

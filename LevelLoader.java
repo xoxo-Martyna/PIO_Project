@@ -1,8 +1,42 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 public class LevelLoader {
+    public void loadAllLevels(Game game) throws IOException {
+        Stream<Path> pathWalk = Files.walk(
+            Paths.get("levels")
+        );
+
+        pathWalk.filter(
+            Files::isRegularFile
+        ).map(
+            f -> f.getFileName().toString()
+        ).forEach(
+            f -> {
+                if (f.endsWith(".xoxo"))
+					try {
+						game.addLevel(
+						    loadFromFile(
+						        f.substring(
+						            0, f.length() - 5
+						        )
+						    )
+						);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+            }
+        );
+
+        pathWalk.close();
+    }
+
     public Level loadFromFile(String id) throws IOException {
         Level level = new Level(id);
 
