@@ -13,6 +13,7 @@ public class Player { //implements IFightMember {
 
     private BufferedImage def, down, up, left, right;
     
+    private Game game;
     private Level level;
     private boolean inBounds;
 
@@ -24,7 +25,9 @@ public class Player { //implements IFightMember {
 
     //private List<IItem> items;
 
-    public Player(){
+    public Player(Game game){
+        this.game = game;
+
         healthPoints = maxHealthPoints;
         defensePoints = 0;
         try{
@@ -77,7 +80,7 @@ public class Player { //implements IFightMember {
 
     public void move(int dx, int dy ){
         try { 
-            if(level.getTile(x+dx, y+dy).canPlayerEnter()){
+            if(game.getCurrentLevel().getTile(x+dx, y+dy).canPlayerEnter()){
                 this.x+=dx;
                 this.y+=dy;
                 if(dx == 1)
