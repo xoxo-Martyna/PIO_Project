@@ -92,7 +92,8 @@ public class ExpPanel extends JPanel implements KeyListener {
         if(key == KeyEvent.VK_RIGHT) {
             player.move(1, 0);
             repaint();
-        }
+            }
+        
         if(key == KeyEvent.VK_LEFT) {
             player.move(-1, 0);
             repaint();

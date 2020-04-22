@@ -13,6 +13,9 @@ public class Player { //implements IFightMember {
 
     private BufferedImage def, down, up, left, right;
     
+    private Level level;
+    private boolean inBounds;
+
     private int healthPoints;
     private int defensePoints;
 
@@ -68,18 +71,28 @@ public class Player { //implements IFightMember {
         return defensePoints;
     }
 
-    public void move(int dx, int dy ){
-        this.x+=dx;
-        this.y+=dy;
-        if(dx == 1)
-            def = right;
-        else if(dx == -1)
-            def = left;
+    public Level getLevel() {
+        return level;
+    }
 
-        if(dy == 1)
-            def = down;
-        else if(dy == -1)
-            def = up;
+    public void move(int dx, int dy ){
+        try { 
+            if(level.getTile(x+dx, y+dy).canPlayerEnter()){
+                this.x+=dx;
+                this.y+=dy;
+                if(dx == 1)
+                    def = right;
+                else if(dx == -1)
+                    def = left;
+
+                if(dy == 1)
+                    def = down;
+                else if(dy == -1)
+                    def = up;
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            //You can't go out of bounds mongrel
+        }
     }
 
     //public void addItem( IItem item );

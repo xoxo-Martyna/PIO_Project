@@ -1,13 +1,13 @@
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 
 public class Tile { //implements ISpawner {
     protected String id;
     private BufferedImage image;
-    protected boolean collideable;
+    protected boolean collidable;
+    
     //private ISpawner spawner;
 
     protected void loadImage() {
@@ -28,20 +28,20 @@ public class Tile { //implements ISpawner {
         return image;
     }
 
-    public boolean getCollideable(){
-        return collideable;
+    public boolean getCollidable(){
+        return collidable;
     }
 
     /*public ISpawner getSpawner(){
         return spawner;
     }*/
-
     public boolean canPlayerEnter(){
-        return !collideable;
+        return !collidable;
     }
 
     public void handlePlayerEnter(Game game){
 
+    
     }
 
     public void handlePlayerStay(Game game){
