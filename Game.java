@@ -6,6 +6,15 @@ public class Game {
 
     private Player player;
 
+     private Frame frame;
+
+    public void setFrame(Frame frame) {
+        this.frame = frame;
+    }
+
+    public Frame getFrame() {
+        return frame;
+    }
     private ArrayList<Level> levels;
     private Level currentLevel;
     private Level nextLevel;
@@ -20,7 +29,6 @@ public class Game {
 
         levels = new ArrayList<Level>();
 
-        player = new Player(this);
     }
 
     public void handleGameLoop(){
@@ -79,4 +87,8 @@ public class Game {
     public void endFight(){
 
     }
+     public void setPlayer(Player player) {
+        this.player = player;
+    }
 }
+

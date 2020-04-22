@@ -87,8 +87,10 @@ public class LevelLoader {
 
             if (tileId.startsWith("f_"))
                 tile = new GenericFloorTile(tileId);
-            else if (tileId.startsWith("w_"))
+           if (tileId.startsWith("w_"))
                 tile = new GenericWallTile(tileId);
+            else if (tileId.startsWith("d_"))
+                tile = new GenericDoorTile(tileId);
 
             for (int i = 2; i < args.length; i += 2) {
                 if (i + 1 >= args.length) break;

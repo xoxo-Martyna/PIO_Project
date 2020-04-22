@@ -13,9 +13,7 @@ public class Player { //implements IFightMember {
 
     private BufferedImage def, down, up, left, right;
     
-    private Game game;
-    private Level level;
-    private boolean inBounds;
+    private Game game;  
 
     private int healthPoints;
     private int defensePoints;
@@ -74,14 +72,9 @@ public class Player { //implements IFightMember {
         return defensePoints;
     }
 
-    public Level getLevel() {
-        return level;
-    }
-
+ 
     public void move(int dx, int dy ){
-        try {
-            Tile targetTile = game.getCurrentLevel().getTile(x+dx, y+dy);
-            if(targetTile.canPlayerEnter()){
+          
                 this.x+=dx;
                 this.y+=dy;
                 if(dx == 1)
@@ -94,12 +87,25 @@ public class Player { //implements IFightMember {
                 else if(dy == -1)
                     def = up;
                 
-                    targetTile.handlePlayerEnter(game);
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            //You can't go out of bounds mongrel
+
+        customUpdate(this.x, this.y);
+        if(dy == 1)
+            def = down;
+        else if(dy == -1)
+            def = up;
+
+        customUpdate(this.x, this.y);
+    }
+
+    public void customUpdate(int x, int y){
+        if(game.getCurrentLevel().getTile(x,y) instanceof GenericDoorTile) { //player.getX(),player.getY()
+            game.setLevel(LevelName.secondLevel);
+            game.getFrame().customUpdate();
         }
     }
+
+
+                    
 
     //public void addItem( IItem item );
     //public void dropItem( IItem item );
