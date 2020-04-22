@@ -109,7 +109,9 @@ public class LevelLoader {
             target.setSpawnY(Integer.parseInt(args[2]));
         } else if (args[0].equals("DoorTile") && args.length == 7) {
             Tile door = new GenericDoorTile(
-                args[1], args[4]
+                args[1], args[4],
+                Integer.parseInt(args[5]),
+                Integer.parseInt(args[6])
             );
 
             target.setTile(
