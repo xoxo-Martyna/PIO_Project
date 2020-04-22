@@ -89,6 +89,12 @@ public class Player { //implements IFightMember {
                 
 
         customUpdate(this.x, this.y);
+        if(dy == 1)
+            def = down;
+        else if(dy == -1)
+            def = up;
+
+        customUpdate(this.x, this.y);
     }
 
     public void customUpdate(int x, int y){
