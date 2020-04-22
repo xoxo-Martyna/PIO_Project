@@ -119,10 +119,10 @@ public class LevelLoader {
                 Integer.parseInt(args[3]),
                 door
             );
-        } else if (args[0].equals("MoveableTile") && args.length == 5) {
+        } else if (args[0].equals("MoveableTile") && args.length == 6) {
             Tile floor = new GenericFloorTile(args[4]);
             Tile crate = new GenericMoveableTile(
-                args[1], floor
+                args[1], floor, args[5].equals("light")
             );
 
             target.setTile(
