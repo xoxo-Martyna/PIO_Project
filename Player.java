@@ -91,7 +91,7 @@ public class Player { //implements IFightMember {
                 targetTile.handlePlayerEnter(game);
                 customUpdate(this.x, this.y);
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException | java.lang.NullPointerException f) {
 
         }
     }
