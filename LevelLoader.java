@@ -119,6 +119,17 @@ public class LevelLoader {
                 Integer.parseInt(args[3]),
                 door
             );
+        } else if (args[0].equals("MoveableTile") && args.length == 5) {
+            Tile floor = new GenericFloorTile(args[4]);
+            Tile crate = new GenericMoveableTile(
+                args[1], floor
+            );
+
+            target.setTile(
+                Integer.parseInt(args[2]),
+                Integer.parseInt(args[3]),
+                crate
+            );
         }
     }
 }

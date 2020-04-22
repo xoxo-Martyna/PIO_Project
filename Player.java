@@ -80,7 +80,10 @@ public class Player { //implements IFightMember {
     public void move(int dx, int dy ){
         try {
             Tile targetTile = game.getCurrentLevel().getTile(x+dx, y+dy);
-            if(targetTile.canPlayerEnter()){
+
+            if(
+                targetTile.canPlayerEnter()
+            ){
                 this.x+=dx;
                 this.y+=dy;
                 if(dx == 1)
@@ -93,7 +96,33 @@ public class Player { //implements IFightMember {
                 else if(dy == -1)
                     def = up;
                 targetTile.handlePlayerEnter(game);
+            } else if (targetTile instanceof GenericMoveableTile) {
+                boolean canMove = ((GenericMoveableTile)targetTile).willMove(
+                    game.getCurrentLevel(),
+                    this.x + dx, this.y + dy,
+                    dx, dy
+                );
+
+                if (canMove) {
+                    // It's not the same!
+                    targetTile = game.getCurrentLevel().getTile(x+dx, y+dy);
+
+                    this.x+=dx;
+                    this.y+=dy;
+                    if(dx == 1)
+                        def = right;
+                    else if(dx == -1)
+                        def = left;
+    
+                    if(dy == 1)
+                        def = down;
+                    else if(dy == -1)
+                        def = up;
+
+                    targetTile.handlePlayerEnter(game);
+                }
             }
+
         } catch (ArrayIndexOutOfBoundsException | java.lang.NullPointerException f) {
 
         }
