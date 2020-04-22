@@ -79,7 +79,7 @@ public class LevelLoader {
             line.length() == 0
         ) return;
 
-        String[] args = line.split("\s+");
+        String[] args = line.split("\\s+");
 
         if (args[0].equals("Tile") && args.length > 2) {
             String tileId = args[1];

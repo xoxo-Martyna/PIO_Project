@@ -10,8 +10,14 @@ public class Frame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         this.game = game;
-        expPanel = new ExpPanel( game.getCurrentLevel(), game.getPlayer() );
+    }
 
+    public ExpPanel getExpPanel(){
+        return expPanel;
+    }
+
+    public void setExpPanel(ExpPanel expPanel) {
+        this.expPanel = expPanel;
         add( expPanel );
         pack();
 
@@ -19,7 +25,12 @@ public class Frame extends JFrame {
         setVisible(true);
     }
 
-    public ExpPanel getExpPanel(){
-        return expPanel;
+    public void customUpdate() {
+        game.getFrame().getExpPanel().setLevel(game.getCurrentLevel());
+        game.getFrame().pack();
+        game.getFrame().revalidate();
+        game.getFrame().repaint();
     }
-}
+
+    }
+
