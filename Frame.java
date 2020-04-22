@@ -24,13 +24,5 @@ public class Frame extends JFrame {
         setResizable(false);
         setVisible(true);
     }
-
-    public void customUpdate() {
-        game.getFrame().getExpPanel().setLevel(game.getCurrentLevel());
-        game.getFrame().pack();
-        game.getFrame().revalidate();
-        game.getFrame().repaint();
-    }
-
-    }
+}
 

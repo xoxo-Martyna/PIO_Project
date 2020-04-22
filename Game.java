@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Game {
-    private GameState state;
+    private GameState state = GameState.exploration;
     private boolean isInFight;
 
     private Player player;
@@ -15,6 +15,7 @@ public class Game {
     public Frame getFrame() {
         return frame;
     }
+
     private ArrayList<Level> levels;
     private Level currentLevel;
     private Level nextLevel;
@@ -55,11 +56,10 @@ public class Game {
     }
 
     public GameState getState(){
-        return null;
+        return state;
     }
 
     public void setState( GameState state ){
-
     }
 
     public Level getLevel( String id ){
@@ -80,14 +80,21 @@ public class Game {
     }
 
     public void startFight( Fight fight ){
-
     }
 
     public void endFight(){
-
     }
-     public void setPlayer(Player player) {
+    
+    public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public void render() {
+        if (isInFight) {
+            // no fight panel yet
+        } else {
+            frame.getExpPanel().repaint();
+        }
     }
 }
 

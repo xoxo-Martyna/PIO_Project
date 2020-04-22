@@ -18,7 +18,7 @@ public class Main {
         }
         game.setLevel( LevelName.firstLevel );
 
-        ExpPanel expPanel = new ExpPanel( game.getCurrentLevel(), game.getPlayer() );
+        ExpPanel expPanel = new ExpPanel( game );
         Frame frame = new Frame( game );
         frame.setExpPanel(expPanel);
         game.setFrame(frame);

@@ -13,7 +13,8 @@ public class GenericDoorTile extends Tile {
 
     public void handlePlayerEnter(Game game){
         game.setLevel(targetLevelId);
-        game.getFrame().customUpdate();
+        game.render();
+        // game.getFrame().customUpdate();
     }
 
     public boolean exit(){

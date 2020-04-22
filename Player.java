@@ -93,17 +93,7 @@ public class Player { //implements IFightMember {
         } catch (ArrayIndexOutOfBoundsException | java.lang.NullPointerException f) {
 
         }
-    }
-
-    public void customUpdate(int x, int y){
-        if(game.getCurrentLevel().getTile(x,y) instanceof GenericDoorTile) { //player.getX(),player.getY()
-            game.setLevel(LevelName.secondLevel);
-            game.getFrame().customUpdate();
-        }
-    }
-
-
-                    
+    }                   
 
     //public void addItem( IItem item );
     //public void dropItem( IItem item );
