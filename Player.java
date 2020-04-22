@@ -79,8 +79,9 @@ public class Player { //implements IFightMember {
     }
 
     public void move(int dx, int dy ){
-        try { 
-            if(game.getCurrentLevel().getTile(x+dx, y+dy).canPlayerEnter()){
+        try {
+            Tile targetTile = game.getCurrentLevel().getTile(x+dx, y+dy);
+            if(targetTile.canPlayerEnter()){
                 this.x+=dx;
                 this.y+=dy;
                 if(dx == 1)
@@ -92,6 +93,8 @@ public class Player { //implements IFightMember {
                     def = down;
                 else if(dy == -1)
                     def = up;
+                
+                    targetTile.handlePlayerEnter(game);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             //You can't go out of bounds mongrel
