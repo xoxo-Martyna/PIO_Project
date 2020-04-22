@@ -130,6 +130,24 @@ public class LevelLoader {
                 Integer.parseInt(args[3]),
                 crate
             );
+        } else if (args[0].equals("WaterTile") && args.length > 2) {
+            String tileId = args[1];
+            Tile tile = new GenericWaterTile(tileId);
+
+            for (int i = 2; i < args.length; i += 2) {
+                if (i + 1 >= args.length) break;
+
+                int x = Integer.parseInt(args[i]);
+                int y = Integer.parseInt(args[i + 1]);
+
+                if (
+                    x >= target.getWidth() ||
+                    y >= target.getHeight()
+                )
+                    break;
+                
+                target.setTile(x, y, tile);
+            }
         }
     }
 }
