@@ -43,6 +43,7 @@ public class Game {
         currentLevel = getLevel(id);
         player.setX(currentLevel.getSpawnX());
         player.setY(currentLevel.getSpawnY());
+        player.resetFacing();
 
         return currentLevel;
     }

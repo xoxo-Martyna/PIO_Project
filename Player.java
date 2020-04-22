@@ -43,6 +43,10 @@ public class Player { //implements IFightMember {
             e.printStackTrace();
         }
     }
+
+    public void resetFacing() {
+        def = down;
+    }
     
     public int getX(){
         return x;
