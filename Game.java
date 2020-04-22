@@ -28,7 +28,6 @@ public class Game {
         state = GameState.exploration;
 
         levels = new ArrayList<Level>();
-
     }
 
     public void handleGameLoop(){

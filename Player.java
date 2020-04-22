@@ -89,7 +89,6 @@ public class Player { //implements IFightMember {
                 else if(dy == -1)
                     def = up;
                 targetTile.handlePlayerEnter(game);
-                customUpdate(this.x, this.y);
             }
         } catch (ArrayIndexOutOfBoundsException | java.lang.NullPointerException f) {
 
