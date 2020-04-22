@@ -74,7 +74,9 @@ public class Player { //implements IFightMember {
 
  
     public void move(int dx, int dy ){
-          
+        try {
+            Tile targetTile = game.getCurrentLevel().getTile(x+dx, y+dy);
+            if(targetTile.canPlayerEnter()){
                 this.x+=dx;
                 this.y+=dy;
                 if(dx == 1)
@@ -86,15 +88,12 @@ public class Player { //implements IFightMember {
                     def = down;
                 else if(dy == -1)
                     def = up;
-                
+                targetTile.handlePlayerEnter(game);
+                customUpdate(this.x, this.y);
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
 
-        customUpdate(this.x, this.y);
-        if(dy == 1)
-            def = down;
-        else if(dy == -1)
-            def = up;
-
-        customUpdate(this.x, this.y);
+        }
     }
 
     public void customUpdate(int x, int y){
