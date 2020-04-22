@@ -92,7 +92,7 @@ public class Player { //implements IFightMember {
                 customUpdate(this.x, this.y);
             }
         } catch (ArrayIndexOutOfBoundsException | java.lang.NullPointerException f) {
-
+            move(0, 0);
         }
     }
 
