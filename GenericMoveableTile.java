@@ -28,6 +28,8 @@ public class GenericMoveableTile extends Tile {
     public boolean willMove(Level level, int x, int y, int dx, int dy) {
         try {
             Tile nextTile = level.getTile(x + dx, y + dy);
+            boolean intoWater = false;
+
             if (nextTile instanceof GenericMoveableTile) {
                 boolean isLight = ((GenericMoveableTile)nextTile).isLight();
 
@@ -42,14 +44,24 @@ public class GenericMoveableTile extends Tile {
                 } else {
                     return false;
                 }
+            } else if (nextTile instanceof GenericWaterTile) {
+                intoWater = true;
             } else if (nextTile.getCollidable()) {
                 return false;
             }
 
-            level.setTile(x, y, floorTile);
-            level.setTile(x + dx, y + dy, this);
-
-            this.floorTile = nextTile;
+            if (intoWater) {
+                level.setTile(x, y, floorTile);
+                level.setTile(
+                    x + dx, y + dy,
+                    new GenericFloorTile(id)
+                );
+            } else {
+                level.setTile(x, y, floorTile);
+                level.setTile(x + dx, y + dy, this);
+    
+                this.floorTile = nextTile;
+            }
 
             return true;
         } catch (ArrayIndexOutOfBoundsException e) {}
