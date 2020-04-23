@@ -1,7 +1,6 @@
 
 
 public class Opponent implements IFightMember {
-    private IItem[][] lootTable;
     private String name;
 
     public int getHealthPoints() {
@@ -11,9 +10,6 @@ public class Opponent implements IFightMember {
         return 0;
     }
 
-    public IItem[] getLoot() {
-        return null;
-    }
     public String getName() {
         return "";
     }

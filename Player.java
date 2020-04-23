@@ -1,5 +1,4 @@
 
-//import java.util.List;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -21,13 +20,22 @@ public class Player { //implements IFightMember {
     public static final int maxHealthPoints = 70;
     public static final int maxDefensePoints = 70;
 
-    //private List<IItem> items;
+    private Item items[][];
+    private final int itemsH = 3;
+    private final int itemsW = 3;
+    private int itemsX;
+    private int itemsY;
 
     public Player(Game game){
         this.game = game;
 
+        items = new Item[itemsH][itemsW];
+        itemsX = 0;
+        itemsY = 0;
+
         healthPoints = maxHealthPoints;
         defensePoints = 0;
+
         try{
             down = ImageIO.read(new File ("res/g_front.png"));
         
@@ -76,6 +84,17 @@ public class Player { //implements IFightMember {
         return defensePoints;
     }
 
+    public Item getItem( int x, int y ){
+        return items[y][x];
+    }
+
+    public int getItemsX(){
+        return itemsX;
+    }
+
+    public int getItemsY(){
+        return itemsY;
+    }
  
     public void move(int dx, int dy ){
         try {
@@ -97,10 +116,17 @@ public class Player { //implements IFightMember {
         } catch (ArrayIndexOutOfBoundsException | java.lang.NullPointerException f) {
             move(0, 0);
         }
-    }                   
+    }
+    
+    public void moveEQ( int dx, int dy ){
+        if( itemsX+dx < itemsW && itemsX+dx >= 0 )
+            itemsX += dx;
 
-    //public void addItem( IItem item );
-    //public void dropItem( IItem item );
-    //public void discardDestroyedItems();
-   
+        if( itemsY+dy < itemsH && itemsY+dy >= 0 )
+            itemsY += dy;
+    }
+
+    public void useItem(){
+        System.out.println("Uzyles przedmiotu ( " + itemsX +", "+ itemsY + " )");
+    }
 }

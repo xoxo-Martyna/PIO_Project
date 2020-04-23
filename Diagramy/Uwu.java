@@ -35,7 +35,7 @@ podzial:
     martyna - rysowanie na planszy, umieszczanie na planszy
     hubert  - podnoszenie, wyrzucanie
     kacper  - miejsce na zbroje i miecz w graczu i zakladanie ich
-    artur   - sterowanie po ekwipunku, uzywanie
+    artur   - sterowanie po ekwipunku, uzywanie, rysowanie ekwipunku
 
 ZATWIERDZONE: KACPER S
 

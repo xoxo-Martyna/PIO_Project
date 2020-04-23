@@ -26,13 +26,22 @@ public class ExpPanel extends JPanel implements KeyListener {
 	protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D)g;
-        int y, x;
 
         Level level = game.getCurrentLevel();
         Player player = game.getPlayer();
         
-        for( y = 0; y < level.getHeight(); y++ )
-            for( x = 0; x < level.getWidth(); x++ ){
+        drawLevel(g2d, level); // <-- mozna dodac rysowanie itemkow
+    
+        g2d.drawImage( player.getImage(), player.getX()*imageSize, player.getY()*imageSize, this );
+
+        drawHPDP(g2d, level, player);
+
+        drawEQ(g2d, level, player);
+    }
+
+    private void drawLevel( Graphics2D g2d, Level level ){
+        for( int y = 0; y < level.getHeight(); y++ )
+            for( int x = 0; x < level.getWidth(); x++ ){
                 Tile tile = level.getTile(x, y);
                 if (tile == null) continue;
 
@@ -52,14 +61,12 @@ public class ExpPanel extends JPanel implements KeyListener {
                     g2d.drawImage( image, imageSize*x, imageSize*y, this );
                 }
             }
+    }
 
-        //w przyszlosci dodatkowo rysowanie przedmiotow lezacych na planszy
-        
-        g2d.drawImage( player.getImage(), player.getX()*imageSize, player.getY()*imageSize, this );
-
+    private void drawHPDP( Graphics2D g2d, Level level, Player player ){
         //rysowanie hp
-        x = level.getWidth()*imageSize+d;
-        y = hpY;
+        int x = level.getWidth()*imageSize+d;
+        int y = hpY;
 
         g2d.setColor( Color.BLACK );
         g2d.draw( new Rectangle( x-1, y-1, Player.maxHealthPoints*3+1, imageSize/2+1 ) );
@@ -74,13 +81,24 @@ public class ExpPanel extends JPanel implements KeyListener {
 
         g2d.setColor( Color.GRAY );
         g2d.fill( new Rectangle( x, y, player.getDefensePoints()*3, imageSize/2 ) );
+    }
 
-        //rysowanie ekwipunku, na razie bez przedmiotow
-        g2d.setColor( Color.BLACK );
-        for( y = eqY; y < eqY+3*(imageSize+d); y += imageSize+d )
-            for( x = level.getWidth()*imageSize+d; x < getSize().width; x += imageSize+d )
+    public void drawEQ( Graphics2D g2d, Level level, Player player ){
+        g2d.setColor( Color.DARK_GRAY );
+        int x, y, i, j;
+        for( y = eqY, i = 0; y < eqY+3*(imageSize+d); y += imageSize+d, i++ )
+            for( x = level.getWidth()*imageSize+d, j = 0; x < getSize().width; x += imageSize+d, j++ ){
                 g2d.draw( new Rectangle( x, y, imageSize, imageSize ) );
-
+                try{
+                    g2d.drawImage( player.getItem(j, i).getImage(), x, y, this );
+                } catch( ArrayIndexOutOfBoundsException | NullPointerException e){}
+            }
+        
+        g2d.setColor( Color.BLACK );
+        y = eqY+(imageSize+d)*player.getItemsY();
+        x = level.getWidth()*imageSize+d+(imageSize+d)*player.getItemsX();
+        g2d.draw( new Rectangle( x, y, imageSize, imageSize ) );
+        g2d.draw( new Rectangle( x+1, y+1, imageSize-2, imageSize-2 ) );
     }
     
     public void keyPressed(KeyEvent e) {
@@ -88,24 +106,52 @@ public class ExpPanel extends JPanel implements KeyListener {
 
         Player player = game.getPlayer();
 
-        if(key == KeyEvent.VK_RIGHT) {
-            player.move(1, 0);
-            repaint();
-            }
-        
-        if(key == KeyEvent.VK_LEFT) {
-            player.move(-1, 0);
-            repaint();
-        }
-        if(key == KeyEvent.VK_UP) {
-            player.move( 0, -1);
-            repaint();
-        }
-        if(key == KeyEvent.VK_DOWN) {
-            player.move(0, 1);
-            repaint();
-        }
+        switch( key ){
+            case(KeyEvent.VK_RIGHT):
+                player.move(1, 0);
+                repaint();
+            break;
 
+            case(KeyEvent.VK_LEFT):
+                player.move(-1, 0);
+                repaint();
+            break;
+
+            case(KeyEvent.VK_UP):
+                player.move( 0, -1);
+                repaint();
+            break;
+
+            case(KeyEvent.VK_DOWN):
+                player.move(0, 1);
+                repaint();
+            break;
+
+            case(KeyEvent.VK_W):
+                player.moveEQ(0, -1);
+                repaint();
+            break;
+
+            case(KeyEvent.VK_S):
+                player.moveEQ(0, 1);
+                repaint();
+            break;
+
+            case(KeyEvent.VK_A):
+                player.moveEQ(-1, 0);
+                repaint();
+            break;
+
+            case(KeyEvent.VK_D):
+                player.moveEQ(1, 0);
+                repaint();
+            break;
+
+            case(KeyEvent.VK_E):
+                player.useItem();
+                repaint();
+            break;
+        }
     }
 
     public void keyReleased(KeyEvent e) {
