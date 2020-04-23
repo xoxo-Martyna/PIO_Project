@@ -5,8 +5,7 @@ import java.awt.event.*;
 import javax.swing.JPanel;
 
 public class ExpPanel extends JPanel implements KeyListener {
-    private Level level;
-    private Player player;
+    private Game game;
 
     private final int imageSize = 64;
     private final int levelSize = 10;
@@ -14,18 +13,13 @@ public class ExpPanel extends JPanel implements KeyListener {
     private final int eqY = 320;
     private final int hpY = 100;
 
-    public ExpPanel( Level level, Player player ){
-        setPreferredSize( new Dimension(imageSize*levelSize+4*d+3*imageSize, imageSize*levelSize) );
+    public ExpPanel( Game game ){
+        this.game = game;
 
-        this.player = player;
-        this.level = level;
+        setPreferredSize( new Dimension(imageSize*levelSize+4*d+3*imageSize, imageSize*levelSize) );
 
         addKeyListener(this);
         setFocusable(true);
-    }
-
-    public void setLevel( Level level ){
-        this.level = level;
     }
 
     @Override
@@ -33,6 +27,9 @@ public class ExpPanel extends JPanel implements KeyListener {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D)g;
         int y, x;
+
+        Level level = game.getCurrentLevel();
+        Player player = game.getPlayer();
         
         for( y = 0; y < level.getHeight(); y++ )
             for( x = 0; x < level.getWidth(); x++ ){
@@ -88,6 +85,8 @@ public class ExpPanel extends JPanel implements KeyListener {
     
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
+
+        Player player = game.getPlayer();
 
         if(key == KeyEvent.VK_RIGHT) {
             player.move(1, 0);

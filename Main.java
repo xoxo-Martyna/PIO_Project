@@ -8,17 +8,15 @@ public class Main {
         game.setPlayer(player);
         LevelLoader loader = new LevelLoader();
 
-        //String firstLevel = "example"; //pozniej to usuniemy
-
         try {
             loader.loadAllLevels(game);
         } catch (IOException e) {
             System.out.println(e + "\nNie mozna uruchomic plików z poziomami");
             return;
         }
-        game.setLevel( LevelName.firstLevel );
+        game.setLevel("example");
 
-        ExpPanel expPanel = new ExpPanel( game.getCurrentLevel(), game.getPlayer() );
+        ExpPanel expPanel = new ExpPanel( game );
         Frame frame = new Frame( game );
         frame.setExpPanel(expPanel);
         game.setFrame(frame);

@@ -43,6 +43,10 @@ public class Player { //implements IFightMember {
             e.printStackTrace();
         }
     }
+
+    public void resetFacing() {
+        def = down;
+    }
     
     public int getX(){
         return x;
@@ -89,22 +93,11 @@ public class Player { //implements IFightMember {
                 else if(dy == -1)
                     def = up;
                 targetTile.handlePlayerEnter(game);
-                customUpdate(this.x, this.y);
             }
         } catch (ArrayIndexOutOfBoundsException | java.lang.NullPointerException f) {
             move(0, 0);
         }
-    }
-
-    public void customUpdate(int x, int y){
-        if(game.getCurrentLevel().getTile(x,y) instanceof GenericDoorTile) { //player.getX(),player.getY()
-            game.setLevel(LevelName.secondLevel);
-            game.getFrame().customUpdate();
-        }
-    }
-
-
-                    
+    }                   
 
     //public void addItem( IItem item );
     //public void dropItem( IItem item );

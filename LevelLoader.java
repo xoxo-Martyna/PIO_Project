@@ -89,8 +89,6 @@ public class LevelLoader {
                 tile = new GenericFloorTile(tileId);
            if (tileId.startsWith("w_"))
                 tile = new GenericWallTile(tileId);
-            else if (tileId.startsWith("d_"))
-                tile = new GenericDoorTile(tileId);
 
             for (int i = 2; i < args.length; i += 2) {
                 if (i + 1 >= args.length) break;
@@ -109,6 +107,18 @@ public class LevelLoader {
         } else if (args[0].equals("SpawnPoint") && args.length == 3) {
             target.setSpawnX(Integer.parseInt(args[1]));
             target.setSpawnY(Integer.parseInt(args[2]));
+        } else if (args[0].equals("DoorTile") && args.length == 7) {
+            Tile door = new GenericDoorTile(
+                args[1], args[4],
+                Integer.parseInt(args[5]),
+                Integer.parseInt(args[6])
+            );
+
+            target.setTile(
+                Integer.parseInt(args[2]),
+                Integer.parseInt(args[3]),
+                door
+            );
         }
     }
 }
