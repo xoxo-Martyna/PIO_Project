@@ -127,6 +127,36 @@ public class Player { //implements IFightMember {
     }
 
     public void useItem(){
-        System.out.println("Uzyles przedmiotu ( " + itemsX +", "+ itemsY + " )");
+        System.out.println("Uzyles przedmiotu ( " + itemsX +", "+ itemsY + " )"); // do wywalenia pozniej
+        Item item = items[itemsY][itemsX];
+
+        if( item instanceof HealthItem )
+            useHealthItem( (HealthItem)item );
+        else if( item instanceof DefenseItem )
+            useDefenseItem( (DefenseItem)item );
+        else if( item instanceof AttackItem )
+            useAttackItem( (AttackItem)item );
+    }
+
+    private void useHealthItem( HealthItem item ){
+        if( healthPoints == maxHealthPoints )
+                return;
+            
+        healthPoints += item.getRecoverPoints();
+        if( healthPoints >= maxHealthPoints )
+            healthPoints = maxHealthPoints;
+        deleteItem();
+    }
+
+    private void useDefenseItem( DefenseItem item ){
+        
+    }
+
+    private void useAttackItem( AttackItem item ){
+
+    }
+
+    private void deleteItem(){
+        items[itemsY][itemsX] = null;
     }
 }
