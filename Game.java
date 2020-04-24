@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class Game {
     private GameState state = GameState.exploration;
     private boolean isInFight;
@@ -7,14 +11,6 @@ public class Game {
     private Player player;
 
      private Frame frame;
-
-    public void setFrame(Frame frame) {
-        this.frame = frame;
-    }
-
-    public Frame getFrame() {
-        return frame;
-    }
 
     private ArrayList<Level> levels;
     private Level currentLevel;
@@ -25,14 +21,42 @@ public class Game {
     private int currentTime;
     private int referenceTime;
 
+    private Timer gameLoopTimer;
+
     public Game() {
         state = GameState.exploration;
 
         levels = new ArrayList<Level>();
     }
 
-    public void handleGameLoop(){
+    public void setFrame(Frame frame) {
+        this.frame = frame;
+    }
 
+    public Frame getFrame() {
+        return frame;
+    }
+
+    public void handleGameLoop() {
+        render();
+
+        currentTime++;
+    }
+
+    public void startGameLoop() {
+        ActionListener loopCallback = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                handleGameLoop();
+            }
+        };
+
+        this.gameLoopTimer = new Timer(33, loopCallback);
+        this.gameLoopTimer.start();
+    }
+
+    public void stopGameLoop() {
+        this.gameLoopTimer.stop();
+        this.gameLoopTimer = null;
     }
 
     public void addLevel( Level level ) {

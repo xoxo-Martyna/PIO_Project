@@ -21,7 +21,7 @@ public class Main {
         frame.setExpPanel(expPanel);
         game.setFrame(frame);
 
-
+        game.startGameLoop();
     }
 }
 
