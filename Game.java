@@ -72,7 +72,7 @@ public class Game {
             projectiles.add(
                 new ProjectileInstance(
                     new Projectile(),
-                    2.0f, 2.0f, 0.1f, 0.0f
+                    2.0f, 2.5f, 0.1f, 0.0f
                 )
             );
         }
@@ -112,6 +112,10 @@ public class Game {
         player.setX(currentLevel.getSpawnX());
         player.setY(currentLevel.getSpawnY());
         player.resetFacing();
+
+        for (ProjectileInstance p : projectiles) {
+            p.discard();
+        }
 
         return currentLevel;
     }
