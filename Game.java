@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
@@ -12,7 +13,7 @@ public class Game {
 
      private Frame frame;
 
-    private ArrayList<Level> levels;
+    private List<Level> levels;
     private Level currentLevel;
     private Level nextLevel;
 
@@ -23,10 +24,39 @@ public class Game {
 
     private Timer gameLoopTimer;
 
+    private List<ProjectileInstance> projectiles;
+
     public Game() {
         state = GameState.exploration;
 
         levels = new ArrayList<Level>();
+        projectiles = new ArrayList<ProjectileInstance>();
+    }
+
+    public List<ProjectileInstance> getProjectiles() {
+        return projectiles;
+    }
+
+    public void cleanProjectiles() {
+        List<ProjectileInstance> trashList = new ArrayList<ProjectileInstance>();
+
+        for (ProjectileInstance p : projectiles) {
+            float x = p.getX(), y = p.getY();
+
+            if (
+                p.isDiscarded() ||
+                x < 0.0f || y < 0.0f ||
+                x > (float)(currentLevel.getWidth() + 1) ||
+                y > (float)(currentLevel.getHeight() + 1)
+            )
+                trashList.add(p);
+        }
+
+        for (ProjectileInstance p : trashList) {
+            projectiles.remove(p);
+        }
+
+        trashList.clear();
     }
 
     public void setFrame(Frame frame) {
@@ -38,6 +68,20 @@ public class Game {
     }
 
     public void handleGameLoop() {
+        if (currentTime % 10 == 0) {
+            projectiles.add(
+                new ProjectileInstance(
+                    new Projectile(),
+                    2.0f, 2.0f, 0.1f, 0.0f
+                )
+            );
+        }
+
+        for (ProjectileInstance p : projectiles) {
+            p.advancePosition(this);
+        }
+        cleanProjectiles();
+
         render();
 
         currentTime++;

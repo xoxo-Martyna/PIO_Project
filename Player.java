@@ -80,6 +80,12 @@ public class Player { //implements IFightMember {
         return healthPoints;
     }
 
+    public int hurt(int points) {
+        healthPoints -= points;
+
+        return healthPoints;
+    }
+
     public int getDefensePoints(){
         return defensePoints;
     }
