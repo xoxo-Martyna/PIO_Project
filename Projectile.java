@@ -11,8 +11,10 @@ public class Projectile {
 
         p.hurt(5);
         instance.discard();
+    }
 
-        System.out.println("ouch");
+    public void handleWallCollision(Game game, Tile tile, ProjectileInstance instance) {
+        instance.discard();
     }
 
     public void render(Graphics2D g2d, ProjectileInstance instance) {

@@ -54,6 +54,13 @@ public class ProjectileInstance {
 
         if (checkPlayerCollision(game.getPlayer()))
             type.handlePlayerCollision(game, this);
+        else if (
+            game.getCurrentLevel().getTile((int)x, (int)y).getCollidable()
+        )
+            type.handleWallCollision(
+                game, game.getCurrentLevel().getTile((int)x, (int)y),
+                this
+            );
 
         type.adjustVelocity(game, this);
     }
