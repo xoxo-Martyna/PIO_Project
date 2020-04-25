@@ -33,7 +33,7 @@ public class Player { //implements IFightMember {
         itemsX = 0;
         itemsY = 0;
 
-        healthPoints = maxHealthPoints;
+        healthPoints = maxHealthPoints-1;
         defensePoints = 0;
 
         try{
@@ -50,6 +50,11 @@ public class Player { //implements IFightMember {
         } catch(IOException e){
             e.printStackTrace();
         }
+
+        /*items[1][1] = new AttackItem(up, "DIAMOND SWORD", 15);
+        items[2][0] = new HealthItem(left, "salvia potion", 10);
+        items[2][2] = new HealthItem(right, "ayahuasca posion", -10);
+        items[2][1] = new DefenseItem(down, "IRON HELMET", 10);*/
     }
 
     public void resetFacing() {
@@ -96,6 +101,10 @@ public class Player { //implements IFightMember {
 
     public Item getItem( int x, int y ){
         return items[y][x];
+    }
+
+    public Item getCurrentItem(){
+        return items[itemsY][itemsX];
     }
 
     public int getItemsX(){

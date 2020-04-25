@@ -11,4 +11,9 @@ public class HealthItem extends Item {
     public int getRecoverPoints() {
         return recoverPoints;
     }
+
+    @Override
+    public String toString() {
+        return getName()+". Recover points = " + recoverPoints;
+    }
 }

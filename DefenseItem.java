@@ -11,4 +11,9 @@ public class DefenseItem extends Item {
     public int getProtectPoints() {
         return protectPoints;
     }
+
+    @Override
+    public String toString() {
+        return getName()+". Protect points = " + protectPoints;
+    }
 }

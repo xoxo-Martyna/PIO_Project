@@ -1,6 +1,7 @@
 import java.awt.image.BufferedImage;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.Font;
 
 import javax.swing.JPanel;
 
@@ -83,7 +84,7 @@ public class ExpPanel extends JPanel implements KeyListener {
         g2d.fill( new Rectangle( x, y, player.getDefensePoints()*3, imageSize/2 ) );
     }
 
-    public void drawEQ( Graphics2D g2d, Level level, Player player ){
+    private void drawEQ( Graphics2D g2d, Level level, Player player ){
         g2d.setColor( Color.DARK_GRAY );
         int x, y, i, j, isd;
         y = eqY;
@@ -116,6 +117,18 @@ public class ExpPanel extends JPanel implements KeyListener {
         x = level.getWidth()*imageSize+d+isd*player.getItemsX();
         g2d.draw( new Rectangle( x, y, imageSize, imageSize ) );
         g2d.draw( new Rectangle( x+1, y+1, imageSize-2, imageSize-2 ) );
+
+        drawItemInfo(g2d, level, player);
+    }
+
+    private void drawItemInfo( Graphics2D g2d, Level level, Player player ){
+        setFont( new Font("Serif", Font.PLAIN, 12) );
+        Item item = player.getCurrentItem();
+
+        try{
+            g2d.drawString( item.toString(), level.getWidth()*imageSize+d, eqY-20);
+        } catch( NullPointerException e ){
+        }
     }
     
     public void keyPressed(KeyEvent e) {
