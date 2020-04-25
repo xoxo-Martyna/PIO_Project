@@ -1,9 +1,7 @@
 
 public class GenericFloorTile extends Tile {
     public GenericFloorTile(String id) {
-        this.id = id;
+        super(id);
         this.collidable = false;
-
-        loadImage();
     }
 }

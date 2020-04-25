@@ -1,9 +1,7 @@
 
 public class GenericWallTile extends Tile {
     public GenericWallTile(String id) {
-        this.id = id;
+        super(id);
         this.collidable = true;
-
-        loadImage();
     }
 }

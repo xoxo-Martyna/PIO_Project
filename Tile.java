@@ -12,6 +12,12 @@ public class Tile { // implements ISpawner {
 
     // private ISpawner spawner;
 
+    public Tile(String id) {
+        this.id = id;
+
+        loadImage();
+    }
+
     protected void loadImage() {
         try {
             image = ImageIO.read(new File("res/tiles/" + id + ".png"));
