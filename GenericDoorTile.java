@@ -8,14 +8,12 @@ public class GenericDoorTile extends Tile {
         String id, String targetLevelId,
         int targetX, int targetY
     ) {
-        this.id = id;
+        super(id);
         this.collidable = false;
 
         this.targetLevelId = targetLevelId;
         this.targetX = targetX;
         this.targetY = targetY;
-
-        loadImage();
     }
 
     public void handlePlayerEnter(Game game){

@@ -82,15 +82,16 @@ public class LevelLoader {
 
         if (args[0].equals("Tile") && args.length > 2) {
             String tileId = args[1];
-            Tile tile = null;
-
-            if (tileId.startsWith("f_"))
-                tile = new GenericFloorTile(tileId);
-           if (tileId.startsWith("w_"))
-                tile = new GenericWallTile(tileId);
 
             for (int i = 2; i < args.length; i += 2) {
                 if (i + 1 >= args.length) break;
+
+                Tile tile = null;
+
+                if (tileId.startsWith("f_"))
+                    tile = new GenericFloorTile(tileId);
+                if (tileId.startsWith("w_"))
+                    tile = new GenericWallTile(tileId);
 
                 int x = Integer.parseInt(args[i]);
                 int y = Integer.parseInt(args[i + 1]);
@@ -125,7 +126,7 @@ public class LevelLoader {
             );
 
             if (t != null) {
-                Item i = new Item(args[1]);
+                Item i = Item.create(args[1]);
 
                 t.setItem(i);
             }

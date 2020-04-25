@@ -1,10 +1,8 @@
-import java.awt.image.BufferedImage;
-
 public class DefenseItem extends Item {
     private final int protectPoints;
 
-    public DefenseItem( BufferedImage image, String name, int protectPoints ){
-        super( image, name );
+    public DefenseItem( String id, String name, int protectPoints ){
+        super( id, name );
         this.protectPoints = protectPoints;
     } 
 

@@ -1,10 +1,8 @@
-import java.awt.image.BufferedImage;
-
 public class HealthItem extends Item {
     private final int recoverPoints;
 
-    public HealthItem( BufferedImage image, String name, int recoverPoints ){
-        super( image, name );
+    public HealthItem( String id, String name, int recoverPoints ){
+        super( id, name );
         this.recoverPoints = recoverPoints;
     }
 

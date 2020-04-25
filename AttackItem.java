@@ -1,10 +1,8 @@
-import java.awt.image.BufferedImage;
-
 public class AttackItem extends Item{
     private final int attackPoints;
 
-    public AttackItem( BufferedImage image, String name, int attackPoints ){
-        super( image, name );
+    public AttackItem( String id, String name, int attackPoints ){
+        super( id, name );
         this.attackPoints = attackPoints;
     } 
 

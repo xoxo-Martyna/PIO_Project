@@ -51,10 +51,10 @@ public class Player { //implements IFightMember {
             e.printStackTrace();
         }
 
-        // items[1][1] = new AttackItem(up, "DIAMOND SWORD", 15);
-        // items[2][0] = new HealthItem(left, "salvia potion", 10);
-        // items[2][2] = new HealthItem(right, "ayahuasca poison", -10);
-        // items[2][1] = new DefenseItem(down, "IRON HELMET", 10);
+        items[1][1] = Item.create("diamond_sword");
+        items[2][0] = Item.create("salvia_potion");
+        items[2][2] = Item.create("ayahuasca_poison");
+        items[2][1] = Item.create("iron_helmet");
     }
 
     public void resetFacing() {

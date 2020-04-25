@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Game {
     private GameState state = GameState.exploration;
@@ -16,7 +17,7 @@ public class Game {
         return frame;
     }
 
-    private ArrayList<Level> levels;
+    private List<Level> levels;
     private Level currentLevel;
     private Level nextLevel;
 
