@@ -10,7 +10,7 @@ public class ExpPanel extends JPanel implements KeyListener {
     private final int imageSize = 64;
     private final int levelSize = 10;
     private final int d = 10;
-    private final int eqY = 320;
+    private final int eqY = 300;
     private final int hpY = 100;
 
     public ExpPanel( Game game ){
@@ -85,9 +85,20 @@ public class ExpPanel extends JPanel implements KeyListener {
 
     public void drawEQ( Graphics2D g2d, Level level, Player player ){
         g2d.setColor( Color.DARK_GRAY );
-        int x, y, i, j;
-        for( y = eqY, i = 0; y < eqY+3*(imageSize+d); y += imageSize+d, i++ )
-            for( x = level.getWidth()*imageSize+d, j = 0; x < getSize().width; x += imageSize+d, j++ ){
+        int x, y, i, j, isd;
+        y = eqY;
+        x = level.getWidth()*imageSize+d;
+        isd = imageSize+d;
+
+        g2d.draw( new Rectangle( x, y, imageSize, imageSize) );
+        x += isd;
+        g2d.draw( new Rectangle( x, y, imageSize, imageSize) );
+        x += isd;
+        g2d.draw( new Rectangle( x, y, imageSize, imageSize) );
+
+
+        for( y += imageSize+5*d, i = 1; y < eqY+3*isd; y += isd, i++ )
+            for( x = level.getWidth()*imageSize+d, j = 0; x < getSize().width; x += isd, j++ ){
                 g2d.draw( new Rectangle( x, y, imageSize, imageSize ) );
                 try{
                     g2d.drawImage( player.getItem(j, i).getImage(), x, y, this );
@@ -95,8 +106,14 @@ public class ExpPanel extends JPanel implements KeyListener {
             }
         
         g2d.setColor( Color.BLACK );
-        y = eqY+(imageSize+d)*player.getItemsY();
-        x = level.getWidth()*imageSize+d+(imageSize+d)*player.getItemsX();
+        if( player.getItemsY() == 0 )
+            y = eqY;
+        else if( player.getItemsY() == 1 )
+            y = eqY + imageSize+5*d;
+        else
+            y = eqY + imageSize+5*d+isd;
+
+        x = level.getWidth()*imageSize+d+isd*player.getItemsX();
         g2d.draw( new Rectangle( x, y, imageSize, imageSize ) );
         g2d.draw( new Rectangle( x+1, y+1, imageSize-2, imageSize-2 ) );
     }
