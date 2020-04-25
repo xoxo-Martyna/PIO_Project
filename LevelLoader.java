@@ -28,8 +28,7 @@ public class LevelLoader {
 						    )
 						);
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						// well that ducks
 					}
             }
         );
@@ -119,6 +118,17 @@ public class LevelLoader {
                 Integer.parseInt(args[3]),
                 door
             );
+        } else if (args[0].equals("Item") && args.length == 4) {
+            Tile t = target.getTile(
+                Integer.parseInt(args[2]),
+                Integer.parseInt(args[3])
+            );
+
+            if (t != null) {
+                Item i = new Item(args[1]);
+
+                t.setItem(i);
+            }
         }
     }
 }

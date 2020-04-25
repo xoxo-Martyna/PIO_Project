@@ -3,24 +3,31 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class Tile { //implements ISpawner {
+public class Tile { // implements ISpawner {
     protected String id;
     private BufferedImage image;
     protected boolean collidable;
-    
-    //private ISpawner spawner;
+
+    private Item item;
+
+    // private ISpawner spawner;
 
     protected void loadImage() {
         try {
-            image = ImageIO.read(
-                new File(
-                    "res/tiles/" + id + ".png"
-                )
-            );
-        } catch (IOException e) {}
+            image = ImageIO.read(new File("res/tiles/" + id + ".png"));
+        } catch (IOException e) {
+        }
     }
 
-    public String getId(){
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public String getId() {
         return id;
     }
 
