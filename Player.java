@@ -20,9 +20,9 @@ public class Player { //implements IFightMember {
     public static final int maxHealthPoints = 70;
     public static final int maxDefensePoints = 70;
 
-    private Item items[][];
-    private final int itemsH = 3;
-    private final int itemsW = 3;
+    private Item items[][];         // dla y == 0, mamy eq z miejscem na miecz i zbroje
+    private final int itemsH = 3;   // dla x == 0, miejsce na miecz
+    private final int itemsW = 3;   // dla x == 1 lub 2, miejsce na zbroje
     private int itemsX;
     private int itemsY;
 
@@ -90,6 +90,16 @@ public class Player { //implements IFightMember {
         return defensePoints;
     }
 
+    public Item getAttackItem(){
+        return items[0][0];
+    }
+
+    public Item getDefenseItem( int x ){
+        if( x == 1 )
+            return items[0][1];
+        return items[0][2];
+    }
+
     public Item getItem( int x, int y ){
         return items[y][x];
     }
@@ -134,6 +144,11 @@ public class Player { //implements IFightMember {
 
     public void useItem(){
         System.out.println("Uzyles przedmiotu ( " + itemsX +", "+ itemsY + " )"); // do wywalenia pozniej
+        if( y == 0 ){
+            takeOffItem();
+            return;
+        }
+
         Item item = items[itemsY][itemsX];
 
         if( item instanceof HealthItem )
@@ -154,11 +169,16 @@ public class Player { //implements IFightMember {
         deleteItem();
     }
 
-    private void useDefenseItem( DefenseItem item ){
+    // kacper w tobie nadzieja
+    private void useDefenseItem( DefenseItem item ){ // albo putOnDefenseItem
         
     }
 
-    private void useAttackItem( AttackItem item ){
+    private void useAttackItem( AttackItem item ){ // albo putOnAttackItem
+
+    }
+
+    private void takeOffItem(){
 
     }
 
