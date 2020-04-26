@@ -21,6 +21,7 @@ public class Player { //implements IFightMember {
     public static final int maxHealthPoints = 70;
     public static final int maxDefensePoints = 70;
     public static final int maxAttackPoints = 70;
+    private final int defaultAttackPoints = 1;
 
 
     private Item items[][];         // dla y == 0, mamy eq z miejscem na miecz i zbroje
@@ -38,7 +39,7 @@ public class Player { //implements IFightMember {
 
         healthPoints = maxHealthPoints-1;
         defensePoints = 0;
-        attackPoints = 1;
+        attackPoints = defaultAttackPoints;
 
         try{
             down = ImageIO.read(new File ("res/g_front.png"));
@@ -163,7 +164,6 @@ public class Player { //implements IFightMember {
             return;
         }
 
-
         Item item = items[itemsY][itemsX];
 
         if( item instanceof HealthItem )
@@ -200,8 +200,8 @@ public class Player { //implements IFightMember {
             Item tempItem = items[0][1];
             items[0][1] = item;
             items[itemsY][itemsX] = tempItem;
-            changeDefensePoints((DefenseItem)tempItem);           
-         }
+            defensePoints += item.getProtectPoints()-((DefenseItem)tempItem).getProtectPoints();
+        }
     }
 
     private void useAttackItem (AttackItem item){ // albo putOnAttackItem
@@ -214,7 +214,7 @@ public class Player { //implements IFightMember {
             Item tempItem = items[0][0];
             items[0][0] = item;
             items[itemsY][itemsX] = tempItem;
-            attackPoints = 1 + item.getAttackPoints();
+            attackPoints = defaultAttackPoints + item.getAttackPoints();
         }
     
     }
@@ -226,16 +226,12 @@ public class Player { //implements IFightMember {
                     Item item = items[itemsY][itemsX];
                     items[i][j] = items[itemsY][itemsX];
                      if( item instanceof DefenseItem )
-                        changeDefensePoints((DefenseItem)item);
+                        defensePoints -= ((DefenseItem)item).getProtectPoints();
                     else 
-                        attackPoints = 1;
+                        attackPoints = defaultAttackPoints;
                     deleteCurrentItem();                  
                     return;
                 }
-    }
-
-    private void changeDefensePoints(DefenseItem item){
-        defensePoints -= item.getProtectPoints();
     }
 
     private void deleteCurrentItem(){
