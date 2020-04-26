@@ -68,15 +68,6 @@ public class Game {
     }
 
     public void handleGameLoop() {
-        if (currentTime % 10 == 0) {
-            projectiles.add(
-                new ProjectileInstance(
-                    new Projectile(),
-                    2.0f, 2.5f, 0.1f, 0.0f
-                )
-            );
-        }
-
         for (ProjectileInstance p : projectiles) {
             p.advancePosition(this);
         }

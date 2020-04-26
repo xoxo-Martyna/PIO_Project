@@ -7,6 +7,7 @@ public class Tile { //implements ISpawner {
     protected String id;
     private BufferedImage image;
     protected boolean collidable;
+    protected boolean castsShadows;
     
     //private ISpawner spawner;
 
@@ -30,6 +31,10 @@ public class Tile { //implements ISpawner {
 
     public boolean getCollidable(){
         return collidable;
+    }
+
+    public boolean isCastingShadows(){
+        return castsShadows;
     }
 
     /*public ISpawner getSpawner(){

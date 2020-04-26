@@ -10,6 +10,7 @@ public class GenericMoveableTile extends Tile {
     ) {
         this.id = id;
         this.collidable = true;
+        this.castsShadows = true;
 
         this.floorTile = floorTile;
         this.light = isLight;

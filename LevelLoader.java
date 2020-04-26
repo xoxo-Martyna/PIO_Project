@@ -148,6 +148,27 @@ public class LevelLoader {
                 
                 target.setTile(x, y, tile);
             }
+        } else if (args[0].equals("LightSource") && args.length == 8) {
+            if (args[1].equals("ambient")) {
+                target.addLight(
+                    new AmbientLightSource(
+                        Float.parseFloat(args[4]),
+                        Float.parseFloat(args[5]),
+                        Float.parseFloat(args[6])
+                    )
+                );
+            } else {
+                target.addLight(
+                    new LightSource(
+                        Float.parseFloat(args[2]),
+                        Float.parseFloat(args[3]),
+                        Float.parseFloat(args[4]),
+                        Float.parseFloat(args[5]),
+                        Float.parseFloat(args[6]),
+                        Float.parseFloat(args[7])
+                    )
+                );
+            }
         }
     }
 }

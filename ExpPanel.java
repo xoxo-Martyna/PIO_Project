@@ -13,6 +13,10 @@ public class ExpPanel extends JPanel implements KeyListener {
     private final int eqY = 300;
     private final int hpY = 100;
 
+    private final LightRenderer rtxRenderer = new LightRenderer(
+        imageSize, 8
+    );
+
     public ExpPanel( Game game ){
         this.game = game;
 
@@ -33,6 +37,8 @@ public class ExpPanel extends JPanel implements KeyListener {
         drawLevel(g2d, level); // <-- mozna dodac rysowanie itemkow
     
         g2d.drawImage( player.getImage(), player.getX()*imageSize, player.getY()*imageSize, this );
+
+        // rtxRenderer.render(g2d, level);
 
         drawHPDP(g2d, level, player);
 
