@@ -28,7 +28,7 @@ public class LightRenderer {
         if (tile != null && tile.isCastingShadows()) return true;
 
         tile = level.getTile((int)sampleX, (int)sampleY);
-        if (tile != null && tile.isCastingShadows()) return true;
+        if (tile != null && tile.isCastingShadows()) return false;
 
         for (int i = 0; i < shadowSampleCount; i++) {
             float position = (float)(i + 1) / (float)(shadowSampleCount + 1);
