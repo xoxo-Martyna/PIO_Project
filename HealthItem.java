@@ -1,18 +1,14 @@
+import java.awt.image.BufferedImage;
 
+public class HealthItem extends Item {
+    private final int recoverPoints;
 
-// LISTA LECZEŃ
-// APAP, szałwia na dziąsła
-public class HealthItem implements IItem {
-    private int recoverPoints;
-
-    public String getName() {
-        return "";
-    }
-    public int getDurability() {
-        return 0;
+    public HealthItem( BufferedImage image, String name, int recoverPoints ){
+        super( image, name );
+        this.recoverPoints = recoverPoints;
     }
 
     public int getRecoverPoints() {
-        return 0;
+        return recoverPoints;
     }
 }

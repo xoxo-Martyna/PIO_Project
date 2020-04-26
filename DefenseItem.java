@@ -1,18 +1,14 @@
+import java.awt.image.BufferedImage;
 
+public class DefenseItem extends Item {
+    private final int protectPoints;
 
-// OBRONA
-// czapka, zbroja, tarcza
-public class DefenseItem implements IItem {
-    private int protectPoints;
-
-    public String getName() {
-        return "";
-    }
-    public int getDurability() {
-        return 0;
-    }
+    public DefenseItem( BufferedImage image, String name, int protectPoints ){
+        super( image, name );
+        this.protectPoints = protectPoints;
+    } 
 
     public int getProtectPoints() {
-        return 0;
+        return protectPoints;
     }
 }

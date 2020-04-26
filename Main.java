@@ -1,7 +1,7 @@
 import java.io.IOException;
 
 public class Main {
- public static void main(String[] args ){
+    public static void main(String[] args ){
 
         Game game = new Game();
         Player player = new Player(game);
@@ -21,7 +21,7 @@ public class Main {
         frame.setExpPanel(expPanel);
         game.setFrame(frame);
 
-
+        game.startGameLoop();
     }
 }
 

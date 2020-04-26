@@ -24,8 +24,6 @@ public class GenericDoorTile extends Tile {
         if (game.setLevel(targetLevelId) != null) {
             player.setX(targetX);
             player.setY(targetY);
-
-            game.render();
         }
         // game.getFrame().customUpdate();
     }

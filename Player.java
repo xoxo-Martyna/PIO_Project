@@ -1,5 +1,4 @@
 
-//import java.util.List;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -21,13 +20,22 @@ public class Player { //implements IFightMember {
     public static final int maxHealthPoints = 70;
     public static final int maxDefensePoints = 70;
 
-    //private List<IItem> items;
+    private Item items[][];         // dla y == 0, mamy eq z miejscem na miecz i zbroje
+    private final int itemsH = 3;   // dla x == 0, miejsce na miecz
+    private final int itemsW = 3;   // dla x == 1 lub 2, miejsce na zbroje
+    private int itemsX;
+    private int itemsY;
 
     public Player(Game game){
         this.game = game;
 
+        items = new Item[itemsH][itemsW];
+        itemsX = 0;
+        itemsY = 0;
+
         healthPoints = maxHealthPoints;
         defensePoints = 0;
+
         try{
             down = ImageIO.read(new File ("res/g_front.png"));
         
@@ -72,10 +80,37 @@ public class Player { //implements IFightMember {
         return healthPoints;
     }
 
+    public int hurt(int points) {
+        healthPoints -= points;
+
+        return healthPoints;
+    }
+
     public int getDefensePoints(){
         return defensePoints;
     }
 
+    public Item getAttackItem(){
+        return items[0][0];
+    }
+
+    public Item getDefenseItem( int x ){
+        if( x == 1 )
+            return items[0][1];
+        return items[0][2];
+    }
+
+    public Item getItem( int x, int y ){
+        return items[y][x];
+    }
+
+    public int getItemsX(){
+        return itemsX;
+    }
+
+    public int getItemsY(){
+        return itemsY;
+    }
  
     public void move(int dx, int dy ){
         try {
@@ -124,12 +159,59 @@ public class Player { //implements IFightMember {
             }
 
         } catch (ArrayIndexOutOfBoundsException | java.lang.NullPointerException f) {
-
+            move(0, 0);
         }
-    }                   
+    }
+    
+    public void moveEQ( int dx, int dy ){
+        if( itemsX+dx < itemsW && itemsX+dx >= 0 )
+            itemsX += dx;
 
-    //public void addItem( IItem item );
-    //public void dropItem( IItem item );
-    //public void discardDestroyedItems();
-   
+        if( itemsY+dy < itemsH && itemsY+dy >= 0 )
+            itemsY += dy;
+    }
+
+    public void useItem(){
+        System.out.println("Uzyles przedmiotu ( " + itemsX +", "+ itemsY + " )"); // do wywalenia pozniej
+        if( y == 0 ){
+            takeOffItem();
+            return;
+        }
+
+        Item item = items[itemsY][itemsX];
+
+        if( item instanceof HealthItem )
+            useHealthItem( (HealthItem)item );
+        else if( item instanceof DefenseItem )
+            useDefenseItem( (DefenseItem)item );
+        else if( item instanceof AttackItem )
+            useAttackItem( (AttackItem)item );
+    }
+
+    private void useHealthItem( HealthItem item ){
+        if( healthPoints == maxHealthPoints )
+                return;
+            
+        healthPoints += item.getRecoverPoints();
+        if( healthPoints >= maxHealthPoints )
+            healthPoints = maxHealthPoints;
+        deleteItem();
+    }
+
+    // kacper w tobie nadzieja
+    private void useDefenseItem( DefenseItem item ){ // albo putOnDefenseItem
+        
+    }
+
+    private void useAttackItem( AttackItem item ){ // albo putOnAttackItem
+
+    }
+
+    private void takeOffItem(){
+
+    }
+
+    private void deleteItem(){
+        items[itemsY][itemsX] = null;
+    }
 }
