@@ -30,7 +30,7 @@ public class LightSource {
     }
 
     public double distance(float sampleX, float sampleY) {
-        return Math.hypot(sampleX - x, sampleY - y);
+        return Math.hypot(sampleX - getX(), sampleY - getY());
     }
 
     public Color getColor(float sampleX, float sampleY) {

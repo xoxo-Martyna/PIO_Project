@@ -5,14 +5,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-
-public class Player { //implements IFightMember {
+public class Player { // implements IFightMember {
     private int x;
     private int y;
 
     private BufferedImage def, down, up, left, right;
-    
-    private Game game;  
+
+    private Game game;
 
     private int healthPoints;
     private int defensePoints;
@@ -20,13 +19,15 @@ public class Player { //implements IFightMember {
     public static final int maxHealthPoints = 70;
     public static final int maxDefensePoints = 70;
 
-    private Item items[][];         // dla y == 0, mamy eq z miejscem na miecz i zbroje
-    private final int itemsH = 3;   // dla x == 0, miejsce na miecz
-    private final int itemsW = 3;   // dla x == 1 lub 2, miejsce na zbroje
+    private Item items[][]; // dla y == 0, mamy eq z miejscem na miecz i zbroje
+    private final int itemsH = 3; // dla x == 0, miejsce na miecz
+    private final int itemsW = 3; // dla x == 1 lub 2, miejsce na zbroje
     private int itemsX;
     private int itemsY;
 
-    public Player(Game game){
+    private PlayerLightSource flashlight = new PlayerLightSource(this, 1.0f, 0.6f, 0.0f, 4.0f);
+
+    public Player(Game game) {
         this.game = game;
 
         items = new Item[itemsH][itemsW];
@@ -36,20 +37,28 @@ public class Player { //implements IFightMember {
         healthPoints = maxHealthPoints;
         defensePoints = 0;
 
-        try{
-            down = ImageIO.read(new File ("res/g_front.png"));
-        
-            up = ImageIO.read(new File ("res/g_back.png"));
-        
-            left = ImageIO.read(new File ("res/g_left.png"));
-        
-            right = ImageIO.read(new File ("res/g_right.png"));
+        try {
+            down = ImageIO.read(new File("res/g_front.png"));
+
+            up = ImageIO.read(new File("res/g_back.png"));
+
+            left = ImageIO.read(new File("res/g_left.png"));
+
+            right = ImageIO.read(new File("res/g_right.png"));
 
             def = down;
 
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public PlayerLightSource getFlashlight() {
+        return flashlight;
+    }
+
+    public void setFlashlight(PlayerLightSource flashlight) {
+        this.flashlight = flashlight;
     }
 
     public void resetFacing() {

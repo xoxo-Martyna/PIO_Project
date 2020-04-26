@@ -5,7 +5,7 @@ public class LightRenderer {
     private final int imageSize;
     private final int lightGridSize;
 
-    private final int shadowOversample = 2;
+    private final int shadowOversample = 6;
 
     private int lightGridTileSize;
 
@@ -43,13 +43,23 @@ public class LightRenderer {
         return false;
     }
 
-    private Color sampleLights(Level level, float sampleX, float sampleY) {
+    private Color sampleLights(Level level, Player player, float sampleX, float sampleY) {
         float red = 0.0f, green = 0.0f, blue = 0.0f;
 
         for (LightSource light : level.getLights()) {
             if (isLightOccluded(level, light, sampleX, sampleY)) continue;
 
             Color lightSample = light.getColor(sampleX, sampleY);
+            float[] sampleComponents = lightSample.getColorComponents(null);
+
+            red += sampleComponents[0];
+            green += sampleComponents[1];
+            blue += sampleComponents[2];
+        }
+
+        PlayerLightSource playerLight = player.getFlashlight();
+        if (playerLight != null && !isLightOccluded(level, playerLight, sampleX, sampleY)) {
+            Color lightSample = playerLight.getColor(sampleX, sampleY);
             float[] sampleComponents = lightSample.getColorComponents(null);
 
             red += sampleComponents[0];
@@ -64,14 +74,14 @@ public class LightRenderer {
         );
     }
 
-    private void renderTile(Graphics2D g2d, Level level, int x, int y) {
+    private void renderTile(Graphics2D g2d, Level level, Player player, int x, int y) {
         for (int gridX = 0; gridX < lightGridSize; gridX++) {
             for (int gridY = 0; gridY < lightGridSize; gridY++) {
                 float sampleX = (float)x + ((float)gridX + 0.5f) / (float)lightGridSize;
                 float sampleY = (float)y + ((float)gridY + 0.5f) / (float)lightGridSize;
 
                 g2d.setColor(
-                    sampleLights(level, sampleX, sampleY)
+                    sampleLights(level, player, sampleX, sampleY)
                 );
                 g2d.fillRect(
                     (int)(sampleX * imageSize) - lightGridTileSize / 2,
@@ -82,12 +92,12 @@ public class LightRenderer {
         }
     }
 
-    public void render(Graphics2D g2d, Level level) {
+    public void render(Graphics2D g2d, Level level, Player player) {
         g2d.setComposite(MultiplyComposite.Multiply);
 
         for (int y = 0; y < level.getHeight(); y++) {
             for (int x = 0; x < level.getWidth(); x++) {
-                renderTile(g2d, level, x, y);
+                renderTile(g2d, level, player, x, y);
             }
         }
 
