@@ -147,10 +147,11 @@ public class Player { //implements IFightMember {
 
     public void useItem(){
         System.out.println("Uzyles przedmiotu ( " + itemsX +", "+ itemsY + " )"); // do wywalenia pozniej
-        if( y == 0 ){
+        if( itemsY == 0 ){
             takeOffItem();
             return;
         }
+
 
         Item item = items[itemsY][itemsX];
 
@@ -169,23 +170,51 @@ public class Player { //implements IFightMember {
         healthPoints += item.getRecoverPoints();
         if( healthPoints >= maxHealthPoints )
             healthPoints = maxHealthPoints;
-        deleteItem();
+        deleteCurrentItem();
     }
 
-    // kacper w tobie nadzieja
-    private void useDefenseItem( DefenseItem item ){ // albo putOnDefenseItem
+    // Artur dobry człowiek z ciebie :)
+    private void useDefenseItem(DefenseItem item){ // albo putOnDefenseItem
+        if(items[0][1]==null) {
+             items[0][1]=items[itemsY][itemsX];
+             deleteCurrentItem();
+        }
+        else if(items[0][2]==null){
+            items[0][2]=items[itemsY][itemsX];
+            deleteCurrentItem();
+        }
+        else {
+            Item tempItem = items[0][1];
+            items[0][1] = item;
+            items[itemsY][itemsX] = tempItem;
+         }
         
     }
 
-    private void useAttackItem( AttackItem item ){ // albo putOnAttackItem
-
+    private void useAttackItem (AttackItem item){ // albo putOnAttackItem
+        if(items[0][0]==null){
+            items[0][0]=items[itemsY][itemsX];
+            deleteCurrentItem();
+            }
+        else {
+            Item tempItem = items[0][0];
+            items[0][0] = item;
+            items[itemsY][itemsX] = tempItem;
+        }
+    
     }
 
     private void takeOffItem(){
-
+        for(int i=1;i<itemsY;i++)
+            for(int j=1;j<itemsX;j++)
+                if(items[i][j] == null){
+                    items[i][j] = items[itemsY][itemsX];
+                    deleteCurrentItem();
+                    return;
+                }
     }
 
-    private void deleteItem(){
+    private void deleteCurrentItem(){
         items[itemsY][itemsX] = null;
     }
 }
