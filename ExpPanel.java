@@ -101,11 +101,20 @@ public class ExpPanel extends JPanel implements KeyListener {
         x = level.getWidth()*imageSize+d;
         isd = imageSize+d;
 
+        try{
         g2d.draw( new Rectangle( x, y, imageSize, imageSize) );
+        g2d.drawImage( player.getItem(0, 0).getImage(), x, y, this );
+        } catch( NullPointerException e ){}
+        try{
         x += isd;
         g2d.draw( new Rectangle( x, y, imageSize, imageSize) );
+        g2d.drawImage( player.getItem(1, 0).getImage(), x, y, this );
+        } catch( NullPointerException e ){}
+        try{
         x += isd;
         g2d.draw( new Rectangle( x, y, imageSize, imageSize) );
+        g2d.drawImage( player.getItem(2, 0).getImage(), x, y, this );
+        } catch( NullPointerException e ){}
 
 
         for( y += imageSize+5*d, i = 1; y < eqY+3*isd; y += isd, i++ )
