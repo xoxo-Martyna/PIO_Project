@@ -35,7 +35,9 @@ public class ExpPanel extends JPanel implements KeyListener {
     
         g2d.drawImage( player.getImage(), player.getX()*imageSize, player.getY()*imageSize, this );
 
-        drawHPDP(g2d, level, player);
+        drawHP(g2d, level, player);
+        drawDP(g2d, level, player);
+        drawAP(g2d, level, player);
 
         drawEQ(g2d, level, player);
     }
@@ -74,8 +76,7 @@ public class ExpPanel extends JPanel implements KeyListener {
             }
     }
 
-    private void drawHPDP( Graphics2D g2d, Level level, Player player ){
-        //rysowanie hp
+    private void drawHP( Graphics2D g2d, Level level, Player player ){
         int x = level.getWidth()*imageSize+d;
         int y = hpY;
 
@@ -83,15 +84,28 @@ public class ExpPanel extends JPanel implements KeyListener {
         g2d.draw( new Rectangle( x-1, y-1, Player.maxHealthPoints*3+1, imageSize/2+1 ) );
         g2d.setColor( Color.RED );
         g2d.fill( new Rectangle( x, y, player.getHealthPoints()*3, imageSize/2 ) );
+    }
 
-        //rysowanie defense'a
-        y += imageSize/2+d;
+    private void drawDP( Graphics2D g2d, Level level, Player player ){
+        int x = level.getWidth()*imageSize+d;
+        int y = hpY + imageSize/2+d;
 
         g2d.setColor( Color.BLACK );
         g2d.draw( new Rectangle( x-1, y-1, Player.maxDefensePoints*3+1, imageSize/2+1 ) );
 
-        g2d.setColor( Color.GRAY );
+        g2d.setColor( Color.DARK_GRAY );
         g2d.fill( new Rectangle( x, y, player.getDefensePoints()*3, imageSize/2 ) );
+    }
+
+    private void drawAP( Graphics2D g2d, Level level, Player player ){
+        int x = level.getWidth()*imageSize+d;
+        int y = hpY + 2*(imageSize/2+d);
+
+        g2d.setColor( Color.BLACK );
+        g2d.draw( new Rectangle( x-1, y-1, Player.maxAttackPoints*3+1, imageSize/2+1 ) );
+
+        g2d.setColor( Color.LIGHT_GRAY );
+        g2d.fill( new Rectangle( x, y, player.getAttackPoints()*3, imageSize/2 ) );
     }
 
     private void drawEQ( Graphics2D g2d, Level level, Player player ){
@@ -105,11 +119,13 @@ public class ExpPanel extends JPanel implements KeyListener {
         g2d.draw( new Rectangle( x, y, imageSize, imageSize) );
         g2d.drawImage( player.getItem(0, 0).getImage(), x, y, this );
         } catch( NullPointerException e ){}
+
         try{
         x += isd;
         g2d.draw( new Rectangle( x, y, imageSize, imageSize) );
         g2d.drawImage( player.getItem(1, 0).getImage(), x, y, this );
         } catch( NullPointerException e ){}
+        
         try{
         x += isd;
         g2d.draw( new Rectangle( x, y, imageSize, imageSize) );

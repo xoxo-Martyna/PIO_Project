@@ -1,6 +1,8 @@
 // Format:
 // ID itemu|Nazwa obrazka|Typ|Nazwa itemu|Punkty
 diamond_sword|gen_sword|attack|DIAMOND SWORD|15
-salvia_potion|gen_weed|health|salvia potion|10
-ayahuasca_poison|gen_weed|health|ayahuasca poison|-10
+salvia_potion|gen_weed|health|SALVIA POTION|10
+ayahuasca_poison|gen_weed|health|AYAHUASCA POTION|-10
 iron_helmet|gen_armor|defense|IRON HELMET|10
+strass_sword|gen_sword|attack|STRASS SWROD|5
+almost_iron_helmet|gen_armor|defense|ALMOST IRON HELMET|9

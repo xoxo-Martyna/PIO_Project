@@ -16,9 +16,12 @@ public class Player { //implements IFightMember {
 
     private int healthPoints;
     private int defensePoints;
+    private int attackPoints;
 
     public static final int maxHealthPoints = 70;
     public static final int maxDefensePoints = 70;
+    public static final int maxAttackPoints = 70;
+
 
     private Item items[][];         // dla y == 0, mamy eq z miejscem na miecz i zbroje
     private final int itemsH = 3;   // dla x == 0, miejsce na miecz
@@ -35,6 +38,7 @@ public class Player { //implements IFightMember {
 
         healthPoints = maxHealthPoints-1;
         defensePoints = 0;
+        attackPoints = 1;
 
         try{
             down = ImageIO.read(new File ("res/g_front.png"));
@@ -55,6 +59,9 @@ public class Player { //implements IFightMember {
         items[2][0] = Item.create("salvia_potion");
         items[2][2] = Item.create("ayahuasca_poison");
         items[2][1] = Item.create("iron_helmet");
+
+        items[1][0] = Item.create("strass_sword");
+        items[1][2] = Item.create("almost_iron_helmet");
     }
 
     public void resetFacing() {
@@ -87,6 +94,10 @@ public class Player { //implements IFightMember {
 
     public int getDefensePoints(){
         return defensePoints;
+    }
+
+    public int getAttackPoints(){
+        return attackPoints;
     }
 
     public Item getAttackItem(){
@@ -188,7 +199,6 @@ public class Player { //implements IFightMember {
             items[0][1] = item;
             items[itemsY][itemsX] = tempItem;
          }
-        
     }
 
     private void useAttackItem (AttackItem item){ // albo putOnAttackItem
@@ -205,8 +215,8 @@ public class Player { //implements IFightMember {
     }
 
     private void takeOffItem(){
-        for(int i=1;i<itemsY;i++)
-            for(int j=1;j<itemsX;j++)
+        for(int i=1;i<itemsH;i++)
+            for(int j=0;j<itemsW;j++)
                 if(items[i][j] == null){
                     items[i][j] = items[itemsY][itemsX];
                     deleteCurrentItem();
