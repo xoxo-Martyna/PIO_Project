@@ -2,7 +2,7 @@
 
 public class Fight {
     private Game game;
-    
+     
     private Opponent opponent;
     private boolean isPlayersTurn;
 

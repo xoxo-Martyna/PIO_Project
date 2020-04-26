@@ -1,6 +1,6 @@
 public class DefenseItem extends Item {
     private final int protectPoints;
-
+    
     public DefenseItem( String id, String name, int protectPoints ){
         super( id, name );
         this.protectPoints = protectPoints;

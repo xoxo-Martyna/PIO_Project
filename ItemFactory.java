@@ -9,7 +9,7 @@ public class ItemFactory {
         items = new ArrayList<String[]>();
         loadItems();
     }
-
+ 
     private void loadItems() {
         try {
             XaxaLoader loader = new XaxaLoader("res/items.xaxa");

@@ -188,28 +188,33 @@ public class Player { //implements IFightMember {
     private void useDefenseItem(DefenseItem item){ // albo putOnDefenseItem
         if(items[0][1]==null) {
              items[0][1]=items[itemsY][itemsX];
+             defensePoints+=item.getProtectPoints();
              deleteCurrentItem();
         }
         else if(items[0][2]==null){
             items[0][2]=items[itemsY][itemsX];
+            defensePoints+=item.getProtectPoints();
             deleteCurrentItem();
         }
         else {
             Item tempItem = items[0][1];
             items[0][1] = item;
             items[itemsY][itemsX] = tempItem;
+            changeDefensePoints((DefenseItem)tempItem);           
          }
     }
 
     private void useAttackItem (AttackItem item){ // albo putOnAttackItem
         if(items[0][0]==null){
             items[0][0]=items[itemsY][itemsX];
+            attackPoints+=item.getAttackPoints();
             deleteCurrentItem();
             }
         else {
             Item tempItem = items[0][0];
             items[0][0] = item;
             items[itemsY][itemsX] = tempItem;
+            attackPoints = 1 + item.getAttackPoints();
         }
     
     }
@@ -218,10 +223,19 @@ public class Player { //implements IFightMember {
         for(int i=1;i<itemsH;i++)
             for(int j=0;j<itemsW;j++)
                 if(items[i][j] == null){
+                    Item item = items[itemsY][itemsX];
                     items[i][j] = items[itemsY][itemsX];
-                    deleteCurrentItem();
+                     if( item instanceof DefenseItem )
+                        changeDefensePoints((DefenseItem)item);
+                    else 
+                        attackPoints = 1;
+                    deleteCurrentItem();                  
                     return;
                 }
+    }
+
+    private void changeDefensePoints(DefenseItem item){
+        defensePoints -= item.getProtectPoints();
     }
 
     private void deleteCurrentItem(){
