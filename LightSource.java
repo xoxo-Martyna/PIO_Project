@@ -37,6 +37,7 @@ public class LightSource {
         double intensity = Math.max(
             0.0f, 1.0f - distance(sampleX, sampleY) / falloff
         );
+        intensity = Math.pow(intensity, 2.0);
 
         return new Color(
             (float)intensity * red,

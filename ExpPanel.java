@@ -38,7 +38,7 @@ public class ExpPanel extends JPanel implements KeyListener {
     
         g2d.drawImage( player.getImage(), player.getX()*imageSize, player.getY()*imageSize, this );
 
-        rtxRenderer.render(g2d, level, player);
+        rtxRenderer.renderLights(g2d, level, player);
 
         drawHPDP(g2d, level, player);
 
@@ -67,6 +67,8 @@ public class ExpPanel extends JPanel implements KeyListener {
                     g2d.drawImage( image, imageSize*x, imageSize*y, this );
                 }
             }
+
+        rtxRenderer.renderAO(g2d, level);
 
         // Projectile drawing
         for (ProjectileInstance p : game.getProjectiles()) {

@@ -92,7 +92,66 @@ public class LightRenderer {
         }
     }
 
-    public void render(Graphics2D g2d, Level level, Player player) {
+    public void renderAO(Graphics2D g2d, Level level) {
+        g2d.setComposite(MultiplyComposite.Multiply);
+
+        g2d.setColor(
+            new Color(
+                0.85f, 0.85f, 0.85f
+            )
+        );
+
+        for (int y = 0; y < level.getHeight(); y++) {
+            for (int x = 0; x < level.getWidth(); x++) {
+                if (level.getTile(x, y).isCastingShadows()) continue;
+
+                if (x > 0 && level.getTile(x - 1, y).isCastingShadows()) {
+                    g2d.fillRect(
+                        x * imageSize, y * imageSize,
+                        16, imageSize
+                    );
+                    g2d.fillRect(
+                        x * imageSize, y * imageSize,
+                        8, imageSize
+                    );
+                }
+                if (x < level.getWidth() - 1 && level.getTile(x + 1, y).isCastingShadows()) {
+                    g2d.fillRect(
+                        x * imageSize + imageSize - 16, y * imageSize,
+                        16, imageSize
+                    );
+                    g2d.fillRect(
+                        x * imageSize + imageSize - 8, y * imageSize,
+                        8, imageSize
+                    );
+                }
+                if (y > 0 && level.getTile(x, y - 1).isCastingShadows()) {
+                    g2d.fillRect(
+                        x * imageSize, y * imageSize,
+                        imageSize, 16
+                    );
+                    g2d.fillRect(
+                        x * imageSize, y * imageSize,
+                        imageSize, 8
+                    );
+                }
+                if (y < level.getHeight() - 1 && level.getTile(x, y + 1).isCastingShadows()) {
+                    g2d.fillRect(
+                        x * imageSize, y * imageSize + imageSize - 16,
+                        imageSize, 16
+                    );
+                    g2d.fillRect(
+                        x * imageSize, y * imageSize + imageSize - 8,
+                        imageSize, 8
+                    );
+                }
+            }
+        }
+
+        g2d.setComposite(AlphaComposite.SrcOver);
+    }
+
+    public void renderLights(Graphics2D g2d, Level level, Player player) {
         g2d.setComposite(MultiplyComposite.Multiply);
 
         for (int y = 0; y < level.getHeight(); y++) {
