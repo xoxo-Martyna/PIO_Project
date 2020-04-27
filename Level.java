@@ -29,6 +29,11 @@ public class Level {
         }
     }
 
+    public void handleGameLoop(Game game) {
+        for (LightSource l : lights)
+            l.handleGameLoop(game);
+    }
+
     public List<LightSource> getLights() {
         return lights;
     }

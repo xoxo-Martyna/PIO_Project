@@ -181,6 +181,20 @@ public class LevelLoader {
                         Float.parseFloat(args[9])
                     )
                 );
+            } else if (args[1].equals("rotspot") && args.length == 11) {
+                target.addLight(
+                    new RotatingSpotLightSource(
+                        Float.parseFloat(args[2]),
+                        Float.parseFloat(args[3]),
+                        Float.parseFloat(args[4]),
+                        Float.parseFloat(args[5]),
+                        Float.parseFloat(args[6]),
+                        Float.parseFloat(args[7]),
+                        Float.parseFloat(args[8]),
+                        Float.parseFloat(args[9]),
+                        Float.parseFloat(args[10])
+                    )
+                );
             }
         }
     }

@@ -68,10 +68,17 @@ public class Game {
     }
 
     public void handleGameLoop() {
-        for (ProjectileInstance p : projectiles) {
-            p.advancePosition(this);
+        if (isInFight) {
+
+        } else {
+            currentLevel.handleGameLoop(this);
+
+            for (ProjectileInstance p : projectiles) {
+                p.advancePosition(this);
+            }
+            cleanProjectiles();
         }
-        cleanProjectiles();
+
 
         render();
 
