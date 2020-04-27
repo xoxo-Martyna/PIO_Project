@@ -148,16 +148,16 @@ public class LevelLoader {
                 
                 target.setTile(x, y, tile);
             }
-        } else if (args[0].equals("LightSource") && args.length == 8) {
-            if (args[1].equals("ambient")) {
+        } else if (args[0].equals("LightSource") && args.length > 2) {
+            if (args[1].equals("ambient") && args.length == 5) {
                 target.addLight(
                     new AmbientLightSource(
-                        Float.parseFloat(args[4]),
-                        Float.parseFloat(args[5]),
-                        Float.parseFloat(args[6])
+                        Float.parseFloat(args[2]),
+                        Float.parseFloat(args[3]),
+                        Float.parseFloat(args[4])
                     )
                 );
-            } else {
+            } else if (args[1].equals("point") && args.length == 8) {
                 target.addLight(
                     new LightSource(
                         Float.parseFloat(args[2]),
@@ -166,6 +166,19 @@ public class LevelLoader {
                         Float.parseFloat(args[5]),
                         Float.parseFloat(args[6]),
                         Float.parseFloat(args[7])
+                    )
+                );
+            } else if (args[1].equals("spot") && args.length == 10) {
+                target.addLight(
+                    new SpotLightSource(
+                        Float.parseFloat(args[2]),
+                        Float.parseFloat(args[3]),
+                        Float.parseFloat(args[4]),
+                        Float.parseFloat(args[5]),
+                        Float.parseFloat(args[6]),
+                        Float.parseFloat(args[7]),
+                        Float.parseFloat(args[8]),
+                        Float.parseFloat(args[9])
                     )
                 );
             }

@@ -14,5 +14,5 @@ Tile w_concretescaffold2 8 9
 Tile w_concretescaffold2_1 7 0
 Tile w_scaffolding 4 0 5 0 6 0 5 4 1 9 2 9 3 9 4 9 5 9 6 9 7 9
 
-LightSource ambient 0.0 0.0 0.2 0.2 0.2 0.0
-LightSource point 5.0 7.1 1.0 0.0 0.0 5.0
+LightSource ambient 0.2 0.2 0.2
+LightSource spot 5.0 6.1 1.0 0.0 0.0 5.0 1.5 0.7

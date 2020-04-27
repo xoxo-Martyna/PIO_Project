@@ -45,4 +45,6 @@ public class LightSource {
             (float)intensity * blue
         );
     }
+
+    public void handleGameLoop(Game game) {}
 }
