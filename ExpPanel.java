@@ -1,6 +1,5 @@
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.awt.*;
 import java.awt.event.*;
@@ -12,7 +11,7 @@ import javax.swing.JPanel;
 public class ExpPanel extends JPanel implements KeyListener {
     private Game game;
 
-    private BufferedImage imageArmor, imageSword, imageWeed;
+    private BufferedImage imageArmor, imageSword;//, imageWeed;
 
     private final int imageSize = 64;
     private final int levelSize = 10;
@@ -26,7 +25,7 @@ public class ExpPanel extends JPanel implements KeyListener {
         try{
             imageArmor = ImageIO.read(new File ("res/items/outline_armor.png"));
             imageSword = ImageIO.read(new File ("res/items/outline_sword.png"));
-            imageWeed = ImageIO.read(new File ("res/items/outline_weed.png"));
+            //imageWeed = ImageIO.read(new File ("res/items/outline_weed.png"));
         } catch( IOException e ){
             e.printStackTrace();
         }
@@ -189,42 +188,42 @@ public class ExpPanel extends JPanel implements KeyListener {
         Player player = game.getPlayer();
 
         switch( key ){
-            case(KeyEvent.VK_RIGHT):
+            case(KeyEvent.VK_D):
                 player.move(1, 0);
                 repaint();
             break;
 
-            case(KeyEvent.VK_LEFT):
+            case(KeyEvent.VK_A):
                 player.move(-1, 0);
                 repaint();
             break;
 
-            case(KeyEvent.VK_UP):
+            case(KeyEvent.VK_W):
                 player.move( 0, -1);
                 repaint();
             break;
 
-            case(KeyEvent.VK_DOWN):
+            case(KeyEvent.VK_S):
                 player.move(0, 1);
                 repaint();
             break;
 
-            case(KeyEvent.VK_W):
+            case(KeyEvent.VK_UP):
                 player.moveEQ(0, -1);
                 repaint();
             break;
 
-            case(KeyEvent.VK_S):
+            case(KeyEvent.VK_DOWN):
                 player.moveEQ(0, 1);
                 repaint();
             break;
 
-            case(KeyEvent.VK_A):
+            case(KeyEvent.VK_LEFT):
                 player.moveEQ(-1, 0);
                 repaint();
             break;
 
-            case(KeyEvent.VK_D):
+            case(KeyEvent.VK_RIGHT):
                 player.moveEQ(1, 0);
                 repaint();
             break;
