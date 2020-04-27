@@ -1,12 +1,18 @@
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.Font;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class ExpPanel extends JPanel implements KeyListener {
     private Game game;
+
+    private BufferedImage imageArmor, imageSword, imageWeed;
 
     private final int imageSize = 64;
     private final int levelSize = 10;
@@ -16,6 +22,14 @@ public class ExpPanel extends JPanel implements KeyListener {
 
     public ExpPanel( Game game ){
         this.game = game;
+
+        try{
+            imageArmor = ImageIO.read(new File ("res/items/outline_armor.png"));
+            imageSword = ImageIO.read(new File ("res/items/outline_sword.png"));
+            imageWeed = ImageIO.read(new File ("res/items/outline_weed.png"));
+        } catch( IOException e ){
+            e.printStackTrace();
+        }
 
         setPreferredSize( new Dimension(imageSize*levelSize+4*d+3*imageSize, imageSize*levelSize) );
 
@@ -116,20 +130,23 @@ public class ExpPanel extends JPanel implements KeyListener {
         isd = imageSize+d;
 
         try{
-        g2d.draw( new Rectangle( x, y, imageSize, imageSize) );
-        g2d.drawImage( player.getItem(0, 0).getImage(), x, y, this );
+            g2d.draw( new Rectangle( x, y, imageSize, imageSize) );
+            g2d.drawImage( imageSword, x, y, this );
+            g2d.drawImage( player.getItem(0, 0).getImage(), x, y, this );
         } catch( NullPointerException e ){}
 
         try{
-        x += isd;
-        g2d.draw( new Rectangle( x, y, imageSize, imageSize) );
-        g2d.drawImage( player.getItem(1, 0).getImage(), x, y, this );
+            x += isd;
+            g2d.draw( new Rectangle( x, y, imageSize, imageSize) );
+            g2d.drawImage( imageArmor, x, y, this );
+            g2d.drawImage( player.getItem(1, 0).getImage(), x, y, this );
         } catch( NullPointerException e ){}
         
         try{
-        x += isd;
-        g2d.draw( new Rectangle( x, y, imageSize, imageSize) );
-        g2d.drawImage( player.getItem(2, 0).getImage(), x, y, this );
+            x += isd;
+            g2d.draw( new Rectangle( x, y, imageSize, imageSize) );
+            g2d.drawImage( imageArmor, x, y, this );
+            g2d.drawImage( player.getItem(2, 0).getImage(), x, y, this );
         } catch( NullPointerException e ){}
 
 
