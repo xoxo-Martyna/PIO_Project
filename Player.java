@@ -249,8 +249,9 @@ public class Player { //implements IFightMember {
         }
     }
     public void dropItem(){
-        if(items[itemsY][itemsX] != null){
-            game.getCurrentLevel().getTile(x, y).setItem(items[itemsY][itemsX]);
+        Tile targetTile = game.getCurrentLevel().getTile(x, y);
+        if(items[itemsY][itemsX] != null && targetTile.getItem() == null ){
+            targetTile.setItem(items[itemsY][itemsX]);
             deleteCurrentItem();
         }
         
