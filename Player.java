@@ -15,8 +15,6 @@ public class Player { //implements IFightMember {
     private Game game;  
 
     private int healthPoints;
-    private int defensePoints;
-    private int attackPoints;
 
     public static final int maxHealthPoints = 70;
     public static final int maxDefensePoints = 70;
@@ -38,8 +36,6 @@ public class Player { //implements IFightMember {
         itemsY = 0;
 
         healthPoints = maxHealthPoints-1;
-        defensePoints = 0;
-        attackPoints = defaultAttackPoints;
 
         try{
             down = ImageIO.read(new File ("res/g_front.png"));
@@ -94,11 +90,19 @@ public class Player { //implements IFightMember {
     }
 
     public int getDefensePoints(){
-        return defensePoints;
+        int pp = 0;
+        if( items[0][1] != null )
+            pp += ((DefenseItem)items[0][1]).getProtectPoints();
+        if( items[0][2] != null )
+            pp += ((DefenseItem)items[0][2]).getProtectPoints();
+        return pp;
     }
 
     public int getAttackPoints(){
-        return attackPoints;
+        if( items[0][0] == null ){
+            return defaultAttackPoints;
+        }
+        return ((AttackItem)items[0][0]).getAttackPoints();
     }
 
     public Item getAttackItem(){
@@ -158,7 +162,6 @@ public class Player { //implements IFightMember {
     }
 
     public void useItem(){
-        System.out.println("Uzyles przedmiotu ( " + itemsX +", "+ itemsY + " )"); // do wywalenia pozniej
         if( itemsY == 0 ){
             takeOffItem();
             return;
@@ -184,37 +187,31 @@ public class Player { //implements IFightMember {
         deleteCurrentItem();
     }
 
-    // Artur dobry człowiek z ciebie :)
-    private void useDefenseItem(DefenseItem item){ // albo putOnDefenseItem
+    private void useDefenseItem(DefenseItem item){
         if(items[0][1]==null) {
-             items[0][1]=items[itemsY][itemsX];
-             defensePoints+=item.getProtectPoints();
-             deleteCurrentItem();
+            items[0][1]=item;
+            deleteCurrentItem();
         }
         else if(items[0][2]==null){
-            items[0][2]=items[itemsY][itemsX];
-            defensePoints+=item.getProtectPoints();
+            items[0][2]=item;
             deleteCurrentItem();
         }
         else {
             Item tempItem = items[0][1];
             items[0][1] = item;
             items[itemsY][itemsX] = tempItem;
-            defensePoints += item.getProtectPoints()-((DefenseItem)tempItem).getProtectPoints();
         }
     }
 
-    private void useAttackItem (AttackItem item){ // albo putOnAttackItem
+    private void useAttackItem (AttackItem item){
         if(items[0][0]==null){
-            items[0][0]=items[itemsY][itemsX];
-            attackPoints+=item.getAttackPoints();
+            items[0][0]=item;
             deleteCurrentItem();
-            }
-        else {
+        }
+        else{
             Item tempItem = items[0][0];
             items[0][0] = item;
             items[itemsY][itemsX] = tempItem;
-            attackPoints = defaultAttackPoints + item.getAttackPoints();
         }
     
     }
@@ -223,12 +220,7 @@ public class Player { //implements IFightMember {
         for(int i=1;i<itemsH;i++)
             for(int j=0;j<itemsW;j++)
                 if(items[i][j] == null){
-                    Item item = items[itemsY][itemsX];
                     items[i][j] = items[itemsY][itemsX];
-                     if( item instanceof DefenseItem )
-                        defensePoints -= ((DefenseItem)item).getProtectPoints();
-                    else 
-                        attackPoints = defaultAttackPoints;
                     deleteCurrentItem();                  
                     return;
                 }
