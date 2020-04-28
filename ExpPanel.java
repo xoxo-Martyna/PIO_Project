@@ -232,6 +232,16 @@ public class ExpPanel extends JPanel implements KeyListener {
                 player.useItem();
                 repaint();
             break;
+
+            case(KeyEvent.VK_P):
+                player.pickItem();
+                repaint();
+            break;
+
+            case(KeyEvent.VK_L):
+                player.dropItem();;
+                repaint();
+             break;
         }
     }
 

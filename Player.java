@@ -237,4 +237,14 @@ public class Player { //implements IFightMember {
     private void deleteCurrentItem(){
         items[itemsY][itemsX] = null;
     }
+
+    public void pickItem(){
+        Tile targetTile = game.getCurrentLevel().getTile(x, y);
+        items[itemsY][itemsX] = targetTile.getItem();
+        targetTile.setItem(null); 
+    }
+    public void dropItem(){
+        game.getCurrentLevel().getTile(x, y).setItem(items[itemsY][itemsX]);
+        deleteCurrentItem();
+    }
 }
