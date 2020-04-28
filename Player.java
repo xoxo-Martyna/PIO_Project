@@ -240,11 +240,27 @@ public class Player { //implements IFightMember {
 
     public void pickItem(){
         Tile targetTile = game.getCurrentLevel().getTile(x, y);
-        items[itemsY][itemsX] = targetTile.getItem();
-        targetTile.setItem(null); 
+        if( targetTile.getItem() != null){
+            if(itemsY != 0 && items[itemsY][itemsX] == null){
+                items[itemsY][itemsX] = targetTile.getItem();
+                targetTile.setItem(null); 
+            } else if (itemsY == 0 || items[itemsY][itemsX] != null) {
+                for (int i = 1; i < 3; i++){
+                    for(int j = 0; j < 3; j++){
+                        if(items[i][j] == null ){
+                            items[i][j] = targetTile.getItem();
+                            targetTile.setItem(null);
+                        }
+                    }
+                }
+            }
+        }
     }
     public void dropItem(){
-        game.getCurrentLevel().getTile(x, y).setItem(items[itemsY][itemsX]);
-        deleteCurrentItem();
+        if(items[itemsY][itemsX] != null){
+            game.getCurrentLevel().getTile(x, y).setItem(items[itemsY][itemsX]);
+            deleteCurrentItem();
+        }
+        
     }
 }
