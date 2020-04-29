@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    private GameState state = GameState.exploration;
+    private GameState state;
     private boolean isInFight;
 
     private Player player;

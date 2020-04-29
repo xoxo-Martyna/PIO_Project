@@ -2,6 +2,8 @@
 
 enum GameState {
     exploration,
+    fight,
+
     justPickedUpItem,
     inFightTransition,
     inLevelTransition,

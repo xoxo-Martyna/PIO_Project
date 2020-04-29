@@ -43,10 +43,14 @@ public class ExpPanel extends JPanel implements KeyListener {
 
         Level level = game.getCurrentLevel();
         Player player = game.getPlayer();
-        
-        drawLevel(g2d, level); // <-- mozna dodac rysowanie itemkow
-    
-        g2d.drawImage( player.getImage(), player.getX()*imageSize, player.getY()*imageSize, this );
+
+        if( game.getState() == GameState.exploration ){
+            drawLevel(g2d, level); // <-- mozna dodac rysowanie itemkow
+            g2d.drawImage( player.getImage(), player.getX()*imageSize, player.getY()*imageSize, this );
+        }
+        else if( game.getState() == GameState.fight ){
+            drawFight( g2d, player );
+        }
 
         drawHP(g2d, level, player);
         drawDP(g2d, level, player);
@@ -87,6 +91,16 @@ public class ExpPanel extends JPanel implements KeyListener {
                     }
                 }
             }
+    }
+
+    private void drawFight( Graphics2D g2d, Player player ){
+        g2d.drawOval(350, 100, 220, 125); // przeciwnik
+        g2d.drawOval(150, 450, 220, 125); // gracz
+        g2d.drawImage( player.getImage().getScaledInstance(128, 128, 1), 200, 400, this );
+        drawFightMenu( g2d, player, game.getCurrentFight().getOpponent() );
+    }
+
+    private void drawFightMenu( Graphics2D g2d, Player player, Opponent opponent ){
     }
 
     private void drawHP( Graphics2D g2d, Level level, Player player ){
@@ -187,6 +201,25 @@ public class ExpPanel extends JPanel implements KeyListener {
 
         Player player = game.getPlayer();
 
+        if( game.getState() == GameState.exploration )
+            expKeyClicked(key);
+        else if( game.getState() == GameState.fight )
+            fightKeyClicked(key);
+
+        menuKeyClicked(key);
+    }
+
+    public void keyReleased(KeyEvent e) {
+
+    }
+
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    private void expKeyClicked( int key ){
+        Player player = game.getPlayer();
+
         switch( key ){
             case(KeyEvent.VK_D):
                 player.move(1, 0);
@@ -208,6 +241,51 @@ public class ExpPanel extends JPanel implements KeyListener {
                 repaint();
             break;
 
+            case(KeyEvent.VK_P):
+                player.pickItem();
+                repaint();
+            break;
+
+            case(KeyEvent.VK_L):
+                player.dropItem();;
+                repaint();
+            break;
+        }
+    }
+
+    private void fightKeyClicked( int key ){
+        switch( key ){ // tu bedzie kursor po menu walki
+            case(KeyEvent.VK_D):
+                
+                repaint();
+            break;
+
+            case(KeyEvent.VK_A):
+                
+                repaint();
+            break;
+
+            case(KeyEvent.VK_W):
+                
+                repaint();
+            break;
+
+            case(KeyEvent.VK_S):
+                
+                repaint();
+            break;
+
+            case(KeyEvent.VK_ENTER):
+                
+                repaint();
+            break;
+        }
+    }
+
+    private void menuKeyClicked( int key ){
+        Player player = game.getPlayer();
+
+        switch( key ){
             case(KeyEvent.VK_UP):
                 player.moveEQ(0, -1);
                 repaint();
@@ -232,24 +310,6 @@ public class ExpPanel extends JPanel implements KeyListener {
                 player.useItem();
                 repaint();
             break;
-
-            case(KeyEvent.VK_P):
-                player.pickItem();
-                repaint();
-            break;
-
-            case(KeyEvent.VK_L):
-                player.dropItem();;
-                repaint();
-             break;
         }
-    }
-
-    public void keyReleased(KeyEvent e) {
-
-    }
-
-    public void keyTyped(KeyEvent e) {
-
     }
 }
