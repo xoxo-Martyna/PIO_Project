@@ -42,7 +42,7 @@ ZATWIERDZONE: KACPER S
 przeciwnik:
 - umieszczanie na planszy
 - rysowanie na planszy
-- ekwipunek przeciwnika
+- ekwipunek przeciwnika (wypadanie po walce)
 - opcjonalne chodzenie w kolko
 
 walka:
@@ -51,6 +51,14 @@ walka:
 - ruchy przeciwnika
 - ruchy gracza
 - wychodzenie z walki(po wygranej/ po przegranej- koniec gry)
+
+TO DO:
+podział;
+    3a. martyna - ruchy gracza
+    4. hubert  - ekwipunek przeciwnika (wypadanie po walce), wychodzenie z walki(po wygranej/ po przegranej- koniec gry *wyłącza grę*)
+    3!. kacper a- ruchy przeciwnika 
+    1. kacper s- rysowanie na planszy + levelloader + wiecej RTX
+    2. artur   - chodzenie w kolko, rysowanie walki, wchodzenie do walki
 
 -------------------------------------------------------------------
 */
