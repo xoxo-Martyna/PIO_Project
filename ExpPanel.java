@@ -95,12 +95,26 @@ public class ExpPanel extends JPanel implements KeyListener {
 
     private void drawFight( Graphics2D g2d, Player player ){
         g2d.drawOval(350, 100, 220, 125); // przeciwnik
-        g2d.drawOval(150, 450, 220, 125); // gracz
-        g2d.drawImage( player.getImage().getScaledInstance(128, 128, 1), 200, 400, this );
-        drawFightMenu( g2d, player, game.getCurrentFight().getOpponent() );
+        g2d.drawOval(150, 350, 220, 125); // gracz
+
+        drawOpponent(g2d, player, 400, 50);
+        g2d.drawImage( player.getImage().getScaledInstance(128, 128, Image.SCALE_DEFAULT), 200, 300, this );
+        
+        g2d.setFont( new Font("Serif", Font.PLAIN, 20) );
+        g2d.setColor(Color.BLACK);
+
+        g2d.draw( new Rectangle( (levelSize-4)*imageSize, eqY+200, 150, 50) );
+        g2d.drawString( "ATTACK! (enter)", (levelSize-4)*imageSize+5, eqY+230);
     }
 
-    private void drawFightMenu( Graphics2D g2d, Player player, Opponent opponent ){
+    private void drawOpponent( Graphics2D g2d, Player opponent, int x, int y ){
+        g2d.drawImage( opponent.getImage().getScaledInstance(128, 128, Image.SCALE_DEFAULT), x, y, this );
+
+        x += imageSize-opponent.getHealthPoints()/2;
+        y -= 10;
+
+        g2d.setColor( Color.RED );
+        g2d.fill( new Rectangle( x, y, opponent.getHealthPoints(), imageSize/8 ) );
     }
 
     private void drawHP( Graphics2D g2d, Level level, Player player ){
@@ -171,7 +185,16 @@ public class ExpPanel extends JPanel implements KeyListener {
                 } catch( ArrayIndexOutOfBoundsException | NullPointerException e){}
             }
         
+        drawEqCursor(g2d, player, level);
+
+        drawItemInfo(g2d, level, player);
+    }
+
+    private void drawEqCursor( Graphics2D g2d, Player player, Level level ){
+        int x, y, isd = imageSize+d;
+
         g2d.setColor( Color.BLACK );
+
         if( player.getItemsY() == 0 )
             y = eqY;
         else if( player.getItemsY() == 1 )
@@ -182,12 +205,10 @@ public class ExpPanel extends JPanel implements KeyListener {
         x = level.getWidth()*imageSize+d+isd*player.getItemsX();
         g2d.draw( new Rectangle( x, y, imageSize, imageSize ) );
         g2d.draw( new Rectangle( x+1, y+1, imageSize-2, imageSize-2 ) );
-
-        drawItemInfo(g2d, level, player);
     }
 
     private void drawItemInfo( Graphics2D g2d, Level level, Player player ){
-        setFont( new Font("Serif", Font.PLAIN, 12) );
+        g2d.setFont( new Font("Serif", Font.PLAIN, 11) );
         Item item = player.getCurrentItem();
 
         try{
@@ -199,14 +220,12 @@ public class ExpPanel extends JPanel implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
-        Player player = game.getPlayer();
-
         if( game.getState() == GameState.exploration )
             expKeyClicked(key);
         else if( game.getState() == GameState.fight )
             fightKeyClicked(key);
 
-        menuKeyClicked(key);
+        eqKeyClicked(key);
     }
 
     public void keyReleased(KeyEvent e) {
@@ -254,35 +273,25 @@ public class ExpPanel extends JPanel implements KeyListener {
     }
 
     private void fightKeyClicked( int key ){
-        switch( key ){ // tu bedzie kursor po menu walki
+        switch( key ){
             case(KeyEvent.VK_D):
-                
+                //kiedy indziej zrobie uniki
                 repaint();
             break;
 
             case(KeyEvent.VK_A):
-                
-                repaint();
-            break;
-
-            case(KeyEvent.VK_W):
-                
-                repaint();
-            break;
-
-            case(KeyEvent.VK_S):
-                
+                //kiedy indziej zrobie uniki
                 repaint();
             break;
 
             case(KeyEvent.VK_ENTER):
-                
+                //atak na przeciwnika
                 repaint();
             break;
         }
     }
 
-    private void menuKeyClicked( int key ){
+    private void eqKeyClicked( int key ){
         Player player = game.getPlayer();
 
         switch( key ){
