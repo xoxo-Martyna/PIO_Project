@@ -9,6 +9,7 @@ public class Tile { // implements ISpawner {
     protected boolean collidable;
 
     private Item item;
+    private Opponent opponent;
 
     // private ISpawner spawner;
 
@@ -31,6 +32,14 @@ public class Tile { // implements ISpawner {
 
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    public Opponent getOpponent() {
+        return opponent;
+    }
+
+    public void setOpponent(Opponent opponent) {
+        this.opponent = opponent;
     }
 
     public String getId() {

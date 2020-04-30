@@ -66,6 +66,7 @@ public class ExpPanel extends JPanel implements KeyListener {
                 if (tile == null) continue;
 
                 Item tileItem = tile.getItem();
+                Opponent tileOpponent = tile.getOpponent();
 
                 BufferedImage image = (tile.getImage());
 
@@ -88,6 +89,13 @@ public class ExpPanel extends JPanel implements KeyListener {
 
                     if (itemImage != null) {
                         g2d.drawImage( itemImage, imageSize*x, imageSize*y, this );
+                    }
+                }
+                if (tileOpponent != null) {
+                    BufferedImage oppImage = tileOpponent.getImage();
+
+                    if (oppImage != null) {
+                        g2d.drawImage( oppImage, imageSize*x, imageSize*y, this );
                     }
                 }
             }

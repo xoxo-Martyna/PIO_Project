@@ -130,6 +130,17 @@ public class LevelLoader {
 
                 t.setItem(i);
             }
+        } else if (args[0].equals("Opponent") && args.length == 4) {
+            Tile t = target.getTile(
+                Integer.parseInt(args[2]),
+                Integer.parseInt(args[3])
+            );
+
+            if (t != null) {
+                Opponent i = Opponent.create(args[1]);
+
+                t.setOpponent(i);
+            }
         }
     }
 }
