@@ -10,27 +10,32 @@ public class Item {
 
     private BufferedImage image;
 
-    public static ItemFactory factory = new ItemFactory();
+    private static XaxaLoader factory = null;
 
     public static Item create(String id) {
-        String[] itemInfo = factory.get(id);
-        if (itemInfo == null) return null;
-
-        if (itemInfo[2].equals("attack")) {
-            return new AttackItem(
-                itemInfo[1], itemInfo[3],
-                Integer.parseInt(itemInfo[4])
-            );
-        } else if (itemInfo[2].equals("health")) {
-            return new HealthItem(
-                itemInfo[1], itemInfo[3],
-                Integer.parseInt(itemInfo[4])
-            );
-        } else if (itemInfo[2].equals("defense")) {
-            return new DefenseItem(
-                itemInfo[1], itemInfo[3],
-                Integer.parseInt(itemInfo[4])
-            );
+        try {
+            if (factory == null) factory = new XaxaLoader("res/items.xaxa");
+            
+            String[] itemInfo = factory.get(id);
+            if (itemInfo == null) return null;
+    
+            if (itemInfo[2].equals("attack")) {
+                return new AttackItem(
+                    itemInfo[1], itemInfo[3],
+                    Integer.parseInt(itemInfo[4])
+                );
+            } else if (itemInfo[2].equals("health")) {
+                return new HealthItem(
+                    itemInfo[1], itemInfo[3],
+                    Integer.parseInt(itemInfo[4])
+                );
+            } else if (itemInfo[2].equals("defense")) {
+                return new DefenseItem(
+                    itemInfo[1], itemInfo[3],
+                    Integer.parseInt(itemInfo[4])
+                );
+            }
+        } catch(IOException e) {
         }
 
         return null;
