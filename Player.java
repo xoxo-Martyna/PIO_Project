@@ -85,6 +85,10 @@ public class Player { //implements IFightMember {
         return def;
     }
 
+    public BufferedImage getImageDown(){
+        return down;
+    }
+
     public int getHealthPoints(){
         return healthPoints;
     }
@@ -148,9 +152,18 @@ public class Player { //implements IFightMember {
                     def = up;
                 targetTile.handlePlayerEnter(game);
             }
-        } catch (ArrayIndexOutOfBoundsException | java.lang.NullPointerException f) {
-            move(0, 0);
-        }
+        } catch (ArrayIndexOutOfBoundsException | java.lang.NullPointerException f) {}
+        checkCollisionOpponent();
+    }
+
+    private void checkCollisionOpponent(){
+        try{
+            Tile tile = game.getCurrentLevel().getTile(x, y);
+            if( tile.getOpponent() != null ){
+                game.startFight( new Fight(tile.getOpponent(), game) );
+                tile.setOpponent( null );
+            }
+        } catch( NullPointerException e ){}
     }
     
     public void moveEQ( int dx, int dy ){

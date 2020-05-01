@@ -62,6 +62,7 @@ public class Game {
     }
 
     public void setState( GameState state ){
+        this.state = state;
     }
 
     public Level getLevel( String id ){
@@ -78,10 +79,12 @@ public class Game {
     }
 
     public Fight getCurrentFight(){
-        return null;
+        return currentFight;
     }
 
     public void startFight( Fight fight ){
+        currentFight = fight;
+        state = GameState.fight;
     }
 
     public void endFight(){
