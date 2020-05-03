@@ -7,6 +7,8 @@ import javax.imageio.ImageIO;
 public class Opponent implements IFightMember {
     private int healthPoints;
     private int defensePoints;
+    private int attackPoints; 
+
 
     private String id;
     private String name;
@@ -57,6 +59,7 @@ public class Opponent implements IFightMember {
     public int getHealthPoints() {
         return healthPoints;
     }
+    
     public int getDefensePoints() {
         return defensePoints;
     }

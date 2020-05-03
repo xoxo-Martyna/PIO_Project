@@ -61,6 +61,10 @@ public class Player { //implements IFightMember {
         items[1][2] = Item.create("almost_iron_helmet");
     }
 
+    public void setHPpoints( int slap){
+        this.healthPoints -= slap;
+    }
+
     public void resetFacing() {
         def = down;
     }

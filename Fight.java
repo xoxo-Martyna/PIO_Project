@@ -24,9 +24,19 @@ public class Fight {
     }
 
     public void opponentMove(){
-        System.out.println("Przeciwnik wykonal ruch!"); // do wywalenia pozniej
+        int slap;
+        int tripleP = player.getDefensePoints();
+        int ciabasAttack = 1; // do testu
+        int oneShot = 60; // do testu
+        if(oneShot - tripleP > 0)
+            slap = oneShot - tripleP;
+        else 
+            slap = 0;
+        player.setHPpoints(slap);
 
-        //to do kacper
+        System.out.println("Przeciwnik wykonał bitch slapa!\n" + player.getHealthPoints()); // do wywalenia pozniej
+
+     
         
         checkEndFight();
     }
