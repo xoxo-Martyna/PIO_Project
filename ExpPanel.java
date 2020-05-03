@@ -293,15 +293,22 @@ public class ExpPanel extends JPanel implements KeyListener {
                 break;
 
             case (KeyEvent.VK_ENTER):
-                game.getCurrentFight().playerMove();
-
-                try {
-                    TimeUnit.SECONDS.sleep(1);
-                    repaint();
-                } catch (InterruptedException e) {}
                 
-                game.getCurrentFight().opponentMove();
-                repaint();
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        game.getCurrentFight().playerMove();
+                        repaint();
+
+                        try {
+                            TimeUnit.SECONDS.sleep(1);
+                        } catch (InterruptedException e) {}
+                
+                        game.getCurrentFight().opponentMove();
+                        repaint();
+                    }
+                });
+                thread.start();
             break;
         }
     }
