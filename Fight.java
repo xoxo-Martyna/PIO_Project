@@ -16,10 +16,12 @@ public class Fight {
     }
 
     public void playerMove(){
-        System.out.println("Gracz wykonal ruch!"); // do wywalenia pozniej
-      
+        
+        player.useItem();
+        opponent.setHealthPoints(opponent.getHealthPoints()-player.getAttackPoints());
+        System.out.println(opponent.getHealthPoints());
         //to do martyna  
-
+        System.out.println("Gracz wykonal ruch!"); // do wywalenia pozniej
         checkEndFight();
     }
 

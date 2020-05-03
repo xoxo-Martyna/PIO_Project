@@ -67,4 +67,8 @@ public class Opponent implements IFightMember {
     public String getName() {
         return "";
     }
+
+    public void setHealthPoints(int hp) {
+        healthPoints=hp;
+    }
 }
