@@ -5,14 +5,25 @@ public class Fight {
     private Opponent opponent;
     private Player player;
 
+    private boolean isPlayerTurn;
+
     public Fight( Opponent opponent, Game game ){
         this.opponent = opponent;
         this.game = game;
         player = game.getPlayer();
+        isPlayerTurn = true;
     }
 
     public Opponent getOpponent() {
         return opponent;
+    }
+
+    public void changeTurn(){
+        isPlayerTurn = !isPlayerTurn;
+    }
+
+    public boolean isPlayerTurn(){
+        return isPlayerTurn;
     }
 
     public void playerMove(){
