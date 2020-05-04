@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class Game {
     private GameState state;
     private boolean isInFight;
@@ -26,14 +30,41 @@ public class Game {
     private int currentTime;
     private int referenceTime;
 
+    private Timer gameLoopTimer;
+
     public Game() {
         state = GameState.exploration;
 
         levels = new ArrayList<Level>();
     }
 
-    public void handleGameLoop(){
+    public void handleGameLoop() {
+        if (isInFight) {
 
+        } else {
+            currentLevel.handleGameLoop(this);
+        }
+
+
+        render();
+
+        currentTime++;
+    }
+
+    public void startGameLoop() {
+        ActionListener loopCallback = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                handleGameLoop();
+            }
+        };
+
+        this.gameLoopTimer = new Timer(33, loopCallback);
+        this.gameLoopTimer.start();
+    }
+
+    public void stopGameLoop() {
+        this.gameLoopTimer.stop();
+        this.gameLoopTimer = null;
     }
 
     public void addLevel( Level level ) {

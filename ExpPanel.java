@@ -100,6 +100,8 @@ public class ExpPanel extends JPanel implements KeyListener {
                     }
                 }
             }
+        
+        rtxRenderer.renderAO(g2d, level);
     }
 
     private void drawFight(Graphics2D g2d, Player player) {

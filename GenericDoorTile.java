@@ -10,6 +10,7 @@ public class GenericDoorTile extends Tile {
     ) {
         super(id);
         this.collidable = false;
+        this.castsShadows = true;
 
         this.targetLevelId = targetLevelId;
         this.targetX = targetX;
