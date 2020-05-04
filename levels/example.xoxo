@@ -10,3 +10,5 @@ DoorTile d_1 8 0 example2 8 8
 Item diamond_sword 7 7
 // Opponent <ID> <X> <Y>
 Opponent gen_opponent 2 7
+
+LightSource ambient 1.0 1.0 1.0
