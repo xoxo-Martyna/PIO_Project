@@ -5,14 +5,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-
-public class Player { //implements IFightMember {
+public class Player { // implements IFightMember {
     private int x;
     private int y;
 
     private BufferedImage def, down, up, left, right;
-    
-    private Game game;  
+
+    private Game game;
 
     private int healthPoints;
 
@@ -21,14 +20,15 @@ public class Player { //implements IFightMember {
     public static final int maxAttackPoints = 70;
     private final int defaultAttackPoints = 1;
 
-
-    private Item items[][];         // dla y == 0, mamy eq z miejscem na miecz i zbroje
-    private final int itemsH = 3;   // dla x == 0, miejsce na miecz
-    private final int itemsW = 3;   // dla x == 1 lub 2, miejsce na zbroje
+    private Item items[][]; // dla y == 0, mamy eq z miejscem na miecz i zbroje
+    private final int itemsH = 3; // dla x == 0, miejsce na miecz
+    private final int itemsW = 3; // dla x == 1 lub 2, miejsce na zbroje
     private int itemsX;
     private int itemsY;
 
-    public Player(Game game){
+    private PlayerLightSource flashlight = null;
+
+    public Player(Game game) {
         this.game = game;
 
         items = new Item[itemsH][itemsW];
@@ -37,18 +37,18 @@ public class Player { //implements IFightMember {
 
         healthPoints = maxHealthPoints;
 
-        try{
-            down = ImageIO.read(new File ("res/g_front.png"));
-        
-            up = ImageIO.read(new File ("res/g_back.png"));
-        
-            left = ImageIO.read(new File ("res/g_left.png"));
-        
-            right = ImageIO.read(new File ("res/g_right.png"));
+        try {
+            down = ImageIO.read(new File("res/g_front.png"));
+
+            up = ImageIO.read(new File("res/g_back.png"));
+
+            left = ImageIO.read(new File("res/g_left.png"));
+
+            right = ImageIO.read(new File("res/g_right.png"));
 
             def = down;
 
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -61,7 +61,15 @@ public class Player { //implements IFightMember {
         items[1][2] = Item.create("almost_iron_helmet");
     }
 
-    public void setHPpoints( int slap){
+    public PlayerLightSource getFlashlight() {
+        return flashlight;
+    }
+
+    public void setFlashlight(PlayerLightSource flashlight) {
+        this.flashlight = flashlight;
+    }
+
+    public void setHPpoints(int slap) {
         this.healthPoints -= slap;
     }
 

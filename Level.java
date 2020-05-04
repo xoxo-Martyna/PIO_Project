@@ -1,9 +1,14 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Level {
     private String id;
 
     private Tile[][] tiles;
     private int height;
     private int width;
+
+    private List<LightSource> lights;
 
     private int spawnX;
     private int spawnY;
@@ -15,11 +20,26 @@ public class Level {
         height = 10;
         tiles = new Tile[width][height];
 
+        lights = new ArrayList<LightSource>();
+
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 tiles[x][y] = null;
             }
         }
+    }
+
+    public void handleGameLoop(Game game) {
+        for (LightSource l : lights)
+            l.handleGameLoop(game);
+    }
+
+    public List<LightSource> getLights() {
+        return lights;
+    }
+
+    public void addLight(LightSource light) {
+        lights.add(light);
     }
 
     public int getSpawnX() {

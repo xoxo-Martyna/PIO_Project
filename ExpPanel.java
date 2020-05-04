@@ -20,6 +20,10 @@ public class ExpPanel extends JPanel implements KeyListener {
     private final int eqY = 300;
     private final int hpY = 100;
 
+    private final LightRenderer rtxRenderer = new LightRenderer(
+        imageSize, 16
+    );
+
     public ExpPanel(Game game) {
         this.game = game;
 
@@ -48,6 +52,7 @@ public class ExpPanel extends JPanel implements KeyListener {
         if (game.getState() == GameState.exploration) {
             drawLevel(g2d, level);
             g2d.drawImage(player.getImage(), player.getX() * imageSize, player.getY() * imageSize, this);
+            rtxRenderer.renderLights(g2d, level, player);
         } else if (game.getState() == GameState.fight) {
             drawFight(g2d, player);
         }
