@@ -11,13 +11,13 @@ public class Game {
 
     private Player player;
 
-     private Frame frame;
+     private GameFrame frame;
 
-    public void setFrame(Frame frame) {
+    public void setFrame(GameFrame frame) {
         this.frame = frame;
     }
 
-    public Frame getFrame() {
+    public GameFrame getFrame() {
         return frame;
     }
 

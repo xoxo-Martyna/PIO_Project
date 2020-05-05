@@ -1,11 +1,11 @@
 import javax.swing.JFrame;
 
-public class Frame extends JFrame {    
+public class GameFrame extends JFrame {    
     private ExpPanel expPanel;
 
     private Game game;
 
-    public Frame( Game game ){
+    public GameFrame( Game game ){
         super("GAME");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 

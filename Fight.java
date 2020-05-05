@@ -83,7 +83,7 @@ public class Fight {
                 slap = 0;
             player.setHPpoints(slap);
 
-            System.out.println("Przeciwnik wykonał bitch slapa! HP GRACZA = " + player.getHealthPoints()); // do wywaenia pozniej
+            System.out.println("Przeciwnik wykonał atak! HP GRACZA = " + player.getHealthPoints()); // do wywaenia pozniej
             
             checkEndFight();
         }
