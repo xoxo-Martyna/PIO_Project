@@ -5,9 +5,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Opponent implements IFightMember {
+
     private int healthPoints;
     private int defensePoints;
     private int attackPoints; 
+    private int maxHealthPoints;
 
 
     private String id;
@@ -21,6 +23,7 @@ public class Opponent implements IFightMember {
         this.name = name;
         this.id = id;
         this.healthPoints = healthPoints;
+        this.maxHealthPoints = healthPoints;
         this.defensePoints = defensePoints;
 
         loadImage();
@@ -58,6 +61,10 @@ public class Opponent implements IFightMember {
 
     public int getHealthPoints() {
         return healthPoints;
+    }
+
+    public int getMaxHealthPoints() {
+        return maxHealthPoints;
     }
     
     public int getDefensePoints() {

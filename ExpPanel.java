@@ -105,27 +105,44 @@ public class ExpPanel extends JPanel implements KeyListener {
     }
 
     private void drawFight(Graphics2D g2d, Player player) {
-        g2d.drawOval(350, 100, 220, 125); // przeciwnik
-        g2d.drawOval(150, 350, 220, 125); // gracz
+        int x = 50, y = 90, d = 30, w = 160, h = 160;
+        Fight fight = game.getCurrentFight();
 
-        drawOpponent(g2d, game.getCurrentFight().getOpponent(), 400, 50);
-        g2d.drawImage(player.getImageDown().getScaledInstance(128, 128, Image.SCALE_DEFAULT), 200, 300, this);
+        for( int i = 0; i < 2; i++ )
+            for( int j = 0; j < 3; j++ )
+                g2d.drawRect( x+j*(w+d), y+i*250, w, h);
+        
+        if( fight.isPlayerTurn() ){
+            for( int i = 0; i < 3; i++ )
+                if( i != fight.getXCursor() ){
+                    g2d.drawRect( x+1+i*(w+d), y+1, w-2, h-2);
+                    g2d.drawRect( x+2+i*(w+d), y+2, w-4, h-4);
+                }
+        }
 
-        g2d.setFont(new Font("Serif", Font.PLAIN, 20));
-        g2d.setColor(Color.BLACK);
+        drawOpponent(g2d, game.getCurrentFight().getOpponent(), 16+x+fight.getXO()*(w+d), y+18);
 
-        g2d.draw(new Rectangle((levelSize - 4) * imageSize, eqY + 200, 150, 50));
-        g2d.drawString("ATTACK! (enter)", (levelSize - 4) * imageSize + 5, eqY + 230);
+        g2d.drawImage(player.getImageDown().getScaledInstance(128, 128, Image.SCALE_DEFAULT), 16+x+fight.getXP()*(w+d), y+268, this);
+
+        //g2d.setFont(new Font("Serif", Font.PLAIN, 20));
+        //g2d.setColor(Color.BLACK);
+
+        //g2d.draw(new Rectangle((levelSize - 4) * imageSize, eqY + 200, 150, 50));
+        //g2d.drawString("ATTACK! (enter)", (levelSize - 4) * imageSize + 5, eqY + 230);
     }
 
     private void drawOpponent(Graphics2D g2d, Opponent opponent, int x, int y) {
         g2d.drawImage(opponent.getImage().getScaledInstance(128, 128, Image.SCALE_DEFAULT), x, y, this);
 
-        x += imageSize - opponent.getHealthPoints() / 2;
+
+        x += imageSize - opponent.getMaxHealthPoints() / 2;
         y -= 10;
 
+        g2d.setColor( Color.BLACK );
+        g2d.draw(new Rectangle(x, y, opponent.getMaxHealthPoints()+1, imageSize / 8));
+
         g2d.setColor(Color.RED);
-        g2d.fill(new Rectangle(x, y, opponent.getHealthPoints(), imageSize / 8));
+        g2d.fill(new Rectangle(x+1, y+1, opponent.getHealthPoints(), (imageSize / 8)-1));
     }
 
     private void drawHP(Graphics2D g2d, Level level, Player player) {
@@ -281,41 +298,52 @@ public class ExpPanel extends JPanel implements KeyListener {
 
             case (KeyEvent.VK_L):
                 player.dropItem();
-                ;
                 repaint();
                 break;
         }
     }
 
     private void fightKeyClicked(int key) {
+        Fight fight = game.getCurrentFight();
         switch (key) {
             case (KeyEvent.VK_D):
-                // to do
+                if( fight.isPlayerTurn() )
+                    fight.moveCursor( 1 );
+                else
+                    fight.movePlayer( 1 );
+
                 repaint();
                 break;
 
             case (KeyEvent.VK_A):
-                // to do
+                if( fight.isPlayerTurn() )
+                    fight.moveCursor( -1 );
+                else
+                    fight.movePlayer( -1 );
+
                 repaint();
                 break;
 
             case (KeyEvent.VK_ENTER):
-                Fight fight = game.getCurrentFight();
-
-                if( !fight.isPlayerTurn() ){
-                    return;
+                if( fight.isPlayerTurn() ){
+                    fight.playerMove();
+                    repaint();
+                }
+                else{
+                    fight.opponentMove();
+                    repaint();
                 }
 
                 fight.changeTurn();
                 
-                Thread thread = new Thread(new Runnable() {
+                /*Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
                         fight.playerMove();
                         repaint();
 
                         try {
-                            TimeUnit.SECONDS.sleep(1);
+                            TimeUnit.SECONDS.sleep(2);
                         } catch (InterruptedException e) {}
                 
                         fight.opponentMove();
@@ -323,7 +351,7 @@ public class ExpPanel extends JPanel implements KeyListener {
                         fight.changeTurn();
                     }
                 });
-                thread.start();
+                thread.start();*/
             break;
         }
     }
