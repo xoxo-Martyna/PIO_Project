@@ -92,5 +92,10 @@ public class Fight {
     private void checkEndFight() {
         // to do hubert
         // game.endFight();
+        if(player.getHealthPoints() <= 0){
+            game.endFight(false);
+        } else if(opponent.getHealthPoints() <= 0){
+            game.endFight(true);
+        }
     }
 }
