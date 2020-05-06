@@ -1,5 +1,5 @@
 public class DefenseItem extends Item {
-    private final int protectPoints;
+    private int protectPoints;
     
     public DefenseItem( String id, String name, int protectPoints ){
         super( id, name );
@@ -13,5 +13,9 @@ public class DefenseItem extends Item {
     @Override
     public String toString() {
         return getName()+". Protect points = " + protectPoints;
+    }
+
+    public void setProtectPoints( int protectPoints ){
+        this.protectPoints = protectPoints;
     }
 }

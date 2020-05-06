@@ -1,5 +1,5 @@
 public class AttackItem extends Item{
-    private final int attackPoints;
+    private int attackPoints;
 
     public AttackItem( String id, String name, int attackPoints ){
         super( id, name );
@@ -13,5 +13,9 @@ public class AttackItem extends Item{
     @Override
     public String toString() {
         return getName()+". Attack points = " + attackPoints;
+    }
+
+    public void setAttackPoints( int attackPoints ){
+        this.attackPoints = attackPoints;
     }
 }
