@@ -71,6 +71,10 @@ public class Opponent implements IFightMember {
         return defensePoints;
     }
 
+    public int getAttackPoints(){
+        return attackPoints;
+    }
+
     public String getName() {
         return "";
     }

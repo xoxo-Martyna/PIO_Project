@@ -11,6 +11,7 @@ public class Fight {
     private int xCursor;
 
     private boolean isPlayerTurn;
+    private Random random;
 
     public Fight(Opponent opponent, Game game) {
         this.opponent = opponent;
@@ -20,6 +21,7 @@ public class Fight {
         xP = 1;
         xO = 1;
         xCursor = 1;
+        random = new Random();
     }
 
     public int getXP() {
@@ -57,7 +59,6 @@ public class Fight {
     }
 
     public void playerMove() {
-        Random random = new Random();
         xO = random.nextInt(3);
 
         if (xCursor != xO) {
@@ -68,15 +69,14 @@ public class Fight {
     }
 
     public void opponentMove() {
-        Random random = new Random();
         int attackX = random.nextInt(3);
 
         if (attackX != xP) {
 
             int slap;
             int tripleP = player.getDefensePoints();
-            int ciabasAttack = 1; // do testu
-            int oneShot = 10; // do testu
+            //int ciabasAttack = 1; // do testu
+            int oneShot = opponent.getAttackPoints(); // do testu
             if (oneShot - tripleP > 0)
                 slap = oneShot - tripleP;
             else
@@ -90,8 +90,6 @@ public class Fight {
     }
 
     private void checkEndFight() {
-        // to do hubert
-        // game.endFight();
         if(player.getHealthPoints() <= 0){
             game.endFight(false);
         } else if(opponent.getHealthPoints() <= 0){
