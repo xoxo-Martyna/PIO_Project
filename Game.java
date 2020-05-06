@@ -28,7 +28,6 @@ public class Game {
     private Fight currentFight;
 
     private int currentTime;
-    private int referenceTime;
 
     private Timer gameLoopTimer;
 
@@ -94,6 +93,7 @@ public class Game {
 
     public void setState( GameState state ){
         this.state = state;
+        currentTime = 0;
     }
 
     public Level getLevel( String id ){
