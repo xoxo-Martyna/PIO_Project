@@ -63,6 +63,7 @@ public class Fight {
 
         if (xCursor != xO) {
             opponent.setHealthPoints(opponent.getHealthPoints() - player.getAttackPoints());
+            damageAttack( (int)((float)player.getAttackPoints()*0.08) );
         }
 
         checkEndFight();
@@ -78,14 +79,14 @@ public class Fight {
             
             int attack = opponent.getAttackPoints(); // do testu
 
+            damageDefense( (int)((float)attack*0.05) );
+
             if (attack - playerDefense > 0)
                 harmPoints = attack - playerDefense;
             else
                 harmPoints = 0;
 
-            player.removeHPPoints(harmPoints);
-
-            System.out.println("Przeciwnik wykonał atak! HP GRACZA = " + player.getHealthPoints()); // do wywaenia pozniej
+            player.setHPpoints( player.getHealthPoints() - harmPoints );
             
             checkEndFight();
         }
@@ -96,6 +97,24 @@ public class Fight {
             game.endFight(false);
         } else if(opponent.getHealthPoints() <= 0){
             game.endFight(true);
+        }
+    }
+
+    private void damageDefense( int damage ){
+        DefenseItem item1 = (DefenseItem)player.getDefenseItem(1);
+        DefenseItem item2 = (DefenseItem)player.getDefenseItem(2);
+
+        if( item1 != null )
+            item1.setProtectPoints( item1.getProtectPoints() - damage );
+        else if( item2 != null )
+            item2.setProtectPoints( item2.getProtectPoints() - damage );
+    }
+
+    private void damageAttack( int damage ){
+        AttackItem item = (AttackItem)player.getAttackItem();
+
+        if( item != null ){
+            item.setAttackPoints( item.getAttackPoints() - damage );
         }
     }
 }

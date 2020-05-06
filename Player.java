@@ -69,8 +69,8 @@ public class Player { // implements IFightMember {
         this.flashlight = flashlight;
     }
 
-    public void removeHPPoints(int slap) {
-        this.healthPoints -= slap;
+    public void setHPpoints(int HP) {
+        this.healthPoints = HP;
     }
 
     public void resetFacing() {
