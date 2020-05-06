@@ -6,8 +6,8 @@ public class GameFrame extends JFrame {
     private Game game;
 
     public GameFrame( Game game ){
-        super("GAME");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        super( "GAME" );
+        setDefaultCloseOperation( EXIT_ON_CLOSE );
 
         this.game = game;
     }
@@ -16,13 +16,13 @@ public class GameFrame extends JFrame {
         return expPanel;
     }
 
-    public void setExpPanel(ExpPanel expPanel) {
+    public void setExpPanel( ExpPanel expPanel ) {
         this.expPanel = expPanel;
         add( expPanel );
         pack();
 
-        setResizable(false);
-        setVisible(true);
+        setResizable( false );
+        setVisible( true );
     }
 }
 

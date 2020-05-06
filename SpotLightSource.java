@@ -11,7 +11,7 @@ public class SpotLightSource extends LightSource {
         float falloff,
         float angle, float range
     ) {
-        super(x, y, red, green, blue, falloff);
+        super( x, y, red, green, blue, falloff );
 
         this.angle = angle;
         this.range = range;
@@ -25,24 +25,24 @@ public class SpotLightSource extends LightSource {
         return y;
     }
 
-    public double distance(float sampleX, float sampleY) {
-        return Math.hypot(sampleX - getX(), sampleY - getY());
+    public double distance( float sampleX, float sampleY ) {
+        return Math.hypot( sampleX - getX(), sampleY - getY() );
     }
 
-    public Color getColor(float sampleX, float sampleY) {
-        double dist = distance(sampleX, sampleY);
-        double coneX = Math.cos(angle);
-        double coneY = Math.sin(angle);
+    public Color getColor( float sampleX, float sampleY ) {
+        double dist = distance( sampleX, sampleY );
+        double coneX = Math.cos( angle );
+        double coneY = Math.sin( angle );
 
         double dot = (
-            coneX * (sampleX - getX()) / dist +
-            coneY * (sampleY - getY()) / dist
+            coneX * ( sampleX - getX() ) / dist +
+            coneY * ( sampleY - getY() ) / dist
         );
 
-        if (Math.cos(range) >= dot) return new Color(
+        if (Math.cos( range ) >= dot) return new Color(
             0.0f, 0.0f, 0.0f
         );
         
-        return super.getColor(sampleX, sampleY);
+        return super.getColor( sampleX, sampleY );
     }
 }

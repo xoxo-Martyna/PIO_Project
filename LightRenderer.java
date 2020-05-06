@@ -9,48 +9,48 @@ public class LightRenderer {
 
     private int lightGridTileSize;
 
-    public LightRenderer(int imageSize, int lightGridSize) {
+    public LightRenderer( int imageSize, int lightGridSize ) {
         this.imageSize = imageSize;
         this.lightGridSize = lightGridSize;
 
         this.lightGridTileSize = imageSize / lightGridSize;
     }
 
-    private boolean isLightOccluded(Level level, LightSource light, float sampleX, float sampleY) {
-        if (light instanceof AmbientLightSource) return false;
+    private boolean isLightOccluded( Level level, LightSource light, float sampleX, float sampleY ) {
+        if ( light instanceof AmbientLightSource ) return false;
 
-        double distance = light.distance(sampleX, sampleY);
-        int shadowSampleCount = (int)Math.round(distance) * shadowOversample;
+        double distance = light.distance( sampleX, sampleY );
+        int shadowSampleCount = (int)Math.round( distance ) * shadowOversample;
 
         float lightX = light.getX(), lightY = light.getY();
 
-        Tile tile = level.getTile((int)lightX, (int)lightY);
-        if (tile != null && tile.isCastingShadows()) return true;
+        Tile tile = level.getTile( (int)lightX, (int)lightY );
+        if ( tile != null && tile.isCastingShadows() ) return true;
 
-        tile = level.getTile((int)sampleX, (int)sampleY);
-        if (tile != null && tile.isCastingShadows()) return false;
+        tile = level.getTile( (int)sampleX, (int)sampleY );
+        if ( tile != null && tile.isCastingShadows() ) return false;
 
-        for (int i = 0; i < shadowSampleCount; i++) {
+        for ( int i = 0; i < shadowSampleCount; i++ ) {
             float position = (float)(i + 1) / (float)(shadowSampleCount + 1);
             float shadowX = lightX + position * (sampleX - lightX);
             float shadowY = lightY + position * (sampleY - lightY);
 
-            tile = level.getTile((int)shadowX, (int)shadowY);
+            tile = level.getTile( (int)shadowX, (int)shadowY );
 
-            if (tile != null && tile.isCastingShadows()) return true;
+            if ( tile != null && tile.isCastingShadows() ) return true;
         }
 
         return false;
     }
 
-    private Color sampleLights(Level level, Player player, float sampleX, float sampleY) {
+    private Color sampleLights( Level level, Player player, float sampleX, float sampleY ) {
         float red = 0.0f, green = 0.0f, blue = 0.0f;
 
-        for (LightSource light : level.getLights()) {
-            if (isLightOccluded(level, light, sampleX, sampleY)) continue;
+        for ( LightSource light : level.getLights() ) {
+            if ( isLightOccluded( level, light, sampleX, sampleY ) ) continue;
 
-            Color lightSample = light.getColor(sampleX, sampleY);
-            float[] sampleComponents = lightSample.getColorComponents(null);
+            Color lightSample = light.getColor( sampleX, sampleY );
+            float[] sampleComponents = lightSample.getColorComponents( null );
 
             red += sampleComponents[0];
             green += sampleComponents[1];
@@ -58,9 +58,9 @@ public class LightRenderer {
         }
 
         PlayerLightSource playerLight = player.getFlashlight();
-        if (playerLight != null && !isLightOccluded(level, playerLight, sampleX, sampleY)) {
-            Color lightSample = playerLight.getColor(sampleX, sampleY);
-            float[] sampleComponents = lightSample.getColorComponents(null);
+        if ( playerLight != null && !isLightOccluded( level, playerLight, sampleX, sampleY ) ) {
+            Color lightSample = playerLight.getColor( sampleX, sampleY );
+            float[] sampleComponents = lightSample.getColorComponents( null );
 
             red += sampleComponents[0];
             green += sampleComponents[1];
@@ -68,20 +68,20 @@ public class LightRenderer {
         }
 
         return new Color(
-            Math.min(red, 1.0f),
-            Math.min(green, 1.0f),
-            Math.min(blue, 1.0f)
+            Math.min( red, 1.0f ),
+            Math.min( green, 1.0f ),
+            Math.min( blue, 1.0f )
         );
     }
 
-    private void renderTile(Graphics2D g2d, Level level, Player player, int x, int y) {
-        for (int gridX = 0; gridX < lightGridSize; gridX++) {
-            for (int gridY = 0; gridY < lightGridSize; gridY++) {
-                float sampleX = (float)x + ((float)gridX + 0.5f) / (float)lightGridSize;
-                float sampleY = (float)y + ((float)gridY + 0.5f) / (float)lightGridSize;
+    private void renderTile( Graphics2D g2d, Level level, Player player, int x, int y ) {
+        for ( int gridX = 0; gridX < lightGridSize; gridX++ ) {
+            for ( int gridY = 0; gridY < lightGridSize; gridY++ ) {
+                float sampleX = (float)x + ( (float)gridX + 0.5f ) / (float)lightGridSize;
+                float sampleY = (float)y + ( (float)gridY + 0.5f ) / (float)lightGridSize;
 
                 g2d.setColor(
-                    sampleLights(level, player, sampleX, sampleY)
+                    sampleLights( level, player, sampleX, sampleY )
                 );
                 g2d.fillRect(
                     (int)(sampleX * imageSize) - lightGridTileSize / 2,
@@ -92,8 +92,8 @@ public class LightRenderer {
         }
     }
 
-    public void renderAO(Graphics2D g2d, Level level) {
-        g2d.setComposite(MultiplyComposite.Multiply);
+    public void renderAO( Graphics2D g2d, Level level ) {
+        g2d.setComposite( MultiplyComposite.Multiply );
 
         g2d.setColor(
             new Color(
@@ -101,11 +101,11 @@ public class LightRenderer {
             )
         );
 
-        for (int y = 0; y < level.getHeight(); y++) {
-            for (int x = 0; x < level.getWidth(); x++) {
-                if (level.getTile(x, y).isCastingShadows()) continue;
+        for ( int y = 0; y < level.getHeight(); y++ ) {
+            for ( int x = 0; x < level.getWidth(); x++ ) {
+                if ( level.getTile( x, y ).isCastingShadows() ) continue;
 
-                if (x > 0 && level.getTile(x - 1, y).isCastingShadows()) {
+                if ( x > 0 && level.getTile( x - 1, y ).isCastingShadows() ) {
                     g2d.fillRect(
                         x * imageSize, y * imageSize,
                         16, imageSize
@@ -115,7 +115,7 @@ public class LightRenderer {
                         8, imageSize
                     );
                 }
-                if (x < level.getWidth() - 1 && level.getTile(x + 1, y).isCastingShadows()) {
+                if ( x < level.getWidth() - 1 && level.getTile( x + 1, y ).isCastingShadows() ) {
                     g2d.fillRect(
                         x * imageSize + imageSize - 16, y * imageSize,
                         16, imageSize
@@ -125,7 +125,7 @@ public class LightRenderer {
                         8, imageSize
                     );
                 }
-                if (y > 0 && level.getTile(x, y - 1).isCastingShadows()) {
+                if ( y > 0 && level.getTile( x, y - 1 ).isCastingShadows() ) {
                     g2d.fillRect(
                         x * imageSize, y * imageSize,
                         imageSize, 16
@@ -135,7 +135,7 @@ public class LightRenderer {
                         imageSize, 8
                     );
                 }
-                if (y < level.getHeight() - 1 && level.getTile(x, y + 1).isCastingShadows()) {
+                if ( y < level.getHeight() - 1 && level.getTile( x, y + 1 ).isCastingShadows() ) {
                     g2d.fillRect(
                         x * imageSize, y * imageSize + imageSize - 16,
                         imageSize, 16
@@ -148,18 +148,18 @@ public class LightRenderer {
             }
         }
 
-        g2d.setComposite(AlphaComposite.SrcOver);
+        g2d.setComposite( AlphaComposite.SrcOver );
     }
 
-    public void renderLights(Graphics2D g2d, Level level, Player player) {
-        g2d.setComposite(MultiplyComposite.Multiply);
-
-        for (int y = 0; y < level.getHeight(); y++) {
-            for (int x = 0; x < level.getWidth(); x++) {
-                renderTile(g2d, level, player, x, y);
+    public void renderLights( Graphics2D g2d, Level level, Player player ) {
+        g2d.setComposite( MultiplyComposite.Multiply );
+ 
+        for ( int y = 0; y < level.getHeight(); y++ ) {
+            for ( int x = 0; x < level.getWidth(); x++ ) {
+                renderTile( g2d, level, player, x, y );
             }
         }
 
-        g2d.setComposite(AlphaComposite.SrcOver);
+        g2d.setComposite( AlphaComposite.SrcOver );
     }
 }

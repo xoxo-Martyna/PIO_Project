@@ -13,7 +13,7 @@ public class Level {
     private int spawnX;
     private int spawnY;
 
-    public Level(String levelId) {
+    public Level( String levelId ) {
         id = levelId;
 
         width = 10;
@@ -22,31 +22,31 @@ public class Level {
 
         lights = new ArrayList<LightSource>();
 
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
+        for ( int x = 0; x < width; x++ ) {
+            for ( int y = 0; y < height; y++ ) {
                 tiles[x][y] = null;
             }
         }
     }
 
-    public void handleGameLoop(Game game) {
-        for (LightSource l : lights)
-            l.handleGameLoop(game);
+    public void handleGameLoop( Game game ) {
+        for ( LightSource l : lights )
+            l.handleGameLoop( game );
     }
 
     public List<LightSource> getLights() {
         return lights;
     }
 
-    public void addLight(LightSource light) {
-        lights.add(light);
+    public void addLight( LightSource light ) {
+        lights.add( light );
     }
 
     public int getSpawnX() {
         return spawnX;
     }
 
-    public void setSpawnX(int spawnX) {
+    public void setSpawnX( int spawnX ) {
         this.spawnX = spawnX;
     }
 
@@ -54,14 +54,14 @@ public class Level {
         return spawnY;
     }
 
-    public void setSpawnY(int spawnY) {
+    public void setSpawnY( int spawnY ) {
         this.spawnY = spawnY;
     }
 
     public String getId() {
         return id;
     }
-    public Tile getTile( int x, int y){
+    public Tile getTile( int x, int y ){
         return tiles[x][y];
     }
 

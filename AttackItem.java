@@ -12,7 +12,7 @@ public class AttackItem extends Item{
 
     @Override
     public String toString() {
-        return getName()+". Attack points = " + attackPoints;
+        return getName() + ". Attack points = " + attackPoints;
     }
 
     public void setAttackPoints( int attackPoints ){

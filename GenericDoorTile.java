@@ -8,7 +8,7 @@ public class GenericDoorTile extends Tile {
         String id, String targetLevelId,
         int targetX, int targetY
     ) {
-        super(id);
+        super( id );
         this.collidable = false;
         this.castsShadows = true;
 
@@ -17,16 +17,13 @@ public class GenericDoorTile extends Tile {
         this.targetY = targetY;
     }
 
-    public void handlePlayerEnter(Game game){
+    public void handlePlayerEnter( Game game ){
         Player player = game.getPlayer();
         
-        if (game.setLevel(targetLevelId) != null) {
-            player.setX(targetX);
-            player.setY(targetY);
-
-            game.render();
+        if ( game.setLevel( targetLevelId ) != null ) {
+            player.setX( targetX );
+            player.setY( targetY );
         }
-        // game.getFrame().customUpdate();
     }
 
     public boolean exit(){

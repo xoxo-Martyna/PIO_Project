@@ -12,30 +12,30 @@ public class Item {
 
     private static XaxaLoader factory = null;
 
-    public static Item create(String id) {
+    public static Item create( String id ) {
         try {
-            if (factory == null) factory = new XaxaLoader("res/items.xaxa");
+            if ( factory == null ) factory = new XaxaLoader( "res/items.xaxa" );
             
-            String[] itemInfo = factory.get(id);
-            if (itemInfo == null) return null;
+            String[] itemInfo = factory.get( id );
+            if ( itemInfo == null ) return null;
     
-            if (itemInfo[2].equals("attack")) {
+            if ( itemInfo[2].equals( "attack" ) ) {
                 return new AttackItem(
                     itemInfo[1], itemInfo[3],
-                    Integer.parseInt(itemInfo[4])
+                    Integer.parseInt( itemInfo[4] )
                 );
-            } else if (itemInfo[2].equals("health")) {
+            } else if ( itemInfo[2].equals( "health" ) ) {
                 return new HealthItem(
                     itemInfo[1], itemInfo[3],
-                    Integer.parseInt(itemInfo[4])
+                    Integer.parseInt( itemInfo[4] )
                 );
-            } else if (itemInfo[2].equals("defense")) {
+            } else if ( itemInfo[2].equals( "defense" ) ) {
                 return new DefenseItem(
                     itemInfo[1], itemInfo[3],
-                    Integer.parseInt(itemInfo[4])
+                    Integer.parseInt( itemInfo[4] )
                 );
             }
-        } catch(IOException e) {
+        } catch( IOException e ) {
         }
 
         return null;
@@ -50,8 +50,8 @@ public class Item {
 
     protected void loadImage() {
         try {
-            image = ImageIO.read(new File("res/items/" + id + ".png"));
-        } catch (IOException e) {
+            image = ImageIO.read(new File( "res/items/" + id + ".png" ));
+        } catch ( IOException e ) {
         }
     }
 

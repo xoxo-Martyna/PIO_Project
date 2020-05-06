@@ -8,9 +8,9 @@ public class XaxaLoader {
     private BufferedReader reader;
     private List<String[]> items;
 
-    public XaxaLoader(String filePath) throws IOException {
+    public XaxaLoader( String filePath ) throws IOException {
         reader = new BufferedReader(
-            new FileReader(filePath)
+            new FileReader( filePath )
         );
         items = new ArrayList<String[]>();
 
@@ -19,16 +19,16 @@ public class XaxaLoader {
  
     private void loadItems() {
         try {
-            while(true) {
+            while( true ) {
                 String[] itemInfo = fetch();
-                if (itemInfo == null) break;
+                if ( itemInfo == null ) break;
 
-                items.add(itemInfo);
+                items.add( itemInfo );
             }
 
             reader.close();
-        } catch (IOException e) {
-            System.out.println("No items loaded!");
+        } catch ( IOException e ) {
+            System.out.println( "No items loaded!" );
         }
     }
 
@@ -38,15 +38,15 @@ public class XaxaLoader {
 
     public String[] fetch() throws IOException {
         String line = reader.readLine();
-        if (line == null) return null;
-        if (line.startsWith("//")) return fetch();
+        if ( line == null ) return null;
+        if ( line.startsWith( "//" ) ) return fetch();
 
-        return line.split("\\|+");
+        return line.split( "\\|+" );
     }
 
-    public String[] get(String id) {
-        for (String[] item : items) {
-            if (item[0].equals(id))
+    public String[] get( String id ) {
+        for ( String[] item : items ) {
+            if ( item[0].equals( id ) )
                 return item;
         }
 

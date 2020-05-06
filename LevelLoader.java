@@ -7,9 +7,9 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 public class LevelLoader {
-    public void loadAllLevels(Game game) throws IOException {
+    public void loadAllLevels( Game game ) throws IOException {
         Stream<Path> pathWalk = Files.walk(
-            Paths.get("levels")
+            Paths.get( "levels" )
         );
 
         pathWalk.filter(
@@ -18,7 +18,7 @@ public class LevelLoader {
             f -> f.getFileName().toString()
         ).forEach(
             f -> {
-                if (f.endsWith(".xoxo"))
+                if ( f.endsWith( ".xoxo" ) )
 					try {
 						game.addLevel(
 						    loadFromFile(
@@ -27,7 +27,7 @@ public class LevelLoader {
 						        )
 						    )
 						);
-					} catch (IOException e) {
+					} catch ( IOException e ) {
 						// well that ducks
 					}
             }
@@ -36,8 +36,8 @@ public class LevelLoader {
         pathWalk.close();
     }
 
-    public Level loadFromFile(String id) throws IOException {
-        Level level = new Level(id);
+    public Level loadFromFile( String id ) throws IOException {
+        Level level = new Level( id );
 
         BufferedReader reader = new BufferedReader(
             new FileReader(
@@ -45,11 +45,11 @@ public class LevelLoader {
             )
         );
 
-        while (true) {
+        while ( true ) {
             String line = reader.readLine();
-            if (line == null) break;
+            if ( line == null ) break;
 
-            parseScriptLine(line, level);
+            parseScriptLine( line, level );
         }
 
         reader.close();
@@ -58,13 +58,13 @@ public class LevelLoader {
     }
 
     public Level loadTestLevel() {
-        Level level = new Level("test");
+        Level level = new Level( "test" );
 
-        for (int x = 0; x < level.getWidth(); x++) {
-            for (int y = 0; y < level.getHeight(); y++) {
+        for ( int x = 0; x < level.getWidth(); x++ ) {
+            for ( int y = 0; y < level.getHeight(); y++ ) {
                 level.setTile(
                     x, y,
-                    new GenericFloorTile("testblue")
+                    new GenericFloorTile( "testblue" )
                 );
             }
         }
@@ -72,29 +72,29 @@ public class LevelLoader {
         return level;
     }
 
-    private void parseScriptLine(String line, Level target) {
+    private void parseScriptLine( String line, Level target ) {
         if (
-            line.startsWith("//") ||
+            line.startsWith( "//" ) ||
             line.length() == 0
         ) return;
 
-        String[] args = line.split("\\s+");
+        String[] args = line.split( "\\s+" );
 
-        if (args[0].equals("Tile") && args.length > 2) {
+        if ( args[0].equals( "Tile" ) && args.length > 2 ) {
             String tileId = args[1];
 
-            for (int i = 2; i < args.length; i += 2) {
-                if (i + 1 >= args.length) break;
+            for ( int i = 2; i < args.length; i += 2 ) {
+                if ( i + 1 >= args.length ) break;
 
                 Tile tile = null;
 
-                if (tileId.startsWith("f_"))
-                    tile = new GenericFloorTile(tileId);
-                if (tileId.startsWith("w_"))
-                    tile = new GenericWallTile(tileId);
+                if ( tileId.startsWith( "f_" ) )
+                    tile = new GenericFloorTile( tileId );
+                if ( tileId.startsWith( "w_" ) )
+                    tile = new GenericWallTile( tileId );
 
-                int x = Integer.parseInt(args[i]);
-                int y = Integer.parseInt(args[i + 1]);
+                int x = Integer.parseInt( args[i] );
+                int y = Integer.parseInt( args[i + 1] );
 
                 if (
                     x >= target.getWidth() ||
@@ -102,16 +102,16 @@ public class LevelLoader {
                 )
                     break;
                 
-                target.setTile(x, y, tile);
+                target.setTile( x, y, tile );
             }
-        } else if (args[0].equals("SpawnPoint") && args.length == 3) {
-            target.setSpawnX(Integer.parseInt(args[1]));
-            target.setSpawnY(Integer.parseInt(args[2]));
-        } else if (args[0].equals("DoorTile") && args.length == 7) {
+        } else if ( args[0].equals( "SpawnPoint" ) && args.length == 3 ) {
+            target.setSpawnX( Integer.parseInt( args[1] ) );
+            target.setSpawnY( Integer.parseInt( args[2] ) );
+        } else if ( args[0].equals( "DoorTile" ) && args.length == 7 ) {
             Tile door = new GenericDoorTile(
                 args[1], args[4],
-                Integer.parseInt(args[5]),
-                Integer.parseInt(args[6])
+                Integer.parseInt( args[5] ),
+                Integer.parseInt( args[6] )
             );
 
             target.setTile(
@@ -119,73 +119,73 @@ public class LevelLoader {
                 Integer.parseInt(args[3]),
                 door
             );
-        } else if (args[0].equals("Item") && args.length == 4) {
+        } else if ( args[0].equals( "Item" ) && args.length == 4 ) {
             Tile t = target.getTile(
-                Integer.parseInt(args[2]),
-                Integer.parseInt(args[3])
+                Integer.parseInt( args[2] ),
+                Integer.parseInt( args[3] )
             );
 
-            if (t != null) {
-                Item i = Item.create(args[1]);
+            if ( t != null ) {
+                Item i = Item.create( args[1] );
 
-                t.setItem(i);
+                t.setItem( i );
             }
-        } else if (args[0].equals("Opponent") && args.length == 4) {
+        } else if ( args[0].equals( "Opponent" ) && args.length == 4 ) {
             Tile t = target.getTile(
-                Integer.parseInt(args[2]),
-                Integer.parseInt(args[3])
+                Integer.parseInt( args[2] ),
+                Integer.parseInt( args[3] )
             );
 
-            if (t != null) {
-                Opponent i = Opponent.create(args[1]);
+            if ( t != null ) {
+                Opponent i = Opponent.create( args[1] );
 
-                t.setOpponent(i);
+                t.setOpponent( i );
             }
-        } else if (args[0].equals("LightSource") && args.length > 2) {
-            if (args[1].equals("ambient") && args.length == 5) {
+        } else if ( args[0].equals( "LightSource" ) && args.length > 2 ) {
+            if ( args[1].equals( "ambient" ) && args.length == 5 ) {
                 target.addLight(
                     new AmbientLightSource(
-                        Float.parseFloat(args[2]),
-                        Float.parseFloat(args[3]),
-                        Float.parseFloat(args[4])
+                        Float.parseFloat( args[2] ),
+                        Float.parseFloat( args[3] ),
+                        Float.parseFloat( args[4] )
                     )
                 );
-            } else if (args[1].equals("point") && args.length == 8) {
+            } else if ( args[1].equals( "point" ) && args.length == 8 ) {
                 target.addLight(
                     new LightSource(
-                        Float.parseFloat(args[2]),
-                        Float.parseFloat(args[3]),
-                        Float.parseFloat(args[4]),
-                        Float.parseFloat(args[5]),
-                        Float.parseFloat(args[6]),
-                        Float.parseFloat(args[7])
+                        Float.parseFloat( args[2] ),
+                        Float.parseFloat( args[3] ),
+                        Float.parseFloat( args[4] ),
+                        Float.parseFloat( args[5] ),
+                        Float.parseFloat( args[6] ),
+                        Float.parseFloat( args[7] )
                     )
                 );
-            } else if (args[1].equals("spot") && args.length == 10) {
+            } else if ( args[1].equals( "spot" ) && args.length == 10 ) {
                 target.addLight(
                     new SpotLightSource(
-                        Float.parseFloat(args[2]),
-                        Float.parseFloat(args[3]),
-                        Float.parseFloat(args[4]),
-                        Float.parseFloat(args[5]),
-                        Float.parseFloat(args[6]),
-                        Float.parseFloat(args[7]),
-                        Float.parseFloat(args[8]),
-                        Float.parseFloat(args[9])
+                        Float.parseFloat( args[2] ),
+                        Float.parseFloat( args[3] ),
+                        Float.parseFloat( args[4] ),
+                        Float.parseFloat( args[5] ),
+                        Float.parseFloat( args[6] ),
+                        Float.parseFloat( args[7] ),
+                        Float.parseFloat( args[8] ),
+                        Float.parseFloat( args[9] )
                     )
                 );
-            } else if (args[1].equals("rotspot") && args.length == 11) {
+            } else if ( args[1].equals( "rotspot" ) && args.length == 11 ) {
                 target.addLight(
                     new RotatingSpotLightSource(
-                        Float.parseFloat(args[2]),
-                        Float.parseFloat(args[3]),
-                        Float.parseFloat(args[4]),
-                        Float.parseFloat(args[5]),
-                        Float.parseFloat(args[6]),
-                        Float.parseFloat(args[7]),
-                        Float.parseFloat(args[8]),
-                        Float.parseFloat(args[9]),
-                        Float.parseFloat(args[10])
+                        Float.parseFloat( args[2] ),
+                        Float.parseFloat( args[3] ),
+                        Float.parseFloat( args[4] ),
+                        Float.parseFloat( args[5] ),
+                        Float.parseFloat( args[6] ),
+                        Float.parseFloat( args[7] ),
+                        Float.parseFloat( args[8] ),
+                        Float.parseFloat( args[9] ),
+                        Float.parseFloat( args[10] )
                     )
                 );
             }

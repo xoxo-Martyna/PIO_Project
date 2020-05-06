@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class Tile { // implements ISpawner {
+public class Tile {
     protected String id;
     private BufferedImage image;
     protected boolean collidable;
@@ -12,9 +12,7 @@ public class Tile { // implements ISpawner {
     private Item item;
     private Opponent opponent;
 
-    // private ISpawner spawner;
-
-    public Tile(String id) {
+    public Tile( String id ) {
         this.id = id;
 
         loadImage();
@@ -22,8 +20,8 @@ public class Tile { // implements ISpawner {
 
     protected void loadImage() {
         try {
-            image = ImageIO.read(new File("res/tiles/" + id + ".png"));
-        } catch (IOException e) {
+            image = ImageIO.read( new File( "res/tiles/" + id + ".png" ) );
+        } catch ( IOException e ) {
         }
     }
 
@@ -31,7 +29,7 @@ public class Tile { // implements ISpawner {
         return item;
     }
 
-    public void setItem(Item item) {
+    public void setItem( Item item ) {
         this.item = item;
     }
 
@@ -39,7 +37,7 @@ public class Tile { // implements ISpawner {
         return opponent;
     }
 
-    public void setOpponent(Opponent opponent) {
+    public void setOpponent( Opponent opponent ) {
         this.opponent = opponent;
     }
 
@@ -59,19 +57,10 @@ public class Tile { // implements ISpawner {
         return castsShadows;
     }
 
-    /*public ISpawner getSpawner(){
-        return spawner;
-    }*/
     public boolean canPlayerEnter(){
         return !collidable;
     }
 
-    public void handlePlayerEnter(Game game){
-
-    
-    }
-
-    public void handlePlayerStay(Game game){
-
+    public void handlePlayerEnter( Game game ) {
     }
 }

@@ -8,13 +8,13 @@ public class RotatingSpotLightSource extends SpotLightSource {
         float angle, float range,
         float speed
     ) {
-        super(x, y, red, green, blue, falloff, angle, range);
+        super( x, y, red, green, blue, falloff, angle, range );
 
         this.speed = speed;
     }
 
     @Override
-    public void handleGameLoop(Game game) {
+    public void handleGameLoop( Game game ) {
         angle += speed;
     }
 }

@@ -19,7 +19,7 @@ public class Opponent implements IFightMember {
 
     private static XaxaLoader factory = null;
 
-    public Opponent(String id, String name, int healthPoints, int defensePoints, int attackPoints) {
+    public Opponent( String id, String name, int healthPoints, int defensePoints, int attackPoints ) {
         this.name = name;
         this.id = id;
         this.healthPoints = healthPoints;
@@ -30,21 +30,21 @@ public class Opponent implements IFightMember {
         loadImage();
     }
 
-    public static Opponent create(String id) {
+    public static Opponent create( String id ) {
         try {
-            if (factory == null) factory = new XaxaLoader("res/opponents.xaxa");
+            if ( factory == null ) factory = new XaxaLoader( "res/opponents.xaxa" );
             
-            String[] oppInfo = factory.get(id);
-            if (oppInfo == null) return null;
+            String[] oppInfo = factory.get( id );
+            if ( oppInfo == null ) return null;
     
 
             return new Opponent(
                 oppInfo[0], oppInfo[1],
-                Integer.parseInt(oppInfo[2]),
-                Integer.parseInt(oppInfo[3]),
-                Integer.parseInt(oppInfo[4])
-            );
-        } catch(IOException e) {
+                Integer.parseInt( oppInfo[2] ),
+                Integer.parseInt( oppInfo[3] ),
+                Integer.parseInt( oppInfo[4] )
+            );  
+        } catch( IOException e ) {
         }
 
         return null;
@@ -52,8 +52,8 @@ public class Opponent implements IFightMember {
 
     protected void loadImage() {
         try {
-            image = ImageIO.read(new File("res/opponents/" + id + ".png"));
-        } catch (IOException e) {
+            image = ImageIO.read( new File( "res/opponents/" + id + ".png" ) );
+        } catch ( IOException e ) {
         }
     }
 
@@ -81,7 +81,7 @@ public class Opponent implements IFightMember {
         return "";
     }
 
-    public void setHealthPoints(int hp) {
-        healthPoints=hp;
+    public void setHealthPoints( int hp ) {
+        healthPoints = hp;
     }
 }

@@ -28,7 +28,7 @@ public class Player { // implements IFightMember {
 
     private PlayerLightSource flashlight = null;
 
-    public Player(Game game) {
+    public Player( Game game ) {
         this.game = game;
 
         items = new Item[itemsH][itemsW];
@@ -38,38 +38,38 @@ public class Player { // implements IFightMember {
         healthPoints = maxHealthPoints;
 
         try {
-            down = ImageIO.read(new File("res/g_front.png"));
+            down = ImageIO.read( new File( "res/g_front.png" ) );
 
-            up = ImageIO.read(new File("res/g_back.png"));
+            up = ImageIO.read( new File( "res/g_back.png" ) );
 
-            left = ImageIO.read(new File("res/g_left.png"));
+            left = ImageIO.read( new File( "res/g_left.png" ) );
 
-            right = ImageIO.read(new File("res/g_right.png"));
+            right = ImageIO.read( new File( "res/g_right.png" ) );
 
             def = down;
 
-        } catch (IOException e) {
+        } catch ( IOException e ) {
             e.printStackTrace();
         }
 
-        items[1][1] = Item.create("diamond_sword");
-        items[2][0] = Item.create("salvia_potion");
-        items[2][2] = Item.create("ayahuasca_poison");
-        items[2][1] = Item.create("iron_helmet");
-
-        items[1][0] = Item.create("strass_sword");
-        items[1][2] = Item.create("almost_iron_helmet");
+        items[1][1] = Item.create( "diamond_sword" );
+        items[2][0] = Item.create( "salvia_potion" );
+        items[2][2] = Item.create( "ayahuasca_poison" );
+        items[2][1] = Item.create( "iron_helmet" );
+ 
+        items[1][0] = Item.create( "strass_sword" );
+        items[1][2] = Item.create( "almost_iron_helmet" );
     }
 
     public PlayerLightSource getFlashlight() {
         return flashlight;
     }
 
-    public void setFlashlight(PlayerLightSource flashlight) {
+    public void setFlashlight( PlayerLightSource flashlight ) {
         this.flashlight = flashlight;
     }
 
-    public void setHPpoints(int HP) {
+    public void setHPpoints( int HP ) {
         this.healthPoints = HP;
     }
 
@@ -103,9 +103,9 @@ public class Player { // implements IFightMember {
 
     public int getHealthPoints(){
         return healthPoints;
-    }
+    }  
 
-    public int getDefensePoints(){
+    public int getDefensePoints(){    
         int pp = 0;
         if( items[0][1] != null )
             pp += ((DefenseItem)items[0][1]).getProtectPoints();
@@ -113,7 +113,7 @@ public class Player { // implements IFightMember {
             pp += ((DefenseItem)items[0][2]).getProtectPoints();
         return pp;
     }
-
+  
     public int getAttackPoints(){
         if( items[0][0] == null ){
             return defaultAttackPoints;
@@ -142,47 +142,51 @@ public class Player { // implements IFightMember {
     public int getItemsX(){
         return itemsX;
     }
-
-    public int getItemsY(){
-        return itemsY;
-    }
  
-    public void move(int dx, int dy ){
-        try {
-            Tile targetTile = game.getCurrentLevel().getTile(x+dx, y+dy);
-            if(targetTile.canPlayerEnter()){
-                this.x+=dx;
-                this.y+=dy;
-                if(dx == 1)
+    public int getItemsY(){
+        return itemsY;      
+    }
+    
+    public void move( int dx, int dy ){
+        try {  
+            Tile targetTile = game.getCurrentLevel().getTile( x + dx, y + dy );
+
+            if ( targetTile.canPlayerEnter() ) {
+                this.x += dx;
+                this.y += dy;
+                
+                if ( dx == 1 )
                     def = right;
-                else if(dx == -1)
+                else if ( dx == -1 )
                     def = left;
 
-                if(dy == 1)
+                if ( dy == 1 )
                     def = down;
-                else if(dy == -1)
+                else if ( dy == -1 )
                     def = up;
+
                 targetTile.handlePlayerEnter(game);
             }
-        } catch (ArrayIndexOutOfBoundsException | java.lang.NullPointerException f) {}
+        } catch ( ArrayIndexOutOfBoundsException | java.lang.NullPointerException f ) {}
+
         checkCollisionOpponent();
     }
 
     private void checkCollisionOpponent(){
         try{
-            Tile tile = game.getCurrentLevel().getTile(x, y);
+            Tile tile = game.getCurrentLevel().getTile( x, y );
             if( tile.getOpponent() != null ){
-                game.startFight( new Fight(tile.getOpponent(), game) );
+                game.startFight( new Fight( tile.getOpponent(), game ) );
                 tile.setOpponent( null );
             }
         } catch( NullPointerException e ){}
     }
     
     public void moveEQ( int dx, int dy ){
-        if( itemsX+dx < itemsW && itemsX+dx >= 0 )
+        if( itemsX + dx < itemsW && itemsX + dx >= 0 )
             itemsX += dx;
 
-        if( itemsY+dy < itemsH && itemsY+dy >= 0 )
+        if( itemsY + dy < itemsH && itemsY + dy >= 0 )
             itemsY += dy;
     }
 
@@ -213,12 +217,12 @@ public class Player { // implements IFightMember {
     }
 
     private void useDefenseItem(DefenseItem item){
-        if(items[0][1]==null) {
-            items[0][1]=item;
+        if( items[0][1] == null ) {
+            items[0][1] = item;
             deleteCurrentItem();
         }
-        else if(items[0][2]==null){
-            items[0][2]=item;
+        else if ( items[0][2] == null ) {
+            items[0][2] = item;
             deleteCurrentItem();
         }
         else {
@@ -229,8 +233,8 @@ public class Player { // implements IFightMember {
     }
 
     private void useAttackItem (AttackItem item){
-        if(items[0][0]==null){
-            items[0][0]=item;
+        if( items[0][0]==null ){
+            items[0][0] = item;
             deleteCurrentItem();
         }
         else{
@@ -242,8 +246,8 @@ public class Player { // implements IFightMember {
     }
 
     private void takeOffItem(){
-        for(int i=1;i<itemsH;i++)
-            for(int j=0;j<itemsW;j++)
+        for (int i = 1; i < itemsH; i++)
+            for(int j = 0; j < itemsW; j++)
                 if(items[i][j] == null){
                     items[i][j] = items[itemsY][itemsX];
                     deleteCurrentItem();                  
@@ -255,18 +259,19 @@ public class Player { // implements IFightMember {
         items[itemsY][itemsX] = null;
     }
 
-    public void pickItem(){
+    public void pickUpItem(){
         Tile targetTile = game.getCurrentLevel().getTile(x, y);
+
         if( targetTile.getItem() != null){
             if(itemsY != 0 && items[itemsY][itemsX] == null){
                 items[itemsY][itemsX] = targetTile.getItem();
-                targetTile.setItem(null); 
+                targetTile.setItem( null );
             } else if (itemsY == 0 || items[itemsY][itemsX] != null) {
                 for (int i = 1; i < 3; i++){
-                    for(int j = 0; j < 3; j++){
+                    for (int j = 0; j < 3; j++){
                         if(items[i][j] == null ){
                             items[i][j] = targetTile.getItem();
-                            targetTile.setItem(null);
+                            targetTile.setItem( null );
                         }
                     }
                 }
@@ -275,8 +280,9 @@ public class Player { // implements IFightMember {
     }
     public void dropItem(){
         Tile targetTile = game.getCurrentLevel().getTile(x, y);
+        
         if(items[itemsY][itemsX] != null && targetTile.getItem() == null ){
-            targetTile.setItem(items[itemsY][itemsX]);
+            targetTile.setItem( items[itemsY][itemsX] );
             deleteCurrentItem();
         }
         

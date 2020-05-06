@@ -6,7 +6,7 @@ public class PlayerLightSource extends LightSource {
         float red, float green, float blue,
         float falloff
     ) {
-        super(0.0f, 0.0f, red, green, blue, falloff);
+        super( 0.0f, 0.0f, red, green, blue, falloff );
 
         this.player = player;
     }

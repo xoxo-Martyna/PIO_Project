@@ -3,50 +3,60 @@ import java.awt.image.*;
 
 public class MultiplyComposite implements Composite, CompositeContext {
     @Override
-    public void compose(Raster src, Raster dstIn, WritableRaster dstOut) {
-        int width = Math.min(src.getWidth(), dstIn.getWidth());
-        int height = Math.min(src.getHeight(), dstIn.getHeight());
+    public void compose( Raster src, Raster dstIn, WritableRaster dstOut ) {
+        int width = Math.min( src.getWidth(), dstIn.getWidth() );
+        int height = Math.min( src.getHeight(), dstIn.getHeight() );
 
         int x, y;
 
         int[] srcPixels = new int[width];
         int[] dstPixels = new int[width];
 
-        for (y = 0; y < height; y++) {
-            src.getDataElements(0, y, width, 1, srcPixels);
-            dstIn.getDataElements(0, y, width, 1, dstPixels);
+        for ( y = 0; y < height; y++ ) {
+            src.getDataElements( 0, y, width, 1, srcPixels );
+            dstIn.getDataElements( 0, y, width, 1, dstPixels );
 
-            for (x = 0; x < width; x++) {
-                dstPixels[x] = mixColors(srcPixels[x], dstPixels[x]);
+            for ( x = 0; x < width; x++ ) {
+                dstPixels[x] = mixColors( srcPixels[x], dstPixels[x] );
             }
 
-            dstOut.setDataElements(0, y, width, 1, dstPixels);
+            dstOut.setDataElements( 0, y, width, 1, dstPixels );
         }
     }
 
-    private static int mixColors(int x, int y) {
-        int xb = (x) & 0xFF;
-        int yb = (y) & 0xFF;
-        int b = (xb * yb) / 255;
+    private static int[] separateRGBInt( int color ) {
+        int[] components = new int[4];
 
-        int xg = (x >> 8) & 0xFF;
-        int yg = (y >> 8) & 0xFF;
-        int g = (xg * yg) / 255;
+        components[0] = ( color >> 16 ) & 0xFF; // Red
+        components[1] = ( color >> 8 ) & 0xFF; // Green
+        components[2] = color & 0xFF; // Blue
+        components[3] = ( color >> 24 ) & 0xFF; // Alpha
 
-        int xr = (x >> 16) & 0xFF;
-        int yr = (y >> 16) & 0xFF;
-        int r = (xr * yr) / 255;
+        return components;
+    }
 
-        int xa = (x >> 24) & 0xFF;
-        int ya = (y >> 24) & 0xFF;
-        int a = Math.min(255, xa + ya);
+    private static int combineRGBInt( int[] components ) {
+        return components[2] | (components[1] << 8) | (components[0] << 16) | ( components[3] << 24 );
+    }
 
-        return (b) | (g << 8) | (r << 16) | (a << 24);
+    private static int mixColors( int color1, int color2 ) {
+        int[] c1 = separateRGBInt( color1 );
+        int[] c2 = separateRGBInt( color2 );
+
+        int[] outComponents = new int[4];
+        outComponents[0] = ( c1[0] * c2[0] ) / 255;
+        outComponents[1] = ( c1[1] * c2[1] ) / 255;
+        outComponents[2] = ( c1[2] * c2[2] ) / 255;
+        outComponents[3] = Math.min( 255, c1[3] + c2[3] );
+
+        return combineRGBInt( outComponents );
     }
 
 
     @Override
-    public CompositeContext createContext(ColorModel srcColorModel, ColorModel dstColorModel, RenderingHints hints) {
+    public CompositeContext createContext(
+        ColorModel srcColorModel, ColorModel dstColorModel, RenderingHints hints
+    ) {
         return this;
     }
 

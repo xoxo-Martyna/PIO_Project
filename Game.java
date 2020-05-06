@@ -13,7 +13,7 @@ public class Game {
 
      private GameFrame frame;
 
-    public void setFrame(GameFrame frame) {
+    public void setFrame( GameFrame frame ) {
         this.frame = frame;
     }
 
@@ -23,7 +23,6 @@ public class Game {
 
     private List<Level> levels;
     private Level currentLevel;
-    private Level nextLevel;
 
     private Fight currentFight;
 
@@ -38,10 +37,10 @@ public class Game {
     }
 
     public void handleGameLoop() {
-        if (state == GameState.postWin && currentTime == 60) {
-            setState(GameState.exploration);
+        if ( state == GameState.postWin && currentTime == 60 ) {
+            setState( GameState.exploration );
         } else {
-            currentLevel.handleGameLoop(this);
+            currentLevel.handleGameLoop( this );
         }
 
 
@@ -52,12 +51,12 @@ public class Game {
 
     public void startGameLoop() {
         ActionListener loopCallback = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed( ActionEvent e ) {
                 handleGameLoop();
             }
         };
 
-        this.gameLoopTimer = new Timer(33, loopCallback);
+        this.gameLoopTimer = new Timer( 33, loopCallback );
         this.gameLoopTimer.start();
     }
 
@@ -67,13 +66,13 @@ public class Game {
     }
 
     public void addLevel( Level level ) {
-        levels.add(level);
+        levels.add( level );
     }
 
     public Level setLevel( String id ) {
-        currentLevel = getLevel(id);
-        player.setX(currentLevel.getSpawnX());
-        player.setY(currentLevel.getSpawnY());
+        currentLevel = getLevel( id );
+        player.setX( currentLevel.getSpawnX() );
+        player.setY( currentLevel.getSpawnY() );
         player.resetFacing();
 
         return currentLevel;
@@ -97,8 +96,8 @@ public class Game {
     }
 
     public Level getLevel( String id ){
-        for (Level l : levels) {
-            if (l.getId().equals(id))
+        for ( Level l : levels ) {
+            if ( l.getId().equals( id ) )
                 return l;
         }
 
@@ -118,23 +117,22 @@ public class Game {
         state = GameState.fight;
     }
 
-    public void endFight( boolean b){
-        if(b){
+    public void endFight( boolean isWin ){
+        if( isWin ){
             currentFight = null;
-            setState(GameState.postWin);
+            setState( GameState.postWin );
         } else{
             currentFight = null;
-            setState(GameState.postLose);
-            System.out.println("You lost");
+            setState( GameState.postLose );
         }
     }
     
-    public void setPlayer(Player player) {
+    public void setPlayer( Player player ) {
         this.player = player;
     }
 
     public void render() {
-        if (isInFight) {
+        if ( isInFight ) {
             // no fight panel yet
         } else {
             frame.getExpPanel().repaint();

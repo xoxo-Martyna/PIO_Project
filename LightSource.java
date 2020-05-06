@@ -29,15 +29,15 @@ public class LightSource {
         return y;
     }
 
-    public double distance(float sampleX, float sampleY) {
-        return Math.hypot(sampleX - getX(), sampleY - getY());
+    public double distance( float sampleX, float sampleY ) {
+        return Math.hypot( sampleX - getX(), sampleY - getY() );
     }
 
-    public Color getColor(float sampleX, float sampleY) {
+    public Color getColor( float sampleX, float sampleY ) {
         double intensity = Math.max(
-            0.0f, 1.0f - distance(sampleX, sampleY) / falloff
+            0.0f, 1.0f - distance( sampleX, sampleY ) / falloff
         );
-        intensity = Math.pow(intensity, 2.0);
+        intensity = Math.pow( intensity, 2.0 );
 
         return new Color(
             (float)intensity * red,
