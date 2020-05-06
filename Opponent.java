@@ -19,12 +19,13 @@ public class Opponent implements IFightMember {
 
     private static XaxaLoader factory = null;
 
-    public Opponent(String id, String name, int healthPoints, int defensePoints) {
+    public Opponent(String id, String name, int healthPoints, int defensePoints, int attackPoints) {
         this.name = name;
         this.id = id;
         this.healthPoints = healthPoints;
         this.maxHealthPoints = healthPoints;
         this.defensePoints = defensePoints;
+        this.attackPoints = attackPoints;
 
         loadImage();
     }
@@ -40,7 +41,8 @@ public class Opponent implements IFightMember {
             return new Opponent(
                 oppInfo[0], oppInfo[1],
                 Integer.parseInt(oppInfo[2]),
-                Integer.parseInt(oppInfo[3])
+                Integer.parseInt(oppInfo[3]),
+                Integer.parseInt(oppInfo[4])
             );
         } catch(IOException e) {
         }
