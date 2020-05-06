@@ -118,7 +118,16 @@ public class Game {
         state = GameState.fight;
     }
 
-    public void endFight(){
+    public void endFight( boolean b){
+        if(b){
+            currentFight = null;
+            state = GameState.exploration;
+            handleGameLoop();
+        } else{
+            currentFight = null;
+            state = GameState.postLose;
+            System.out.println("You lost");
+        }
     }
     
     public void setPlayer(Player player) {
