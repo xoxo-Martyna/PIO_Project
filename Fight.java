@@ -77,7 +77,7 @@ public class Fight {
             int harmPoints;
             int playerDefense = player.getDefensePoints();
             
-            int attack = opponent.getAttackPoints(); // do testu
+            int attack = opponent.getAttackPoints();
 
             damageDefense( (int)((float) attack * 0.05 ) );
 

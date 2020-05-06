@@ -322,7 +322,7 @@ public class ExpPanel extends JPanel implements KeyListener {
                 break;
 
             case KeyEvent.VK_S:
-                player.move( 0, 1) ;
+                player.move( 0, 1 );
                 break;
 
             case KeyEvent.VK_P:
