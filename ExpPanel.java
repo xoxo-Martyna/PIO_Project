@@ -74,6 +74,9 @@ public class ExpPanel extends JPanel implements KeyListener {
         if(game.getState() == GameState.postLose){
             drawGameOver(g2d);
         }
+        if(game.getState() == GameState.postWin){
+            drawYouWon(g2d);
+        }
     }
 
     private void drawLevel(Graphics2D g2d, Level level) {
@@ -272,6 +275,14 @@ public class ExpPanel extends JPanel implements KeyListener {
         g2d.setFont(new Font("Serif", Font.PLAIN, 50));
         g2d.setColor(Color.red);
         g2d.drawString("GAME OVER", ((imageSize * levelSize + 4 * d + 3 * imageSize)/2)-150,(imageSize * levelSize)/2);
+    }
+
+    private void drawYouWon(Graphics2D g2d){
+        g2d.setColor(Color.LIGHT_GRAY);
+        g2d.fill(new Rectangle(0,0,imageSize * levelSize + 4 * d + 3 * imageSize, imageSize * levelSize));
+        g2d.setFont(new Font("Serif", Font.PLAIN, 50));
+        g2d.setColor(Color.red);
+        g2d.drawString("You Won", ((imageSize * levelSize + 4 * d + 3 * imageSize)/2)-150,(imageSize * levelSize)/2);
     }
 
     public void keyPressed(KeyEvent e) {

@@ -73,15 +73,17 @@ public class Fight {
 
         if (attackX != xP) {
 
-            int slap;
-            int tripleP = player.getDefensePoints();
-            //int ciabasAttack = 1; // do testu
-            int oneShot = opponent.getAttackPoints(); // do testu
-            if (oneShot - tripleP > 0)
-                slap = oneShot - tripleP;
+            int harmPoints;
+            int playerDefense = player.getDefensePoints();
+            
+            int attack = opponent.getAttackPoints(); // do testu
+
+            if (attack - playerDefense > 0)
+                harmPoints = attack - playerDefense;
             else
-                slap = 0;
-            player.setHPpoints(slap);
+                harmPoints = 0;
+
+            player.removeHPPoints(harmPoints);
 
             System.out.println("Przeciwnik wykonał atak! HP GRACZA = " + player.getHealthPoints()); // do wywaenia pozniej
             

@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Game {
-    private GameState state;
+    private GameState state = GameState.exploration;
     private boolean isInFight;
 
     private Player player;
@@ -38,8 +38,8 @@ public class Game {
     }
 
     public void handleGameLoop() {
-        if (isInFight) {
-
+        if (state == GameState.postWin && currentTime == 60) {
+            setState(GameState.exploration);
         } else {
             currentLevel.handleGameLoop(this);
         }
@@ -121,11 +121,10 @@ public class Game {
     public void endFight( boolean b){
         if(b){
             currentFight = null;
-            state = GameState.exploration;
-            handleGameLoop();
+            setState(GameState.postWin);
         } else{
             currentFight = null;
-            state = GameState.postLose;
+            setState(GameState.postLose);
             System.out.println("You lost");
         }
     }
