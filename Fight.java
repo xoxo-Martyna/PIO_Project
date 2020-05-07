@@ -63,10 +63,10 @@ public class Fight {
 
         if (xCursor != opponentPosition) {
             Random defenseRandom = new Random();
-            int opponentDefense = (int)(defenseRandom.nextDouble()*0.25*opponent.getDefensePoints());
-            int effectivenes = player.getAttackPoints()-opponentDefense;
-            if(effectivenes>0) {
-                opponent.setHealthPoints( opponent.getHealthPoints() - effectivenes);
+            int opponentDefense = (int)( defenseRandom.nextDouble() * 0.25 * opponent.getDefensePoints() );
+            int effectiveness = player.getAttackPoints() - opponentDefense;
+            if (effectiveness > 0) {
+                opponent.setHealthPoints( opponent.getHealthPoints() - effectiveness );
             }
             damageAttack();
         }

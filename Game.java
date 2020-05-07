@@ -132,11 +132,7 @@ public class Game {
     }
 
     public void render() {
-        if ( isInFight ) {
-            // no fight panel yet
-        } else {
-            frame.getExpPanel().repaint();
-        }
+        frame.getExpPanel().repaint();
     }
 }
 
