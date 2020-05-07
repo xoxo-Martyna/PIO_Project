@@ -18,6 +18,7 @@ public class LightSource {
         this.green = green;
         this.blue = blue;
 
+        // TODO: Remove falloff - not needed when Lambertian diffuse used
         this.falloff = falloff;
     }
 
@@ -34,10 +35,39 @@ public class LightSource {
     }
 
     public Color getColor( float sampleX, float sampleY ) {
-        double intensity = Math.max(
-            0.0f, 1.0f - distance( sampleX, sampleY ) / falloff
+        double lightRelX = sampleX - getX();
+        double lightRelY = sampleY - getY();
+        double lightRelZ = 1.0;
+        double lightRelVecLength = Math.sqrt(
+            lightRelX * lightRelX + lightRelY * lightRelY + 1
         );
-        intensity = Math.pow( intensity, 2.0 );
+
+        lightRelX /= lightRelVecLength;
+        lightRelY /= lightRelVecLength;
+        lightRelZ /= lightRelVecLength;
+
+        // TODO: Grab from normal maps
+        double surfNormalX = 0.0;
+        double surfNormalY = 0.0;
+        double surfNormalZ = 1.0; // pointing up
+        double surfNormalVecLength = Math.sqrt(
+            surfNormalX * surfNormalX +
+            surfNormalY * surfNormalY +
+            surfNormalZ * surfNormalZ
+        );
+
+        surfNormalX /= surfNormalVecLength;
+        surfNormalY /= surfNormalVecLength;
+        surfNormalZ /= surfNormalVecLength;
+
+        double intensity = (
+            lightRelX * surfNormalX +
+            lightRelY * surfNormalY +
+            lightRelZ * surfNormalZ
+        );
+
+        if (intensity < 0.0)
+            return new Color(0.0f, 0.0f, 0.0f);
 
         return new Color(
             (float)intensity * red,
