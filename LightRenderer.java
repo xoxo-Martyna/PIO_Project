@@ -30,12 +30,19 @@ public class LightRenderer {
         tile = level.getTile( (int)sampleX, (int)sampleY );
         if ( tile != null && tile.isCastingShadows() ) return false;
 
+        int lastX = -100, lastY = -100;
+
         for ( int i = 0; i < shadowSampleCount; i++ ) {
             float position = (float)(i + 1) / (float)(shadowSampleCount + 1);
             float shadowX = lightX + position * (sampleX - lightX);
             float shadowY = lightY + position * (sampleY - lightY);
 
+            if (lastX == (int)shadowX && lastY == (int)shadowY)
+                continue;
+
             tile = level.getTile( (int)shadowX, (int)shadowY );
+            lastX = (int)shadowX;
+            lastY = (int)shadowY;
 
             if ( tile != null && tile.isCastingShadows() ) return true;
         }
