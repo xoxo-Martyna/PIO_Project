@@ -30,13 +30,6 @@ itemki:
 - uzywanie
 - miejsce na zbroje i miecz w graczu i zakladanie ich
 
-TO DO:
-podzial:
-    martyna - rysowanie na planszy, umieszczanie na planszy
-    hubert  - podnoszenie, wyrzucanie
-    kacper  - miejsce na zbroje i miecz w graczu i zakladanie ich
-    artur   - sterowanie po ekwipunku, uzywanie, rysowanie ekwipunku
-
 ZATWIERDZONE: KACPER S
 
 przeciwnik:
@@ -61,7 +54,7 @@ podział;
     2. artur   - chodzenie w kolko, rysowanie walki, wchodzenie do walki
 
 -------------------------------------------------------------------
-*/
+
 // LISTA BRONI
 // miecz, łuk, ruszczka, dzida laserowa, tasak Magdy Gessler
 
@@ -73,3 +66,32 @@ podział;
 // OBRONA
 // czapka, zbroja, tarcza
 //TEST
+
+
+
+-------------------------------------------------------------------------
+SPRINT 3
+
+
+TO DO:
+podzial:
+    martyna:
+        - wincyj itemkow w bazie itemow
+        - zrobić poziomy
+    hubert:
+        - loot przeciwnika <==== <==== <====
+        - PodDkŁaD mUzYcZny
+    kacper A: 
+        - błagam wygrywalna walka
+        - latarka
+    artur: 
+        - UI
+        - przeciwnicy
+    ola:
+        - tUo do walki
+        - tamte elementy z tych testów
+    kacper S:
+        - dokończyć muzykę
+        - wincyj oświetlenia bo czemu nie
+        - (laser)
+*/
