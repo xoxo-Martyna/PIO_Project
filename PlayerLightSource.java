@@ -5,7 +5,7 @@ public class PlayerLightSource extends SpotLightSource {
         Player player,
         float red, float green, float blue
     ) {
-        super( 0.0f, 0.0f, red, green, blue, 0.0f, 0.0f, 0.5f );
+        super( 0.0f, 0.0f, red, green, blue, 0.0f, 0.0f, 0.8f );
 
         this.player = player;
     }
