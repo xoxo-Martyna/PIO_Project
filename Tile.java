@@ -5,7 +5,10 @@ import javax.imageio.ImageIO;
 
 public class Tile {
     protected String id;
+
     private BufferedImage image;
+    private BufferedImage normalMapImage = null;
+
     protected boolean collidable;
     protected boolean castsShadows = false;
 
@@ -21,6 +24,11 @@ public class Tile {
     protected void loadImage() {
         try {
             image = ImageIO.read( new File( "res/tiles/" + id + ".png" ) );
+        } catch ( IOException e ) {
+        }
+
+        try {
+            normalMapImage = ImageIO.read( new File( "res/tiles/" + id + "_nrm.png" ) );
         } catch ( IOException e ) {
         }
     }
@@ -47,6 +55,10 @@ public class Tile {
 
     public BufferedImage getImage(){
         return image;
+    }
+
+    public BufferedImage getNormalMapImage(){
+        return normalMapImage;
     }
 
     public boolean getCollidable(){
