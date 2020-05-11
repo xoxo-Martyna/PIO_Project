@@ -133,6 +133,8 @@ public class Game {
     public void endFight( boolean isWin ){
         if( isWin ){
             currentFight = null;
+            stopMusic();
+            playSound(currentLevel.getId());
             setState( GameState.postWin );
         } else{
             currentFight = null;
