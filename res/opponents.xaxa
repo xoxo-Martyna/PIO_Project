@@ -1,3 +1,10 @@
 // Format:
 // ID opponenta|Nazwa opponenta|HP|DP|AP
-gen_opponent|Generic|70|15|20
+gen_opponent|Generic|70|15|20 //zostawiam jako HALL OF FAME, AVE nagi ludziku
+opponent_1|Hateful construct|23|0|18 //duzo bije, szybko sie sklada
+opponent_2|Huge Chimera|50|10|11 //tanky
+opponent_3|Swarmer|10|1|5  //slaby mob, walczy 2-3 najlepiej, w late bije za nic
+opponent_4|Failed experiment|30|10|12  //kolejny generic
+opponent_5|Bear|50|5|20
+boss_outside|Frog|40|5|30 //nwm, no zaba, ktora bije
+boss_lab|Chungus|100|-5|25
