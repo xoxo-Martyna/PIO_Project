@@ -171,7 +171,8 @@ public class LevelLoader {
                         Float.parseFloat( args[6] ),
                         Float.parseFloat( args[7] ),
                         Float.parseFloat( args[8] ),
-                        Float.parseFloat( args[9] )
+                        Float.parseFloat( args[9] ),
+                        0.0f
                     )
                 );
             } else if ( args[1].equals( "rotspot" ) && args.length == 11 ) {
@@ -185,6 +186,7 @@ public class LevelLoader {
                         Float.parseFloat( args[7] ),
                         Float.parseFloat( args[8] ),
                         Float.parseFloat( args[9] ),
+                        0.0f,
                         Float.parseFloat( args[10] )
                     )
                 );

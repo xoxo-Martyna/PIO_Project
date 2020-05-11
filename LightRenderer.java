@@ -68,7 +68,7 @@ public class LightRenderer {
 
         PlayerLightSource playerLight = player.getFlashlight();
         if ( playerLight != null && !isLightOccluded( level, playerLight, sampleX, sampleY ) ) {
-            
+
             Color lightSample = playerLight.getColor( sampleX, sampleY, tile );
             float[] sampleComponents = lightSample.getColorComponents( null );
 

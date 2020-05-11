@@ -1,4 +1,5 @@
 import java.lang.Math;
+
 import java.awt.Color;
 
 public class LightSource {
@@ -35,6 +36,10 @@ public class LightSource {
     }
 
     public Color getColor( float sampleX, float sampleY, Tile tile ) {
+        return getColor( sampleX, sampleY, tile, 1.0f );
+    }
+
+    public Color getColor( float sampleX, float sampleY, Tile tile, float parentIntensity ) {
         double lightRelX = sampleX - getX();
         double lightRelY = sampleY - getY();
         double lightRelZ = 1.0;
@@ -64,7 +69,7 @@ public class LightSource {
             lightRelX * surfNormalX +
             lightRelY * surfNormalY +
             lightRelZ * surfNormalZ
-        );
+        ) * parentIntensity;
 
         if (intensity < 0.0)
             return new Color(0.0f, 0.0f, 0.0f);
