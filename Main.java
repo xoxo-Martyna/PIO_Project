@@ -17,7 +17,7 @@ public class Main {
             return;
         }
         game.setLevel( "example" );
-
+        
         ExpPanel expPanel = new ExpPanel( game );
         GameFrame frame = new GameFrame( game );
         

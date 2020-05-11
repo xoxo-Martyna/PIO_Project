@@ -4,6 +4,11 @@ import java.util.List;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 public class Game {
     private GameState state = GameState.exploration;
@@ -29,6 +34,8 @@ public class Game {
     private int currentTime;
 
     private Timer gameLoopTimer;
+
+    public Clip clip = null;
 
     public Game() {
         state = GameState.exploration;
@@ -70,6 +77,9 @@ public class Game {
     }
 
     public Level setLevel( String id ) {
+        if(clip != null)
+            stopMusic();
+        playSound(id);
         currentLevel = getLevel( id );
         player.setX( currentLevel.getSpawnX() );
         player.setY( currentLevel.getSpawnY() );
@@ -113,6 +123,9 @@ public class Game {
     }
 
     public void startFight( Fight fight ){
+        if(clip != null)
+            stopMusic();
+        playSound(fight.getOpponent().getName());
         currentFight = fight;
         state = GameState.fight;
     }
@@ -134,5 +147,29 @@ public class Game {
     public void render() {
         frame.getExpPanel().repaint();
     }
+
+    public void playSound(String musicName) {
+        String musicLocation = "./res/music/" + musicName +".wav";
+       try {
+           File musicPath = new File(musicLocation);
+
+           if(musicPath.exists()){
+                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+                clip = AudioSystem.getClip();
+                clip.open(audioInput);
+                clip.start();
+           } else{
+               System.out.println("Cannot find file");
+           }
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+    }
+
+    public void stopMusic(){
+        clip.stop();
+    }
+
+    
 }
 
