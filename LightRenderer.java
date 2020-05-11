@@ -53,10 +53,12 @@ public class LightRenderer {
     private Color sampleLights( Level level, Player player, float sampleX, float sampleY ) {
         float red = 0.0f, green = 0.0f, blue = 0.0f;
 
+        Tile tile = level.getTile( (int)sampleX, (int)sampleY );
+
         for ( LightSource light : level.getLights() ) {
             if ( isLightOccluded( level, light, sampleX, sampleY ) ) continue;
 
-            Color lightSample = light.getColor( sampleX, sampleY );
+            Color lightSample = light.getColor( sampleX, sampleY, tile );
             float[] sampleComponents = lightSample.getColorComponents( null );
 
             red += sampleComponents[0];
@@ -66,7 +68,8 @@ public class LightRenderer {
 
         PlayerLightSource playerLight = player.getFlashlight();
         if ( playerLight != null && !isLightOccluded( level, playerLight, sampleX, sampleY ) ) {
-            Color lightSample = playerLight.getColor( sampleX, sampleY );
+            
+            Color lightSample = playerLight.getColor( sampleX, sampleY, tile );
             float[] sampleComponents = lightSample.getColorComponents( null );
 
             red += sampleComponents[0];

@@ -61,6 +61,25 @@ public class Tile {
         return normalMapImage;
     }
 
+    public double[] sampleNormalMap(float sampleX, float sampleY) {
+        double[] out = { 0.0f, 0.0f, 1.0f };
+        if (normalMapImage == null) return out;
+
+        int pixelX = (int)( sampleX * 64.0 ) % 64;
+        int pixelY = (int)( sampleY * 64.0 ) % 64;
+
+        int rgb = normalMapImage.getRGB( pixelX, pixelY );
+        double red = (float)( ( rgb >> 16 ) & 0xFF ) / 255.;
+        double green = (float)( ( rgb >> 8 ) & 0xFF ) / 255.;
+        double blue = (float)( rgb & 0xFF ) / 255.;
+
+        out[0] = -(red * 2.0 - 1.0);
+        out[1] = green * 2.0 - 1.0;
+        out[2] = blue * 2.0 - 1.0;
+
+        return out;
+    }
+
     public boolean getCollidable(){
         return collidable;
     }

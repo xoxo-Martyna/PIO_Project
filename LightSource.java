@@ -34,7 +34,7 @@ public class LightSource {
         return Math.hypot( sampleX - getX(), sampleY - getY() );
     }
 
-    public Color getColor( float sampleX, float sampleY ) {
+    public Color getColor( float sampleX, float sampleY, Tile tile ) {
         double lightRelX = sampleX - getX();
         double lightRelY = sampleY - getY();
         double lightRelZ = 1.0;
@@ -46,10 +46,10 @@ public class LightSource {
         lightRelY /= lightRelVecLength;
         lightRelZ /= lightRelVecLength;
 
-        // TODO: Grab from normal maps
-        double surfNormalX = 0.0;
-        double surfNormalY = 0.0;
-        double surfNormalZ = 1.0; // pointing up
+        double[] surfNormal = tile.sampleNormalMap( sampleX, sampleY );
+        double surfNormalX = surfNormal[0];
+        double surfNormalY = surfNormal[1];
+        double surfNormalZ = surfNormal[2];
         double surfNormalVecLength = Math.sqrt(
             surfNormalX * surfNormalX +
             surfNormalY * surfNormalY +

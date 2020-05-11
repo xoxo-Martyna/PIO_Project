@@ -8,7 +8,7 @@ public class AmbientLightSource extends LightSource {
     }
 
     @Override
-    public Color getColor( float sampleX, float sampleY ) {
+    public Color getColor( float sampleX, float sampleY, Tile tile ) {
         return new Color(
             red, green, blue
         );

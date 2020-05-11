@@ -29,7 +29,7 @@ public class SpotLightSource extends LightSource {
         return Math.hypot( sampleX - getX(), sampleY - getY() );
     }
 
-    public Color getColor( float sampleX, float sampleY ) {
+    public Color getColor( float sampleX, float sampleY, Tile tile ) {
         double dist = distance( sampleX, sampleY );
         double coneX = Math.cos( angle );
         double coneY = Math.sin( angle );
@@ -43,6 +43,6 @@ public class SpotLightSource extends LightSource {
             0.0f, 0.0f, 0.0f
         );
         
-        return super.getColor( sampleX, sampleY );
+        return super.getColor( sampleX, sampleY, tile );
     }
 }

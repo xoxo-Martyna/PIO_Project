@@ -19,4 +19,5 @@ Item diamond_sword 7 7
 // Opponent <ID> <X> <Y>
 Opponent gen_opponent 2 7
 
-LightSource ambient 0.3 0.3 0.3
+//LightSource ambient 0.3 0.3 0.3
+LightSource rotspot 5.0 5.0 1.0 0.0 0.0 7.0 0.0 0.7 0.1
