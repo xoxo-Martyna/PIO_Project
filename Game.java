@@ -125,7 +125,7 @@ public class Game {
     public void startFight( Fight fight ){
         if(clip != null)
             stopMusic();
-        playSound(fight.getOpponent().getName());
+        playSound(fight.getOpponent().getId());
         currentFight = fight;
         state = GameState.fight;
     }

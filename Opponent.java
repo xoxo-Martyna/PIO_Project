@@ -80,6 +80,10 @@ public class Opponent implements IFightMember {
     public String getName() {
         return "";
     }
+    
+    public String getId(){
+        return id;
+    }
 
     public void setHealthPoints( int hp ) {
         healthPoints = hp;
