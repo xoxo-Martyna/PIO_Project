@@ -27,7 +27,7 @@ public class Player { // implements IFightMember {
     private int itemsY;
 
     private PlayerLightSource flashlight = new PlayerLightSource(
-        this, 1.0f, 0.9f, 0.7f, 3.0f
+        this, 1.0f, 0.9f, 0.7f
     );
 
     public Player( Game game ) {
