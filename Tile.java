@@ -15,7 +15,7 @@ public class Tile {
     private Item item;
     private Opponent opponent;
 
-    public Tile( String id ) {
+    public Tile( ) {
         this.id = id;
 
         loadImage();
