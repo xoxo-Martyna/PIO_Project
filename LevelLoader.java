@@ -119,6 +119,35 @@ public class LevelLoader {
                 Integer.parseInt(args[3]),
                 door
             );
+        } else if (args[0].equals("MoveableTile") && args.length == 6) {
+            Tile floor = new GenericFloorTile(args[4]);
+            Tile crate = new GenericMoveableTile(
+                    args[1], floor, args[5].equals("light")
+            );
+
+            target.setTile(
+                    Integer.parseInt(args[2]),
+                    Integer.parseInt(args[3]),
+                    crate
+            );
+        } else if (args[0].equals("WaterTile") && args.length > 2) {
+            String tileId = args[1];
+            Tile tile = new GenericWaterTile(tileId);
+
+            for (int i = 2; i < args.length; i += 2) {
+                if (i + 1 >= args.length) break;
+
+                int x = Integer.parseInt(args[i]);
+                int y = Integer.parseInt(args[i + 1]);
+
+                if (
+                        x >= target.getWidth() ||
+                                y >= target.getHeight()
+                )
+                    break;
+
+                target.setTile(x, y, tile);
+            }
         } else if ( args[0].equals( "Item" ) && args.length == 4 ) {
             Tile t = target.getTile(
                 Integer.parseInt( args[2] ),

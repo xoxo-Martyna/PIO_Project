@@ -12,6 +12,12 @@ Tile w_concretescaffold2_1 1 0 2 9
 Tile w_scaffolding 0 0 0 1 0 2 6 2 7 2 0 3 7 3 0 4 0 5 0 6 0 7 0 8 0 9 1 9
 Tile w_window_glass 3 0
 
+MoveableTile d_1 2 4 f_grass light
+MoveableTile w_borderless 4 4 f_grass heavy
+MoveableTile d_1 6 4 f_grass light
+
+WaterTile f_water 1 6 2 6 3 6 4 6 5 6 6 6 7 6 8 6
+
 DoorTile d_1 8 0 example2 8 8
 
 // Item <ID> <X> <Y>
