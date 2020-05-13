@@ -193,18 +193,21 @@ public class Player { // implements IFightMember {
                     this.x += dx;
                     this.y += dy;
 
-                    if (dx == 1)
+                    if (dx == 1) {
                         def = right;
-
-                    else if (dx == -1)
+                        reorientFlashlight(0.0f);
+                    } else if (dx == -1) {
                         def = left;
+                        reorientFlashlight(180.0f);
+                    }
 
-                    else if (dy == 1)
+                    if (dy == 1) {
                         def = down;
-
-                    else if (dy == -1)
+                        reorientFlashlight(90.0f);
+                    } else if (dy == -1) {
                         def = up;
-
+                        reorientFlashlight(-90.0f);
+                    }
 
                     targetTile.handlePlayerEnter(game);
                 }
