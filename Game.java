@@ -35,12 +35,41 @@ public class Game {
 
     private Timer gameLoopTimer;
 
+    private List<ProjectileInstance> projectiles;
+
     public Clip clip = null;
 
     public Game() {
         state = GameState.exploration;
 
         levels = new ArrayList<Level>();
+        projectiles = new ArrayList<ProjectileInstance>();
+    }
+
+    public List<ProjectileInstance> getProjectiles() {
+        return projectiles;
+    }
+
+    public void cleanProjectiles() {
+        List<ProjectileInstance> trashList = new ArrayList<ProjectileInstance>();
+
+        for (ProjectileInstance p : projectiles) {
+            float x = p.getX(), y = p.getY();
+
+            if (
+                    p.isDiscarded() ||
+                            x < 0.0f || y < 0.0f ||
+                            x > (float)(currentLevel.getWidth() + 1) ||
+                            y > (float)(currentLevel.getHeight() + 1)
+            )
+                trashList.add(p);
+        }
+
+        for (ProjectileInstance p : trashList) {
+            projectiles.remove(p);
+        }
+
+        trashList.clear();
     }
 
     public void handleGameLoop() {
@@ -49,6 +78,20 @@ public class Game {
         } else {
             currentLevel.handleGameLoop( this );
         }
+        if (currentTime % 10 == 0) {
+            projectiles.add(
+                    new ProjectileInstance(
+                            new Projectile(),
+                            2.0f, 2.5f, 0.1f, 0.0f
+                    )
+            );
+        }
+
+        for (ProjectileInstance p : projectiles) {
+            p.advancePosition(this);
+        }
+        cleanProjectiles();
+
 
 
         render();
