@@ -29,13 +29,12 @@ public class Game {
     private List<Level> levels;
     private Level currentLevel;
 
+    private Fight previousFight;
     private Fight currentFight;
 
     private int currentTime;
 
     private Timer gameLoopTimer;
-
-    private List<ProjectileInstance> projectiles;
 
     public Clip clip = null;
 
@@ -43,34 +42,8 @@ public class Game {
         state = GameState.exploration;
 
         levels = new ArrayList<Level>();
-        projectiles = new ArrayList<ProjectileInstance>();
     }
 
-    public List<ProjectileInstance> getProjectiles() {
-        return projectiles;
-    }
-
-    public void cleanProjectiles() {
-        List<ProjectileInstance> trashList = new ArrayList<ProjectileInstance>();
-
-        for (ProjectileInstance p : projectiles) {
-            float x = p.getX(), y = p.getY();
-
-            if (
-                    p.isDiscarded() ||
-                            x < 0.0f || y < 0.0f ||
-                            x > (float)(currentLevel.getWidth() + 1) ||
-                            y > (float)(currentLevel.getHeight() + 1)
-            )
-                trashList.add(p);
-        }
-
-        for (ProjectileInstance p : trashList) {
-            projectiles.remove(p);
-        }
-
-        trashList.clear();
-    }
 
     public void handleGameLoop() {
         if ( state == GameState.postWin && currentTime == 60 ) {
@@ -78,21 +51,6 @@ public class Game {
         } else {
             currentLevel.handleGameLoop( this );
         }
-        if (currentTime % 10 == 0) {
-            projectiles.add(
-                    new ProjectileInstance(
-                            new Projectile(),
-                            2.0f, 2.5f, 0.1f, 0.0f
-                    )
-            );
-        }
-
-        for (ProjectileInstance p : projectiles) {
-            p.advancePosition(this);
-        }
-        cleanProjectiles();
-
-
 
         render();
 
@@ -175,10 +133,13 @@ public class Game {
 
     public void endFight( boolean isWin ){
         if( isWin ){
+            previousFight = currentFight;
             currentFight = null;
             stopMusic();
             playSound(currentLevel.getId());
             setState( GameState.postWin );
+            Tile targetTile = getCurrentLevel().getTile(player.getX(), player.getY());
+            targetTile.setItem(previousFight.getOpponent().getItem());
         } else{
             currentFight = null;
             setState( GameState.postLose );
@@ -195,20 +156,20 @@ public class Game {
 
     public void playSound(String musicName) {
         String musicLocation = "./res/music/" + musicName +".wav";
-       try {
-           File musicPath = new File(musicLocation);
+        try {
+            File musicPath = new File(musicLocation);
 
-           if(musicPath.exists()){
-                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
-                clip = AudioSystem.getClip();
-                clip.open(audioInput);
-                clip.start();
-           } else{
-               System.out.println("Cannot find file");
-           }
-       } catch (Exception e) {
-           e.printStackTrace();
-       }
+            if(musicPath.exists()){
+                    AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+                    clip = AudioSystem.getClip();
+                    clip.open(audioInput);
+                    clip.start();
+            } else{
+                System.out.println("Cannot find file");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void stopMusic(){

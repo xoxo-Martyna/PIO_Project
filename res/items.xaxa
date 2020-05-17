@@ -1,8 +1,13 @@
 // Format:
 // ID itemu|Nazwa obrazka|Typ|Nazwa itemu|Punkty
-diamond_sword|gen_sword|attack|DIAMOND SWORD|15
-salvia_potion|gen_weed|health|SALVIA POTION|10
-ayahuasca_poison|gen_weed|health|AYAHUASCA POISON|-10
-iron_helmet|gen_armor|defense|IRON HELMET|10
-strass_sword|gen_sword|attack|STRASS SWROD|5
-almost_iron_helmet|gen_armor|defense|ALMOST IRON HELMET|9
+herb1|herb_pink|health|HERB 1 (LOW)|10
+herb2|herb_purple|health|HERB 2 (MEDIUM)|18
+herb3|herb_orange|health|HERB 3 (HIGH)|25
+poison1|vial|health|POISON 1 (LOW)|-8
+poison2|flask2|health|POISON 2 (MEDIUM)|-15
+poison3|flask1|health|POISON 3 (HIGH)|-20
+sword|sword|attack|SWORD|20
+knife|knife|attack|KNIFE|15
+syringe|syringe|attack|SYRINGE|10
+shield|shield|defense|SHIELD|15
+armor|armor|defense|ARMOR|30
