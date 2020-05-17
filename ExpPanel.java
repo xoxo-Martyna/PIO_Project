@@ -66,7 +66,7 @@ public class ExpPanel extends JPanel implements KeyListener {
                 } catch( Exception e ) {
                     useRTX = false;
                 }
-            }            
+            }
         } else if ( game.getState() == GameState.fight ) {
             drawFight( g2d, player );
         }
