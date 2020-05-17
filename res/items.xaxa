@@ -8,6 +8,6 @@ poison2|flask2|health|POISON 2 (MEDIUM)|-15
 poison3|flask1|health|POISON 3 (HIGH)|-20
 sword|sword|attack|SWORD|20
 knife|knife|attack|KNIFE|15
-syringe|syringe|attack|10
-shield|shield|defense|15
-armor|armor|defense|30
+syringe|syringe|attack|SYRINGE|10
+shield|shield|defense|SHIELD|15
+armor|armor|defense|ARMOR|30
