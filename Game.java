@@ -29,6 +29,7 @@ public class Game {
     private List<Level> levels;
     private Level currentLevel;
 
+    private Fight previousFight;
     private Fight currentFight;
 
     private int currentTime;
@@ -175,10 +176,13 @@ public class Game {
 
     public void endFight( boolean isWin ){
         if( isWin ){
+            previousFight = currentFight;
             currentFight = null;
             stopMusic();
             playSound(currentLevel.getId());
             setState( GameState.postWin );
+            Tile targetTile = getCurrentLevel().getTile(player.getX(), player.getY());
+            targetTile.setItem(previousFight.getOpponent().getItem());
         } else{
             currentFight = null;
             setState( GameState.postLose );

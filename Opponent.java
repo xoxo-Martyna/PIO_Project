@@ -16,16 +16,18 @@ public class Opponent implements IFightMember {
     private String name;
 
     private BufferedImage image;
+    private Item item;
 
     private static XaxaLoader factory = null;
 
-    public Opponent( String id, String name, int healthPoints, int defensePoints, int attackPoints ) {
+    public Opponent( String id, String name, int healthPoints, int defensePoints, int attackPoints, String it_id ) {
         this.name = name;
         this.id = id;
         this.healthPoints = healthPoints;
         this.maxHealthPoints = healthPoints;
         this.defensePoints = defensePoints;
         this.attackPoints = attackPoints;
+        this.item = Item.create(it_id);
 
         loadImage();
     }
@@ -42,7 +44,8 @@ public class Opponent implements IFightMember {
                 oppInfo[0], oppInfo[1],
                 Integer.parseInt( oppInfo[2] ),
                 Integer.parseInt( oppInfo[3] ),
-                Integer.parseInt( oppInfo[4] )
+                Integer.parseInt( oppInfo[4] ),
+                oppInfo[5]
             );  
         } catch( IOException e ) {
         }
@@ -83,6 +86,10 @@ public class Opponent implements IFightMember {
     
     public String getId(){
         return id;
+    }
+
+    public Item getItem(){
+        return item;
     }
 
     public void setHealthPoints( int hp ) {

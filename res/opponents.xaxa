@@ -1,11 +1,11 @@
 // Format:
-// ID opponenta|Nazwa opponenta|HP|DP|AP
-gen_opponent|Generic|70|15|20
-lean|Lean|50|10|15
-blueman|BlueMan|65|15|10
-dimitri|Dimitri|40|10|15
-magic_mushroom|Magic Mushroom|50|20|15
-siren|Siren|70|20|15
-cyclop|Cyclop|80|20|35
-frog|Heavy Frog|70|20|15
-bear|Grizzly Bear|100|50|40
+// ID opponenta|Nazwa opponenta|HP|DP|AP|id itemu
+gen_opponent|Generic|70|15|20|diamond_sword
+lean|Lean|50|10|15|salvia_potion
+blueman|BlueMan|65|15|10|salvia_potion
+dimitri|Dimitri|40|10|15|iron_helmet
+magic_mushroom|Magic Mushroom|50|20|15|iron_helmet
+siren|Siren|70|20|15|strass_sword
+cyclop|Cyclop|80|20|35|almost_iron_helmet
+frog|Heavy Frog|70|20|15|strass_sword
+bear|Grizzly Bear|100|50|40|almost_iron_helmet
