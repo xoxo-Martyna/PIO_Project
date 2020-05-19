@@ -76,22 +76,21 @@ SPRINT 3
 TO DO:
 podzial:
     martyna:
-        - wincyj itemkow w bazie itemow
-        - zrobić poziomy
+        - wincyj itemkow w bazie itemow [DONE]
+        - zrobić poziomy [almost]
     hubert:
-        - loot przeciwnika <==== <==== <====
-        - PodDkŁaD mUzYcZny
+        - loot przeciwnika [DONE]
+        - PodDkŁaD mUzYcZny [almost]
     kacper A: 
-        - błagam wygrywalna walka
+        - błagam wygrywalna walka [DONE]
         - latarka
     artur: 
-        - UI
-        - przeciwnicy
+        - UI [DONE, jeszcze tylko upięknić]
+        - przeciwnicy [DONE]
     ola:
         - tUo do walki
-        - tamte elementy z tych testów
+        - tamte elementy z tych testów [DONE]
     kacper S:
-        - dokończyć muzykę
+        - dokończyć muzykę [DONE]
         - wincyj oświetlenia bo czemu nie
-        - (laser)
 */
