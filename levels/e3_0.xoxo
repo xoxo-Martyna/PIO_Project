@@ -14,3 +14,5 @@ MoveableTile w_scaffolding 3 7 f_dirt_1 heavy
 MoveableTile w_scaffolding 4 7 f_dirt_1 light
 
 LightSource ambient 1.0 1.0 1.0
+
+Music outside

@@ -16,7 +16,7 @@ public class Main {
             System.out.println( e + "\nNie mozna uruchomic plików z poziomami" );
             return;
         }
-        game.setLevel( "example" );
+        game.setLevel( "e1_0" );
         
         ExpPanel expPanel = new ExpPanel( game );
         GameFrame frame = new GameFrame( game );

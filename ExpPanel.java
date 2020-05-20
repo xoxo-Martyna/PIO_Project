@@ -13,6 +13,8 @@ public class ExpPanel extends JPanel implements KeyListener {
 
     private BufferedImage imageArmor, imageSword;// , imageWeed;
     private BufferedImage attackBar, healthBar, defenseBar;
+    private BufferedImage sidebarOverlay;
+    private BufferedImage boss1BG, boss2BG, boss3BG, standard1BG, standard2BG, standard3BG;
 
     private final int imageSize = 64;
     private final int levelSize = 10;
@@ -34,14 +36,24 @@ public class ExpPanel extends JPanel implements KeyListener {
             imageArmor = ImageIO.read(new File( "res/items/outline_armor.png" ));
             imageSword = ImageIO.read(new File( "res/items/outline_sword.png" ));
             // imageWeed = ImageIO.read(new File ("res/items/outline_weed.png"));
+
             attackBar = ImageIO.read(new File( "res/attack_bar.png" ));
             defenseBar = ImageIO.read(new File( "res/defense_bar.png" ));
             healthBar = ImageIO.read(new File( "res/health_bar.png" ));
+            sidebarOverlay = ImageIO.read(new File( "res/sidebar.png" ));
+
+            boss1BG = ImageIO.read(new File("res/background/1boss.png"));
+            boss2BG = ImageIO.read(new File("res/background/2boss.png"));
+            boss3BG = ImageIO.read(new File("res/background/3boss.png"));
+
+            standard1BG = ImageIO.read(new File("res/background/1standard.png"));
+            standard2BG = ImageIO.read(new File("res/background/2standard.png"));
+            standard3BG = ImageIO.read(new File("res/background/3standard.png"));
         } catch ( IOException e ) {
             e.printStackTrace();
         }
 
-        setBackground(new Color(100, 100, 200));
+        setBackground(new Color(13, 12, 10));
         setPreferredSize( new Dimension( levelAreaWidth + 4 * spaceSize + 3 * imageSize, levelAreaWidth ) );
 
         addKeyListener( this );
@@ -85,6 +97,8 @@ public class ExpPanel extends JPanel implements KeyListener {
         drawHealthBar( g2d, player );
         drawDefenseBar( g2d, player );
         drawAttackBar( g2d, player );
+
+        g2d.drawImage( sidebarOverlay, levelAreaWidth, 0, this );
 
         drawEquipment( g2d, player );
     }
@@ -140,22 +154,49 @@ public class ExpPanel extends JPanel implements KeyListener {
         int x = 50, y = 90, d = 30, w = 160, h = 160;
         Fight fight = game.getCurrentFight();
 
+        drawFightBackgoround( g2d, fight.getOpponent() );
+
+        g2d.setColor( new Color(255, 255, 255, 100));
         for( int i = 0; i < 2; i++ )
             for( int j = 0; j < 3; j++ )
-                g2d.drawRect( x + j * (w+d), y + i * 250, w, h );
+                g2d.fillRect( x + j * (w+d), y + i * 250, w, h );
         
+        g2d.setColor( Color.BLACK );
         if( fight.isPlayerTurn() ){
             for( int i = 0; i < 3; i++ ) {
                 if( i != fight.getXCursor() ){
+                    g2d.drawRect( x + i * (w+d), y, w, h );
                     g2d.drawRect( x + 1 + i * (w+d), y + 1, w - 2, h - 2);
-                    g2d.drawRect( x + 2 + i * (w+d), y + 2, w - 4, h - 4);
                 }
             }
         }
 
-        drawOpponent( g2d, game.getCurrentFight().getOpponent(), 16 + x + fight.getOpponentPosition() * (w+d), y + 18 );
+        drawOpponent( g2d, fight.getOpponent(), 16 + x + fight.getOpponentPosition() * (w+d), y + 18 );
 
         g2d.drawImage( player.getImageDown().getScaledInstance( 128, 128, Image.SCALE_DEFAULT ), 16 + x + fight.getPlayerPosition() * (w+d), y + 268, this );
+    }
+
+    private void drawFightBackgoround( Graphics2D g2d, Opponent opponent ){
+        String lvlID = game.getCurrentLevel().getId();
+
+        if( lvlID.contains("e1") ){
+            if( opponent.getId().equals("frog") )
+                g2d.drawImage( boss1BG, 0, 0, this );
+            else
+                g2d.drawImage( standard1BG, 0, 0, this );
+        }
+        else if( lvlID.contains("e2") ){
+            if( opponent.getId().equals("cyclops") )
+                g2d.drawImage( boss2BG, 0, 0, this );
+            else
+                g2d.drawImage( standard2BG, 0, 0, this );
+        }
+        else if( lvlID.contains("e3") ){
+            if( opponent.getId().equals("bear") )
+                g2d.drawImage( boss3BG, 0, 0, this );
+            else
+                g2d.drawImage( standard3BG, 0, 0, this );
+        }
     }
 
     private void drawOpponent( Graphics2D g2d, Opponent opponent, int x, int y ) {
@@ -208,7 +249,6 @@ public class ExpPanel extends JPanel implements KeyListener {
         g2d.setColor(new Color(210, 210, 210));
 
         try {
-            g2d.fill( new Rectangle( x, y, imageSize, imageSize ) );
             g2d.drawImage( imageSword, x, y, this );
             g2d.drawImage( player.getItem( 0, 0 ).getImage(), x, y, this );
         } catch ( NullPointerException e ) {
@@ -216,7 +256,6 @@ public class ExpPanel extends JPanel implements KeyListener {
 
         try {
             x += isd;
-            g2d.fill( new Rectangle( x, y, imageSize, imageSize ) );
             g2d.drawImage( imageArmor, x, y, this );
             g2d.drawImage( player.getItem( 1, 0 ).getImage(), x, y, this );
         } catch ( NullPointerException e ) {
@@ -224,7 +263,6 @@ public class ExpPanel extends JPanel implements KeyListener {
 
         try {
             x += isd;
-            g2d.fill( new Rectangle( x, y, imageSize, imageSize ) );
             g2d.drawImage( imageArmor, x, y, this );
             g2d.drawImage( player.getItem( 2, 0 ).getImage(), x, y, this );
         } catch ( NullPointerException e ) {
@@ -232,7 +270,6 @@ public class ExpPanel extends JPanel implements KeyListener {
 
         for ( y += imageSize + 5 * spaceSize, i = 1; y < equipmentPosition + 3 * isd; y += isd, i++ )
             for ( x = levelAreaWidth + spaceSize, j = 0; x < getSize().width; x += isd, j++ ) {
-                g2d.fill( new Rectangle( x, y, imageSize, imageSize ) );
                 try {
                     g2d.drawImage( player.getItem( j, i ).getImage(), x, y, this );
                 } catch ( ArrayIndexOutOfBoundsException | NullPointerException e ) {
@@ -247,7 +284,7 @@ public class ExpPanel extends JPanel implements KeyListener {
     private void drawEquipmentCursor( Graphics2D g2d, Player player ) {
         int x, y, isd = imageSize + spaceSize;
 
-        g2d.setColor( Color.BLACK );
+        g2d.setColor( new Color( 0, 255, 255 ) );
 
         if ( player.getItemsY() == 0 )
             y = equipmentPosition;

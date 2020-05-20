@@ -28,6 +28,7 @@ public class Game {
 
     private List<Level> levels;
     private Level currentLevel;
+    private Level previousLevel;
 
     private Fight previousFight;
     private Fight currentFight;
@@ -48,6 +49,7 @@ public class Game {
     public void handleGameLoop() {
         if ( state == GameState.postWin && currentTime == 60 ) {
             setState( GameState.exploration );
+            currentFight = null;
         } else {
             currentLevel.handleGameLoop( this );
         }
@@ -78,10 +80,20 @@ public class Game {
     }
 
     public Level setLevel( String id ) {
-        if(clip != null)
-            stopMusic();
-        playSound(id);
+        if(currentLevel != null){
+            previousLevel = currentLevel;
+        }
         currentLevel = getLevel( id );
+        if(previousLevel != null && previousLevel.getMusic().equals(currentLevel.getMusic()) ){
+            ;
+        } else {
+            if(clip != null)
+                stopMusic();
+        
+        playSound(currentLevel.getMusic()); 
+        }
+       
+        
         player.setX( currentLevel.getSpawnX() );
         player.setY( currentLevel.getSpawnY() );
         player.resetFacing();
@@ -124,19 +136,23 @@ public class Game {
     }
 
     public void startFight( Fight fight ){
-        if(clip != null)
-            stopMusic();
-        playSound(fight.getOpponent().getId());
         currentFight = fight;
+        if(currentFight.getOpponent().getId().equals("cyclops") || currentFight.getOpponent().getId().equals("bear") ){
+            if(clip != null)
+                stopMusic();
+            playSound(fight.getOpponent().getId());
+        }
         state = GameState.fight;
     }
 
     public void endFight( boolean isWin ){
         if( isWin ){
             previousFight = currentFight;
-            currentFight = null;
-            stopMusic();
-            playSound(currentLevel.getId());
+            if(currentFight.getOpponent().getId().equals("cyclops") || currentFight.getOpponent().getId().equals("bear") ){
+                stopMusic();
+                playSound(currentLevel.getMusic());
+            }
+            
             setState( GameState.postWin );
             Tile targetTile = getCurrentLevel().getTile(player.getX(), player.getY());
             targetTile.setItem(previousFight.getOpponent().getItem());
@@ -173,9 +189,8 @@ public class Game {
     }
 
     public void stopMusic(){
-        clip.stop();
+        if (clip != null)
+            clip.stop();
     }
-
-    
 }
 
