@@ -28,6 +28,7 @@ public class Game {
 
     private List<Level> levels;
     private Level currentLevel;
+    private Level previousLevel;
 
     private Fight previousFight;
     private Fight currentFight;
@@ -79,15 +80,19 @@ public class Game {
     }
 
     public Level setLevel( String id ) {
+        if(currentLevel != null){
+            previousLevel = currentLevel;
+        }
         currentLevel = getLevel( id );
-        if(currentLevel.getMusic() == null){
+        if(previousLevel != null && previousLevel.getMusic().equals(currentLevel.getMusic()) ){
             ;
-        }else{
+        } else {
             if(clip != null)
-            stopMusic();
+                stopMusic();
         
         playSound(currentLevel.getMusic()); 
         }
+       
         
         player.setX( currentLevel.getSpawnX() );
         player.setY( currentLevel.getSpawnY() );
@@ -131,9 +136,7 @@ public class Game {
     }
 
     public void startFight( Fight fight ){
-        if(clip != null)
-            stopMusic();
-        playSound(fight.getOpponent().getId());
+       
         currentFight = fight;
         state = GameState.fight;
     }
@@ -141,8 +144,6 @@ public class Game {
     public void endFight( boolean isWin ){
         if( isWin ){
             previousFight = currentFight;
-            stopMusic();
-            playSound(currentLevel.getId());
             setState( GameState.postWin );
             Tile targetTile = getCurrentLevel().getTile(player.getX(), player.getY());
             targetTile.setItem(previousFight.getOpponent().getItem());
