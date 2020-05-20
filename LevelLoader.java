@@ -220,6 +220,8 @@ public class LevelLoader {
                     )
                 );
             }
-        } 
+        } else if ( args[0].equals("Music") ){
+            target.setMusic(args[1]);
+        }
     }
 }

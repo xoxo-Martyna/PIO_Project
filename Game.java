@@ -79,10 +79,16 @@ public class Game {
     }
 
     public Level setLevel( String id ) {
-        if(clip != null)
-            stopMusic();
-        playSound(id);
         currentLevel = getLevel( id );
+        if(currentLevel.getMusic() == null){
+            ;
+        }else{
+            if(clip != null)
+            stopMusic();
+        
+        playSound(currentLevel.getMusic()); 
+        }
+        
         player.setX( currentLevel.getSpawnX() );
         player.setY( currentLevel.getSpawnY() );
         player.resetFacing();
