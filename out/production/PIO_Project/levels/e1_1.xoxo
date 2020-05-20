@@ -17,6 +17,6 @@ Item syringe 6 1
 
 Opponent blueman 7 4
 
-LightSource ambient 1.0 1.0 1.0
+LightSource ambient 0.45 0.45 0.45
 
 Music intro

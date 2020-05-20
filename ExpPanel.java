@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 public class ExpPanel extends JPanel implements KeyListener {
     private Game game;
 
-    private BufferedImage imageArmor, imageSword, imageFlashlight;// , imageWeed;
+    private BufferedImage imageArmor, imageSword;// , imageWeed;// , imageWeed;
     private BufferedImage attackBar, healthBar, defenseBar;
     private BufferedImage sidebarOverlay;
     private BufferedImage boss1BG, boss2BG, boss3BG, standard1BG, standard2BG, standard3BG;
@@ -35,7 +35,7 @@ public class ExpPanel extends JPanel implements KeyListener {
         try {
             imageArmor = ImageIO.read(new File( "res/items/outline_armor.png" ));
             imageSword = ImageIO.read(new File( "res/items/outline_sword.png" ));
-            imageFlashlight = ImageIO.read(new File( "res/items/outline_flashlight.png" ));
+            // imageFlashlight = ImageIO.read(new File( "res/items/outline_flashlight.png" ));
             // imageWeed = ImageIO.read(new File ("res/items/outline_weed.png"));
 
             attackBar = ImageIO.read(new File( "res/attack_bar.png" ));
@@ -268,7 +268,7 @@ public class ExpPanel extends JPanel implements KeyListener {
 
         try {
             x += isd;
-            g2d.drawImage( imageFlashlight, x, y, this );
+            g2d.drawImage( imageArmor, x, y, this );
             g2d.drawImage( player.getItem( 2, 0 ).getImage(), x, y, this );
         } catch ( NullPointerException e ) {
         }
