@@ -20,7 +20,7 @@ public class Player { // implements IFightMember {
     public static final int maxAttackPoints = 70;
     private final int defaultAttackPoints = 1;
 
-    private Item items[][]; // dla y == 0, mamy eq z miejscem na miecz i zbroje
+    private Item items[][]; // dla y == 0, mamy eq z miejscem na miecz, zbroje i latarkę
     private final int itemsH = 3; // dla x == 0, miejsce na miecz
     private final int itemsW = 3; // dla x == 1 lub 2, miejsce na zbroje
     private int itemsX;
@@ -122,8 +122,6 @@ public class Player { // implements IFightMember {
         int pp = 0;
         if( items[0][1] != null )
             pp += ((DefenseItem)items[0][1]).getProtectPoints();
-        if( items[0][2] != null )
-            pp += ((DefenseItem)items[0][2]).getProtectPoints();
         return pp;
     }
   
@@ -139,9 +137,7 @@ public class Player { // implements IFightMember {
     }
 
     public Item getDefenseItem( int x ){
-        if( x == 1 )
             return items[0][1];
-        return items[0][2];
     }
 
     public Item getItem( int x, int y ){
@@ -271,10 +267,6 @@ public class Player { // implements IFightMember {
     private void useDefenseItem(DefenseItem item){
         if( items[0][1] == null ) {
             items[0][1] = item;
-            deleteCurrentItem();
-        }
-        else if ( items[0][2] == null ) {
-            items[0][2] = item;
             deleteCurrentItem();
         }
         else {
