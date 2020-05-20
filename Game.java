@@ -136,14 +136,23 @@ public class Game {
     }
 
     public void startFight( Fight fight ){
-       
         currentFight = fight;
+        if(currentFight.getOpponent().getId().equals("cyclops") || currentFight.getOpponent().getId().equals("bear") ){
+            if(clip != null)
+                stopMusic();
+            playSound(fight.getOpponent().getId());
+        }
         state = GameState.fight;
     }
 
     public void endFight( boolean isWin ){
         if( isWin ){
             previousFight = currentFight;
+            if(currentFight.getOpponent().getId().equals("cyclops") || currentFight.getOpponent().getId().equals("bear") ){
+                stopMusic();
+                playSound(currentLevel.getMusic());
+            }
+            
             setState( GameState.postWin );
             Tile targetTile = getCurrentLevel().getTile(player.getX(), player.getY());
             targetTile.setItem(previousFight.getOpponent().getItem());
