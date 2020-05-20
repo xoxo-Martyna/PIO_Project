@@ -10,6 +10,8 @@ public class Level {
 
     private List<LightSource> lights;
 
+    private String musicPath;
+
     private int spawnX;
     private int spawnY;
 
@@ -75,5 +77,13 @@ public class Level {
 
     public int getWidth(){
         return width;
+    }
+
+    public String getMusic(){
+        return musicPath;
+    }
+
+    public void setMusic(String musicPath){
+        this.musicPath = musicPath;
     }
 }
