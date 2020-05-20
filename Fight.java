@@ -97,7 +97,7 @@ public class Fight {
         }
     }
 
-    private void checkEndFight() {
+    public void checkEndFight() {
         if ( player.getHealthPoints() <= 0 ) {
             game.endFight( false );
         } else if ( opponent.getHealthPoints() <= 0 ) {

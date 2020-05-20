@@ -259,6 +259,15 @@ public class Player { // implements IFightMember {
     }
 
     private void useHealthItem( HealthItem item ){
+        if( game.getState() == GameState.fight )
+            if( item.getRecoverPoints() < 0 ){
+                Opponent opponent = game.getCurrentFight().getOpponent();
+                opponent.setHealthPoints( opponent.getHealthPoints()+item.getRecoverPoints() );
+                game.getCurrentFight().checkEndFight();
+                deleteCurrentItem();
+                return;
+            }
+
         if( healthPoints == maxHealthPoints )
                 return;
             
