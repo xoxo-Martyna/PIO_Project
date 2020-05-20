@@ -146,7 +146,7 @@ public class Game {
     }
 
     public void endFight( boolean isWin ){
-        if( isWin ){
+        if( isWin && !currentFight.getOpponent().getId().equals("bear")){
             previousFight = currentFight;
             if(currentFight.getOpponent().getId().equals("cyclops") || currentFight.getOpponent().getId().equals("bear") ){
                 stopMusic();
@@ -156,7 +156,9 @@ public class Game {
             setState( GameState.postWin );
             Tile targetTile = getCurrentLevel().getTile(player.getX(), player.getY());
             targetTile.setItem(previousFight.getOpponent().getItem());
-        } else{
+        }else if(isWin && currentFight.getOpponent().getId().equals("bear") ){
+            setState( GameState.postFinalWin );
+        } else {
             currentFight = null;
             setState( GameState.postLose );
         }

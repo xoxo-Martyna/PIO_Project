@@ -91,6 +91,10 @@ public class ExpPanel extends JPanel implements KeyListener {
         if( game.getState() == GameState.postWin ){
             drawYouWon( g2d );
         }
+
+        if( game.getState() == GameState.postFinalWin ){
+            drawFinalGameOver( g2d );
+        }
     }
     
     private void drawSidePanel( Graphics2D g2d, Player player ) {
@@ -318,6 +322,10 @@ public class ExpPanel extends JPanel implements KeyListener {
 
     private void drawGameOver( Graphics2D g2d ){
         drawDebugOver( g2d, "GAME OVER" );
+    }
+
+    private void drawFinalGameOver( Graphics2D g2d ){
+        drawDebugOver( g2d, "You're a BOSS" );
     }
 
     private void drawYouWon( Graphics2D g2d ){
