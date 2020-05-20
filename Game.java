@@ -48,6 +48,7 @@ public class Game {
     public void handleGameLoop() {
         if ( state == GameState.postWin && currentTime == 60 ) {
             setState( GameState.exploration );
+            currentFight = null;
         } else {
             currentLevel.handleGameLoop( this );
         }
@@ -134,7 +135,6 @@ public class Game {
     public void endFight( boolean isWin ){
         if( isWin ){
             previousFight = currentFight;
-            currentFight = null;
             stopMusic();
             playSound(currentLevel.getId());
             setState( GameState.postWin );
@@ -173,9 +173,8 @@ public class Game {
     }
 
     public void stopMusic(){
-        clip.stop();
+        if (clip != null)
+            clip.stop();
     }
-
-    
 }
 
