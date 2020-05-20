@@ -137,7 +137,7 @@ public class Game {
 
     public void startFight( Fight fight ){
         currentFight = fight;
-        if(currentFight.getOpponent().getId().equals("cyclops") || currentFight.getOpponent().getId().equals("bear") ){
+        if(currentFight.getOpponent().getId().equals("cyclops") || currentFight.getOpponent().getId().equals("bear") || currentFight.getOpponent().getId().equals("frog")){
             if(clip != null)
                 stopMusic();
             playSound(fight.getOpponent().getId());
