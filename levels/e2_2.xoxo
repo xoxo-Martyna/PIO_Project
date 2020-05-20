@@ -14,6 +14,6 @@ MoveableTile w_scaffolding 2 7 f_glass_1 light
 Item herb3 1 2
 Item sword 2 3
 
-Opponent bear 8 6
+Opponent dimitri 8 6
 
 LightSource ambient 1.0 1.0 1.0
