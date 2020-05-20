@@ -148,7 +148,7 @@ public class Game {
     public void endFight( boolean isWin ){
         if( isWin && !currentFight.getOpponent().getId().equals("bear")){
             previousFight = currentFight;
-            if(currentFight.getOpponent().getId().equals("cyclops") || currentFight.getOpponent().getId().equals("bear") ){
+            if(currentFight.getOpponent().getId().equals("cyclops") || currentFight.getOpponent().getId().equals("bear") || currentFight.getOpponent().getId().equals("frog")  ){
                 stopMusic();
                 playSound(currentLevel.getMusic());
             }
