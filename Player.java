@@ -140,7 +140,9 @@ public class Player { // implements IFightMember {
     }
 
     public Item getDefenseItem( int x ){
+        if( x == 1 )
             return items[0][1];
+        return items[0][2];
     }
 
     public Item getItem( int x, int y ){
@@ -279,6 +281,7 @@ public class Player { // implements IFightMember {
     private void useDefenseItem(DefenseItem item){
         if( items[0][1] == null ) {
             items[0][1] = item;
+            deleteCurrentItem();
         }
         else if (items[0][2] == null) {
             items[0][2] = item;
