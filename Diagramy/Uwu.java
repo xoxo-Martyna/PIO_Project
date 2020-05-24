@@ -70,27 +70,30 @@ podział;
 
 
 -------------------------------------------------------------------------
-SPRINT 3
+"SPRINT" "4"
 
+LISTA HAŃBY
 
-TO DO:
-podzial:
-    martyna:
-        - wincyj itemkow w bazie itemow [DONE]
-        - zrobić poziomy [almost]
-    hubert:
-        - loot przeciwnika [DONE]
-        - PodDkŁaD mUzYcZny [almost]
-    kacper A: 
-        - błagam wygrywalna walka [DONE]
-        - latarka
-    artur: 
-        - UI [DONE, jeszcze tylko upięknić]
-        - przeciwnicy [DONE]
-    ola:
-        - tUo do walki
-        - tamte elementy z tych testów [DONE]
-    kacper S:
-        - dokończyć muzykę [DONE]
-        - wincyj oświetlenia bo czemu nie
+1. ARTUR "LITERA E, D i L": [DOCKER]
+
+2. KACPER "BITCHING":
+LightSource.getColor
+LevelLoader.loadFromFile
+MultiplyComposite.mixColors
+
+3. HUBERT "ŁUCZNIK":
+Player.useAttackItem
+Player.useHealthItem
+Game.setLevel
+
+4. MARTYNA "SPOTIFY":
+Player.moveEQ
+GenericMoveableTile.willMove
+
+5. KACPER "I WANT TO CHANGE NICKNAMES":
+Player.useDefenseItem
+Game.endFight
+
+6. OLA "B" [DOCKER]
+
 */
