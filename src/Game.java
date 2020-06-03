@@ -32,7 +32,7 @@ public class Game {
     public Level currentLevel;
     private Level previousLevel;
 
-    private Fight previousFight;
+    public Fight previousFight;
     private Fight currentFight;
 
     private int currentTime;

@@ -1,10 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import src.Game;
-import src.LevelLoader;
-import src.Level;
-import src.Player;
+import src.*;
 
 import javax.imageio.IIOException;
 
@@ -16,6 +13,30 @@ class GameTest {
 
     @org.junit.jupiter.api.Test
     void endFight() {
+        Game game = new Game();
+        Player player = new Player(game);
+        game.setPlayer(player);
+        Opponent opponent = Opponent.create("lean");
+        Fight fight = new Fight(opponent, game);
+        game.currentLevel = null;
+        LevelLoader loader = new LevelLoader();
+        try{
+            loader.loadAllLevels(game);
+            Level testlevel = game.getLevel("e1_0");
+            game.setLevel("e1_0");
+            Tile targetTile = game.getCurrentLevel().getTile(player.getX(), player.getY());
+
+
+
+
+
+            assertEquals(targetTile.getItem(), "");
+        }catch (IOException e ) {
+            fail();
+        }
+
+
+        //assertEquals();
     }
 
     /*public void endFight( boolean isWin ){
