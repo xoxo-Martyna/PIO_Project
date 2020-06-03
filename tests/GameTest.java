@@ -1,5 +1,15 @@
 package tests;
 
+import org.junit.jupiter.api.Test;
+import src.Game;
+import src.LevelLoader;
+import src.Level;
+import src.Player;
+
+import javax.imageio.IIOException;
+
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
@@ -26,4 +36,29 @@ class GameTest {
             setState( GameState.postLose );
         }
     }*/
+
+    @Test
+    void setLevel(){
+        Game game = new Game();
+        Player player = new Player(game);
+        game.setPlayer(player);
+        LevelLoader loader = new LevelLoader();
+        game.currentLevel = null;
+
+        try {
+            loader.loadAllLevels(game);
+            Level testlevel = game.getLevel("e1_0");
+
+            game.setLevel("e1_0");
+
+            assertEquals(game.getPlayer().getX(), testlevel.getSpawnX() );
+            assertEquals(game.getPlayer().getY(), testlevel.getSpawnY() );
+
+            assertEquals(game.getCurrentLevel(), testlevel);
+
+
+        } catch (IOException e) {
+            fail();
+        }
+    }
 }
