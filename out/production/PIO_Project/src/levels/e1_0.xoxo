@@ -1,27 +1,27 @@
 Dimensions 10 10
 SpawnPoint 1 2
 DoorTile d_1 0 8 e1_1 1 1
-src.Tile w_concrete1 0 0 8 0 9 0 9 1 9 2 9 7 9 8 9 9 8 9 7 9 4 9 3 9 1 9 2 9 0 9 0 1 0 2 0 3 0 4 0 5 0 6 0 7 9 3
-src.Tile w_concretescaffold2_1 1 0 6 0
-src.Tile w_concrete1_1a 2 0
-src.Tile w_concrete1_1c 3 0 7 0
-src.Tile w_concretescaffold1 4 0 4 1
-src.Tile w_scaffolding 5 0 5 1 4 8
-src.Tile w_concrete3 6 9 5 9
-src.Tile w_window_glass 9 4 9 5 9 6 4 4 4 5 4 6
-src.Tile f_concrete2 4 2 3 3 3 6 2 3 1 2 2 1 3 1 3 2 1 3 2 6 1 6 5 3 5 2
-src.Tile f_concrete1 4 3 1 1 2 2
-src.Tile f_metal+water 3 4 2 4 1 4
+Tile w_concrete1 0 0 8 0 9 0 9 1 9 2 9 7 9 8 9 9 8 9 7 9 4 9 3 9 1 9 2 9 0 9 0 1 0 2 0 3 0 4 0 5 0 6 0 7 9 3
+Tile w_concretescaffold2_1 1 0 6 0
+Tile w_concrete1_1a 2 0
+Tile w_concrete1_1c 3 0 7 0
+Tile w_concretescaffold1 4 0 4 1
+Tile w_scaffolding 5 0 5 1 4 8
+Tile w_concrete3 6 9 5 9
+Tile w_window_glass 9 4 9 5 9 6 4 4 4 5 4 6
+Tile f_concrete2 4 2 3 3 3 6 2 3 1 2 2 1 3 1 3 2 1 3 2 6 1 6 5 3 5 2
+Tile f_concrete1 4 3 1 1 2 2
+Tile f_metal+water 3 4 2 4 1 4
 WaterTile waves_2 3 5 2 5 1 5
-src.Tile f_tile_1b 1 7 1 8 2 8 2 7 3 7 3 8 4 7 5 7 6 8 6 7 7 7 8 7 6 3 6 2 7 2 8 2 8 1 7 1 8 3 7 3 8 8 7 8 5 8
-src.Tile w_concretescaffold2 6 1
-src.Tile f_glass_1 7 4 6 4 5 4 5 5 6 5 7 5 8 5 8 4 8 6 7 6 6 6 5 6
+Tile f_tile_1b 1 7 1 8 2 8 2 7 3 7 3 8 4 7 5 7 6 8 6 7 7 7 8 7 6 3 6 2 7 2 8 2 8 1 7 1 8 3 7 3 8 8 7 8 5 8
+Tile w_concretescaffold2 6 1
+Tile f_glass_1 7 4 6 4 5 4 5 5 6 5 7 5 8 5 8 4 8 6 7 6 6 6 5 6
 
-src.Item herb1 8 2
-src.Item knife 8 7
+Item herb1 8 2
+Item knife 8 7
 
-src.Opponent magic_mushroom 1 6
+Opponent magic_mushroom 1 6
 
-src.LightSource ambient 0.45 0.45 0.45
+LightSource ambient 0.45 0.45 0.45
 
 Music intro
