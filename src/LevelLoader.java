@@ -82,7 +82,7 @@ public class LevelLoader {
 
         String[] args = line.split( "\\s+" );
 
-        if ( args[0].equals( "src.Tile" ) && args.length > 2 ) {
+        if ( args[0].equals( "Tile" ) && args.length > 2 ) {
             String tileId = args[1];
 
             for ( int i = 2; i < args.length; i += 2 ) {
@@ -150,7 +150,7 @@ public class LevelLoader {
 
                 target.setTile(x, y, tile);
             }
-        } else if ( args[0].equals( "src.Item" ) && args.length == 4 ) {
+        } else if ( args[0].equals( "Item" ) && args.length == 4 ) {
             Tile t = target.getTile(
                 Integer.parseInt( args[2] ),
                 Integer.parseInt( args[3] )
@@ -161,7 +161,7 @@ public class LevelLoader {
 
                 t.setItem( i );
             }
-        } else if ( args[0].equals( "src.Opponent" ) && args.length == 4 ) {
+        } else if ( args[0].equals( "Opponent" ) && args.length == 4 ) {
             Tile t = target.getTile(
                 Integer.parseInt( args[2] ),
                 Integer.parseInt( args[3] )
