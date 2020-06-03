@@ -260,7 +260,7 @@ public class Player { // implements src.IFightMember {
             useAttackItem( (AttackItem)item );
     }
 
-    private void useHealthItem( HealthItem item ){
+    public void useHealthItem( HealthItem item ){
         if( game.getState() == GameState.fight )
             if( item.getRecoverPoints() < 0 ){
                 Opponent opponent = game.getCurrentFight().getOpponent();
