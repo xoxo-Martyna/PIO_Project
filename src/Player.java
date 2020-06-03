@@ -21,7 +21,7 @@ public class Player { // implements src.IFightMember {
     public static final int maxAttackPoints = 70;
     private final int defaultAttackPoints = 1;
 
-    private Item items[][]; // dla y == 0, mamy eq z miejscem na miecz i zbroje
+    public Item items[][]; // dla y == 0, mamy eq z miejscem na miecz i zbroje
     private final int itemsH = 3; // dla x == 0, miejsce na miecz
     private final int itemsW = 3; // dla x == 1 lub 2, miejsce na zbroje
     private int itemsX;
@@ -295,7 +295,7 @@ public class Player { // implements src.IFightMember {
         }
     }
 
-    private void useAttackItem (AttackItem item){
+    public void useAttackItem (AttackItem item){
         if( items[0][0]==null ){
             items[0][0] = item;
             deleteCurrentItem();
