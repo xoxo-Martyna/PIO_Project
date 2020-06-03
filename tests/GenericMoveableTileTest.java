@@ -11,16 +11,12 @@ class GenericMoveableTileTest {
 
     private Tile floorTile;
     private boolean light;
-/*
-    @Before
-    public void  init() {
-    }
-
- */
 
     @Test
     void willMove() {
         Game game = new Game();
+        Player player = new Player( game );
+        game.setPlayer( player );
         LevelLoader loader = new LevelLoader();
 
         try {
@@ -32,53 +28,21 @@ class GenericMoveableTileTest {
         game.setLevel( "e3_0" );
 
         Level level = game.getCurrentLevel();
-        Tile tile = level.getTile(1, 1);
 
+        Tile tile = level.getTile(2, 2);
         GenericMoveableTile moveableTile = new GenericMoveableTile("w_concrete3", tile, true);
 
+        assertTrue(moveableTile.willMove(level, 1, 1, 0, 1));
+        assertTrue(moveableTile.willMove(level, 1, 1, 5, 1));
+        assertFalse(moveableTile.willMove(level, 1, 1, -2, 1));
+
+        tile = level.getTile(1, 1);
+        moveableTile = new GenericMoveableTile("w_concrete3", tile, true);
         assertFalse(moveableTile.willMove(level, 1, 1, 1, 1));
+        assertFalse(moveableTile.willMove(level, 1, 1, -2, 1));
+
+
+
+
     }
 }
-/* public boolean willMove(Level level, int x, int y, int dx, int dy) {
-        try {
-            Tile nextTile = level.getTile(x + dx, y + dy);
-            boolean intoWater = false;
-
-            if (nextTile instanceof GenericMoveableTile) {
-                boolean isLight = ((GenericMoveableTile)nextTile).isLight();
-
-                if (
-                        isLight &&
-                                ((GenericMoveableTile)nextTile).willMove(
-                                        level, x + dx, y + dy, dx, dy
-                                )
-                ) {
-                    // It changed again.
-                    nextTile = level.getTile(x + dx, y + dy);
-                } else {
-                    return false;
-                }
-            } else if (nextTile instanceof GenericWaterTile) {
-                intoWater = true;
-            } else if (nextTile.getCollidable()) {
-                return false;
-            }
-
-            if (intoWater) {
-                level.setTile(x, y, floorTile);
-                level.setTile(
-                        x + dx, y + dy,
-                        new GenericFloorTile(id)
-                );
-            } else {
-                level.setTile(x, y, floorTile);
-                level.setTile(x + dx, y + dy, this);
-
-                this.floorTile = nextTile;
-            }
-
-            return true;
-        } catch (ArrayIndexOutOfBoundsException e) {}
-
-        return false;
-    }*/
