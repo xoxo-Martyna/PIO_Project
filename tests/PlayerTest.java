@@ -1,10 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import src.AttackItem;
-import src.Game;
-import src.Item;
-import src.Player;
+import src.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,5 +24,21 @@ class PlayerTest {
         assertEquals(at.getId(), "sword");
         assertEquals(at.getAttackPoints(), 20);
         assertEquals(at.getName(), "SWORD");
+    }
+
+
+    @Test
+    void useHealthItem(){
+        Game game = new Game();
+        Player player = new Player(game);
+        HealthItem hi = (HealthItem) Item.create("herb1");
+        int health = player.getHealthPoints();
+
+        player.hurt(10);
+        player.useHealthItem(hi);
+
+        assertNotNull(hi);
+        assertEquals(health, player.getHealthPoints());
+
     }
 }
