@@ -279,7 +279,7 @@ public class Player { // implements src.IFightMember {
         deleteCurrentItem();
     }
 
-    private void useDefenseItem(DefenseItem item){
+    public void useDefenseItem(DefenseItem item){
         if( items[0][1] == null ) {
             items[0][1] = item;
             deleteCurrentItem();
