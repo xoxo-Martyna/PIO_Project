@@ -73,4 +73,25 @@ class PlayerTest {
         assertEquals(health, player.getHealthPoints());
 
     }
+
+    @Test
+    void useDefenseitem(){
+        Game game = new Game();
+        Player player = new Player(game);
+        DefenseItem di = (DefenseItem) Item.create("armor");
+
+
+        player.items[1][1] = di;
+        player.moveEQ(1,1);
+        player.useDefenseItem(di);
+
+        assertNotNull(player.items[0][1]);
+        assertEquals(player.items[0][1].getId(), di.getId());
+
+        assertEquals(di.getId(), "armor");
+        assertEquals(di.getProtectPoints(), 30);
+        assertEquals(di.getName(), "");
+
+    }
+
 }
