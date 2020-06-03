@@ -6,6 +6,38 @@ import src.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
+    @Test
+    void moveEQ() {
+        Game game = new Game();
+        Player player = new Player( game );
+
+        player.moveEQ(1, 0);
+        assertEquals(1, player.getItemsX());
+        assertEquals(0, player.getItemsY());
+
+        player.moveEQ(3, 0);
+        assertEquals(1, player.getItemsX());
+        assertEquals(0, player.getItemsY());
+
+        player.moveEQ(-1, 0);
+        assertEquals(0, player.getItemsX());
+        assertEquals(0, player.getItemsY());
+
+
+        player.moveEQ(1, 1);
+        assertEquals(1, player.getItemsX());
+        assertEquals(1, player.getItemsY());
+
+        player.moveEQ(-1, 2);
+        assertEquals(0, player.getItemsX());
+        assertEquals(1, player.getItemsY());
+
+        player.moveEQ(-1, -1);
+        assertEquals(0, player.getItemsX());
+        assertEquals(0, player.getItemsY());
+
+
+    }
 
     @Test
     void useAttackItem() {
