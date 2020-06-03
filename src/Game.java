@@ -29,7 +29,7 @@ public class Game {
     }
 
     private List<Level> levels;
-    private Level currentLevel;
+    public Level currentLevel;
     private Level previousLevel;
 
     private Fight previousFight;
@@ -91,7 +91,7 @@ public class Game {
             if(clip != null)
                 stopMusic();
         
-        playSound(currentLevel.getMusic()); 
+        playSound(currentLevel.getMusic());
         }
 
         player.setX( currentLevel.getSpawnX() );
