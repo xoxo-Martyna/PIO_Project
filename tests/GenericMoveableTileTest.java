@@ -1,6 +1,5 @@
 package tests;
 
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import src.*;
 
@@ -23,6 +22,7 @@ class GenericMoveableTileTest {
     void willMove() {
         Game game = new Game();
         LevelLoader loader = new LevelLoader();
+
         try {
             loader.loadAllLevels( game );
         } catch ( IOException e ) {
@@ -30,9 +30,12 @@ class GenericMoveableTileTest {
             return;
         }
         game.setLevel( "e3_0" );
+
         Level level = game.getCurrentLevel();
         Tile tile = level.getTile(1, 1);
+
         GenericMoveableTile moveableTile = new GenericMoveableTile("w_concrete3", tile, true);
+
         assertFalse(moveableTile.willMove(level, 1, 1, 1, 1));
     }
 }

@@ -47,7 +47,6 @@ public class Game {
         levels = new ArrayList<Level>();
     }
 
-
     public void handleGameLoop() {
         if ( state == GameState.postWin && currentTime == 60 ) {
             setState( GameState.exploration );
@@ -94,8 +93,7 @@ public class Game {
         
         playSound(currentLevel.getMusic()); 
         }
-       
-        
+
         player.setX( currentLevel.getSpawnX() );
         player.setY( currentLevel.getSpawnY() );
         player.resetFacing();
