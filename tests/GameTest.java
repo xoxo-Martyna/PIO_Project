@@ -22,15 +22,11 @@ class GameTest {
         LevelLoader loader = new LevelLoader();
         try{
             loader.loadAllLevels(game);
-            Level testlevel = game.getLevel("e1_0");
+
             game.setLevel("e1_0");
             Tile targetTile = game.getCurrentLevel().getTile(player.getX(), player.getY());
 
-
-
-
-
-            assertEquals(targetTile.getItem(), "");
+            assertEquals(null, targetTile.getItem());
         }catch (IOException e ) {
             fail();
         }
