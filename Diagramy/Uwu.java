@@ -77,22 +77,22 @@ LISTA HAŃBY
 1. ARTUR "LITERA E, D i L": [DOCKER]
 
 2. KACPER "BITCHING":
-src.LightSource.getColor
-src.LevelLoader.loadFromFile
-src.MultiplyComposite.mixColors
+LightSource.getColor
+LevelLoader.loadFromFile
+MultiplyComposite.mixColors
 
 3. HUBERT "ŁUCZNIK":
-src.Player.useAttackItem
-src.Player.useHealthItem
-src.Game.setLevel
+Player.useAttackItem
+Player.useHealthItem
+Game.setLevel
 
 4. MARTYNA "SPOTIFY":
-src.Player.moveEQ
-src.GenericMoveableTile.willMove
+Player.moveEQ
+GenericMoveableTile.willMove
 
 5. KACPER "I WANT TO CHANGE NICKNAMES":
-src.Player.useDefenseItem
-src.Game.endFight
+Player.useDefenseItem
+Game.endFight
 
 6. OLA "B" [DOCKER]
 
