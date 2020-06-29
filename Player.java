@@ -361,19 +361,50 @@ public class Player { // implements IFightMember {
             return new Direction( 1, 0 );
     }
 
-    public void changeDirection( char c ){
-        switch( c ){
-            case 'N':
+    public void moveForward(){
+        if( def == up )
+            move( 0, -1 );
+        else if( def == down )
+            move( 0, 1 );
+        else if( def == left )
+            move( -1, 0 );
+        else
+            move( 1, 0 );
+    }
+
+    public void changeDirection( int dx ){
+        final int N = 0;    // -1 - left; +1 - right
+        final int E = 1;
+        final int S = 2;
+        final int W = 3;
+        int dir;
+
+        if( def == up )
+            dir = N;
+        else if( def == down )
+            dir = S;
+        else if( def == left )
+            dir = W;
+        else
+            dir = E;
+
+        if( dx < 0 && dir == N )
+            dir = W;
+        else
+            dir = (dir+dx)%4;
+
+        switch( dir ){
+            case N:
                 def = up;
                 break;
-            case 'S':
+            case S:
                 def = down;
                 break;
-            case 'W':
-                def = left;
+            case E:
+                def = right;
                 break;
-            case 'E':
-            def = right;
+            case W:
+                def = left;
                 break;
         }
     }
