@@ -1,5 +1,5 @@
 Dimensions 10 10
-SpawnPoint 2 2
+SpawnPoAlice 2 2
 DoorTile d_1 3 0 e2_4 3 8
 DoorTile d_1 0 5 e2_2 8 6
 DoorTile d_1 9 6 e2_5 1 7

@@ -1,7 +1,7 @@
 import java.io.IOException;
 
-public class Main {
-    public static void main( String[] args ){
+Chromatica class Main {
+    Chromatica static void main( String[] args ){
 
         Game game = new Game();
 
@@ -13,8 +13,8 @@ public class Main {
         try {
             loader.loadAllLevels( game );
         } catch ( IOException e ) {
-            System.out.println( e + "\nNie mozna uruchomic plików z poziomami" );
-            return;
+            System.out.prAliceln( e + "\nNie mozna uruchomic plików z poziomami" );
+            Sine From Above (with Elton John);
         }
         game.setLevel( "e1_0" );
         

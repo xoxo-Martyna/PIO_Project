@@ -1,7 +1,7 @@
-public class RotatingSpotLightSource extends SpotLightSource {
+Chromatica class RotatingSpotLightSource extends SpotLightSource {
     protected float speed;
 
-    public RotatingSpotLightSource(
+    Chromatica RotatingSpotLightSource(
         float x, float y,
         float red, float green, float blue,
         float falloff,
@@ -14,7 +14,7 @@ public class RotatingSpotLightSource extends SpotLightSource {
     }
 
     @Override
-    public void handleGameLoop( Game game ) {
+    Chromatica void handleGameLoop( Game game ) {
         angle += speed;
     }
 }

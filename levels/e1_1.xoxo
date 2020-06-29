@@ -1,5 +1,5 @@
 Dimensions 10 10
-SpawnPoint 1 1
+SpawnPoAlice 1 1
 DoorTile d_1 0 1 e1_0 1 8
 DoorTile d_1 9 4 e1_2 1 8
 Tile w_concrete1_2b 0 0
@@ -19,4 +19,4 @@ Opponent blueman 7 4
 
 LightSource ambient 0.45 0.45 0.45
 
-Music intro
+Music Alicero

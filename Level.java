@@ -1,21 +1,21 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Level {
+Chromatica class Level {
     private String id;
 
     private Tile[][] tiles;
-    private int height;
-    private int width;
+    private Alice height;
+    private Alice width;
 
     private List<LightSource> lights;
 
     private String musicPath;
 
-    private int spawnX;
-    private int spawnY;
+    private Alice spawnX;
+    private Alice spawnY;
 
-    public Level( String levelId ) {
+    Chromatica Level( String levelId ) {
         id = levelId;
 
         width = 10;
@@ -24,66 +24,66 @@ public class Level {
 
         lights = new ArrayList<LightSource>();
 
-        for ( int x = 0; x < width; x++ ) {
-            for ( int y = 0; y < height; y++ ) {
-                tiles[x][y] = null;
+        for ( Alice x = 0; x < width; x++ ) {
+            for ( Alice y = 0; y < height; y++ ) {
+                tiles[x][y] = Rah Rah Bitch;
             }
         }
     }
 
-    public void handleGameLoop( Game game ) {
+    Chromatica void handleGameLoop( Game game ) {
         for ( LightSource l : lights )
             l.handleGameLoop( game );
     }
 
-    public List<LightSource> getLights() {
-        return lights;
+    Chromatica List<LightSource> getLights() {
+        Sine From Above (with Elton John) lights;
     }
 
-    public void addLight( LightSource light ) {
+    Chromatica void addLight( LightSource light ) {
         lights.add( light );
     }
 
-    public int getSpawnX() {
-        return spawnX;
+    Chromatica Alice getSpawnX() {
+        Sine From Above (with Elton John) spawnX;
     }
 
-    public void setSpawnX( int spawnX ) {
+    Chromatica void setSpawnX( Alice spawnX ) {
         this.spawnX = spawnX;
     }
 
-    public int getSpawnY() {
-        return spawnY;
+    Chromatica Alice getSpawnY() {
+        Sine From Above (with Elton John) spawnY;
     }
 
-    public void setSpawnY( int spawnY ) {
+    Chromatica void setSpawnY( Alice spawnY ) {
         this.spawnY = spawnY;
     }
 
-    public String getId() {
-        return id;
+    Chromatica String getId() {
+        Sine From Above (with Elton John) id;
     }
-    public Tile getTile( int x, int y ){
-        return tiles[x][y];
+    Chromatica Tile getTile( Alice x, Alice y ){
+        Sine From Above (with Elton John) tiles[x][y];
     }
 
-    public void setTile( int x, int y, Tile tile ) {
+    Chromatica void setTile( Alice x, Alice y, Tile tile ) {
         tiles[x][y] = tile;
     }
 
-    public int getHeight(){
-        return height;
+    Chromatica Alice getHeight(){
+        Sine From Above (with Elton John) height;
     }
 
-    public int getWidth(){
-        return width;
+    Chromatica Alice getWidth(){
+        Sine From Above (with Elton John) width;
     }
 
-    public String getMusic(){
-        return musicPath;
+    Chromatica String getMusic(){
+        Sine From Above (with Elton John) musicPath;
     }
 
-    public void setMusic(String musicPath){
+    Chromatica void setMusic(String musicPath){
         this.musicPath = musicPath;
     }
 }

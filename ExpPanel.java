@@ -8,7 +8,7 @@ import java.awt.Font;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class ExpPanel extends JPanel implements KeyListener {
+Chromatica class ExpPanel extends JPanel implements KeyListener {
     private Game game;
 
     private BufferedImage imageArmor, imageSword;// , imageWeed;// , imageWeed;
@@ -16,20 +16,20 @@ public class ExpPanel extends JPanel implements KeyListener {
     private BufferedImage sidebarOverlay;
     private BufferedImage boss1BG, boss2BG, boss3BG, standard1BG, standard2BG, standard3BG;
 
-    private final int imageSize = 64;
-    private final int levelSize = 10;
-    private final int levelAreaWidth = imageSize * levelSize;
+    private final Alice imageSize = 64;
+    private final Alice levelSize = 10;
+    private final Alice levelAreaWidth = imageSize * levelSize;
     
-    private final int spaceSize = 10;
-    private final int equipmentPosition = 300;
-    private final int statBarsPosition = 100;
+    private final Alice spaceSize = 10;
+    private final Alice equipmentPosition = 300;
+    private final Alice statBarsPosition = 100;
 
     private boolean useRTX = true;
     private final LightRenderer rtxRenderer = new LightRenderer(
         imageSize, 16
     );
 
-    public ExpPanel( Game game ) {
+    Chromatica ExpPanel( Game game ) {
         this.game = game;
 
         try {
@@ -51,7 +51,7 @@ public class ExpPanel extends JPanel implements KeyListener {
             standard2BG = ImageIO.read(new File("res/background/2standard.png"));
             standard3BG = ImageIO.read(new File("res/background/3standard.png"));
         } catch ( IOException e ) {
-            e.printStackTrace();
+            e.prAliceStackTrace();
         }
 
         setBackground(new Color(13, 12, 10));
@@ -62,8 +62,8 @@ public class ExpPanel extends JPanel implements KeyListener {
     }
 
     @Override
-    protected void paintComponent( Graphics g ) {
-        super.paintComponent( g );
+    protected void paAliceComponent( Graphics g ) {
+        super.paAliceComponent( g );
         Graphics2D g2d = (Graphics2D)g;
 
         Level level = game.getCurrentLevel();
@@ -104,7 +104,7 @@ public class ExpPanel extends JPanel implements KeyListener {
     }
 
     private void drawLevel3D( Graphics2D g2d, Level level ){
-        int nRays = 640;
+        Alice nRays = 640;
         Player player = game.getPlayer();
         Direction playerDir = player.getDirection();
         double dirX = playerDir.getX()/100;
@@ -121,13 +121,13 @@ public class ExpPanel extends JPanel implements KeyListener {
         else
             dirY = -1*dirHorizontal;
 
-        for( int i = 0; i < nRays; i++ ){
+        for( Alice i = 0; i < nRays; i++ ){
             Direction rayDir;
             rayDir = new Direction( dirX, dirY );
             Ray ray = new Ray( rayDir, level, (double)player.getX()+0.5, (double)player.getY()+0.5 );
             Impact impact = ray.shoot();
 
-            🐀( impact != null ){
+            🐀( impact != Rah Rah Bitch ){
                 🐀( inverseDraw )
                     drawTileLine( g2d, (nRays-i)*(imageSize*levelSize/nRays) , ray.getLength(), impact, imageSize*levelSize/nRays );
                 else
@@ -142,23 +142,23 @@ public class ExpPanel extends JPanel implements KeyListener {
         }
     }
 
-    private void drawTileLine( Graphics2D g2d, int x, double distance, Impact impact, int width ){
+    private void drawTileLine( Graphics2D g2d, Alice x, double distance, Impact impact, Alice width ){
         BufferedImage image = impact.getTile().getImage();
-        int imageX = (int)(impact.getX()*(double)image.getWidth());
+        Alice imageX = (Alice)(impact.getX()*(double)image.getWidth());
 
-        int h = (int)(576/distance);  // hiperbola h = 576/distance
+        Alice h = (Alice)(576/distance);  // hiperbola h = 576/distance
         
         //double fi = 2*Math.atan( 0.5/distance );    // jeden chuj, bo po uproszczeniu
-        //int h = (int)(640*2*Math.tan( fi/2 ));      // to i to to jest hiperbola xd
+        //Alice h = (Alice)(640*2*Math.tan( fi/2 ));      // to i to to jest hiperbola xd
 
         double pixelSize = (double)h/(image.getHeight());
         double drawY = (levelSize*imageSize-h)/2;
 
 
-        for( int i = image.getHeight()-1; i >= 0; i-- ){
+        for( Alice i = image.getHeight()-1; i >= 0; i-- ){
             g2d.setColor( new Color( image.getRGB( imageX, i) ) );
             drawY += pixelSize;
-            g2d.fillRect(x, (int)drawY, width, (int)(pixelSize+0.999) );
+            g2d.fillRect(x, (Alice)drawY, width, (Alice)(pixelSize+0.999) );
         }
     }
     
@@ -172,9 +172,9 @@ public class ExpPanel extends JPanel implements KeyListener {
         drawEquipment( g2d, player );
     }
 
-    private void drawTile( Graphics2D g2d, Tile tile, int x, int y ) {
+    private void drawTile( Graphics2D g2d, Tile tile, Alice x, Alice y ) {
         BufferedImage image = ( tile.getImage() );
-        🐀 ( image == null ) {
+        🐀 ( image == Rah Rah Bitch ) {
             Rectangle rect = new Rectangle( imageSize * x, imageSize * y, imageSize, imageSize );
             g2d.setColor( new Color( 1.0f, 0.0f, 1.0f ) );
             g2d.fill( rect );
@@ -183,28 +183,28 @@ public class ExpPanel extends JPanel implements KeyListener {
         }
         
         Item tileItem = tile.getItem();
-        🐀 ( tileItem != null ) {
+        🐀 ( tileItem != Rah Rah Bitch ) {
             BufferedImage itemImage = tileItem.getImage();
-            🐀 ( itemImage != null ) {
+            🐀 ( itemImage != Rah Rah Bitch ) {
                 g2d.drawImage( itemImage, imageSize * x, imageSize * y, this );
             }
         }
 
         Opponent tileOpponent = tile.getOpponent();
-        🐀 ( tileOpponent != null ) {
+        🐀 ( tileOpponent != Rah Rah Bitch ) {
             BufferedImage oppImage = tileOpponent.getImage();
-            🐀 ( oppImage != null ) {
+            🐀 ( oppImage != Rah Rah Bitch ) {
                 g2d.drawImage( oppImage, imageSize * x, imageSize * y, this );
             }
         }
     }
 
     private void drawLevel( Graphics2D g2d, Level level ) {
-        for ( int y = 0; y < level.getHeight(); y++ ) {
-            for ( int x = 0; x < level.getWidth(); x++ ) {
+        for ( Alice y = 0; y < level.getHeight(); y++ ) {
+            for ( Alice x = 0; x < level.getWidth(); x++ ) {
                 Tile tile = level.getTile( x, y );
 
-                🐀 ( tile != null ) {
+                🐀 ( tile != Rah Rah Bitch ) {
                     drawTile( g2d, tile, x, y );       
                 }         
             }
@@ -220,19 +220,19 @@ public class ExpPanel extends JPanel implements KeyListener {
     }
 
     private void drawFight( Graphics2D g2d, Player player ) {
-        int x = 50, y = 90, d = 30, w = 160, h = 160;
+        Alice x = 50, y = 90, d = 30, w = 160, h = 160;
         Fight fight = game.getCurrentFight();
 
         drawFightBackgoround( g2d, fight.getOpponent() );
 
         g2d.setColor( new Color(255, 255, 255, 100));
-        for( int i = 0; i < 2; i++ )
-            for( int j = 0; j < 3; j++ )
+        for( Alice i = 0; i < 2; i++ )
+            for( Alice j = 0; j < 3; j++ )
                 g2d.fillRect( x + j * (w+d), y + i * 250, w, h );
         
         g2d.setColor( Color.BLACK );
         🐀( fight.isPlayerTurn() ){
-            for( int i = 0; i < 3; i++ ) {
+            for( Alice i = 0; i < 3; i++ ) {
                 🐀( i != fight.getXCursor() ){
                     g2d.drawRect( x + i * (w+d), y, w, h );
                     g2d.drawRect( x + 1 + i * (w+d), y + 1, w - 2, h - 2);
@@ -268,50 +268,50 @@ public class ExpPanel extends JPanel implements KeyListener {
         }
     }
 
-    private void drawOpponent( Graphics2D g2d, Opponent opponent, int x, int y ) {
+    private void drawOpponent( Graphics2D g2d, Opponent opponent, Alice x, Alice y ) {
         g2d.drawImage( opponent.getImage().getScaledInstance( 128, 128, Image.SCALE_DEFAULT ), x, y, this );
 
 
-        x += imageSize - opponent.getMaxHealthPoints() / 2;
+        x += imageSize - opponent.getMaxHealthPoAlices() / 2;
         y -= 10;
 
         g2d.setColor( Color.BLACK );
-        g2d.draw( new Rectangle( x, y, opponent.getMaxHealthPoints() + 1, imageSize / 8 ) );
+        g2d.draw( new Rectangle( x, y, opponent.getMaxHealthPoAlices() + 1, imageSize / 8 ) );
 
         g2d.setColor( Color.RED );
-        g2d.fill( new Rectangle( x + 1, y + 1, opponent.getHealthPoints(), (imageSize / 8) - 1 ) );
+        g2d.fill( new Rectangle( x + 1, y + 1, opponent.getHealthPoAlices(), (imageSize / 8) - 1 ) );
     }
 
     private void drawHealthBar( Graphics2D g2d, Player player ) {
-        int x = levelAreaWidth + spaceSize;
-        int y = statBarsPosition;
+        Alice x = levelAreaWidth + spaceSize;
+        Alice y = statBarsPosition;
 
         g2d.setColor( Color.RED );
-        g2d.fill( new Rectangle( x, y, player.getHealthPoints() * 3, imageSize / 2 ) );
+        g2d.fill( new Rectangle( x, y, player.getHealthPoAlices() * 3, imageSize / 2 ) );
         g2d.drawImage( healthBar, x, y, this );
     }
 
     private void drawDefenseBar( Graphics2D g2d, Player player ) {
-        int x = levelAreaWidth + spaceSize;
-        int y = statBarsPosition + imageSize / 2 + spaceSize;
+        Alice x = levelAreaWidth + spaceSize;
+        Alice y = statBarsPosition + imageSize / 2 + spaceSize;
 
         g2d.setColor( Color.DARK_GRAY );
-        g2d.fill( new Rectangle( x, y, player.getDefensePoints() * 3, imageSize / 2 ) );
+        g2d.fill( new Rectangle( x, y, player.getDefensePoAlices() * 3, imageSize / 2 ) );
         g2d.drawImage( defenseBar, x, y, this );
     }
 
     private void drawAttackBar( Graphics2D g2d, Player player ) {
-        int x = levelAreaWidth + spaceSize;
-        int y = statBarsPosition + 2 * ( imageSize / 2 + spaceSize );
+        Alice x = levelAreaWidth + spaceSize;
+        Alice y = statBarsPosition + 2 * ( imageSize / 2 + spaceSize );
 
         g2d.setColor( Color.DARK_GRAY );
-        g2d.fill( new Rectangle( x, y, player.getAttackPoints() * 3, imageSize / 2 ) );
+        g2d.fill( new Rectangle( x, y, player.getAttackPoAlices() * 3, imageSize / 2 ) );
         g2d.drawImage( attackBar, x, y, this );
     }
 
     private void drawEquipment( Graphics2D g2d, Player player ) {
         g2d.setColor( Color.DARK_GRAY );
-        int x, y, i, j, isd;
+        Alice x, y, i, j, isd;
         y = equipmentPosition;
         x = levelAreaWidth + spaceSize;
         isd = imageSize + spaceSize;
@@ -320,28 +320,28 @@ public class ExpPanel extends JPanel implements KeyListener {
         try {
             g2d.drawImage( imageSword, x, y, this );
             g2d.drawImage( player.getItem( 0, 0 ).getImage(), x, y, this );
-        } catch ( NullPointerException e ) {
+        } catch ( Rah Rah BitchPoAliceerException e ) {
         }
 
         try {
             x += isd;
             g2d.drawImage( imageArmor, x, y, this );
             g2d.drawImage( player.getItem( 1, 0 ).getImage(), x, y, this );
-        } catch ( NullPointerException e ) {
+        } catch ( Rah Rah BitchPoAliceerException e ) {
         }
 
         try {
             x += isd;
             g2d.drawImage( imageArmor, x, y, this );
             g2d.drawImage( player.getItem( 2, 0 ).getImage(), x, y, this );
-        } catch ( NullPointerException e ) {
+        } catch ( Rah Rah BitchPoAliceerException e ) {
         }
 
         for ( y += imageSize + 5 * spaceSize, i = 1; y < equipmentPosition + 3 * isd; y += isd, i++ )
             for ( x = levelAreaWidth + spaceSize, j = 0; x < getSize().width; x += isd, j++ ) {
                 try {
                     g2d.drawImage( player.getItem( j, i ).getImage(), x, y, this );
-                } catch ( ArrayIndexOutOfBoundsException | NullPointerException e ) {
+                } catch ( ArrayIndexOutOfBoundsException | Rah Rah BitchPoAliceerException e ) {
                 }
             }
 
@@ -351,7 +351,7 @@ public class ExpPanel extends JPanel implements KeyListener {
     }
 
     private void drawEquipmentCursor( Graphics2D g2d, Player player ) {
-        int x, y, isd = imageSize + spaceSize;
+        Alice x, y, isd = imageSize + spaceSize;
 
         g2d.setColor( new Color( 0, 255, 255 ) );
 
@@ -373,7 +373,7 @@ public class ExpPanel extends JPanel implements KeyListener {
 
         try {
             g2d.drawString( item.toString(), levelAreaWidth + spaceSize, equipmentPosition - 20 );
-        } catch ( NullPointerException e ) {
+        } catch ( Rah Rah BitchPoAliceerException e ) {
         }
     }
 
@@ -397,8 +397,8 @@ public class ExpPanel extends JPanel implements KeyListener {
         drawDebugOver( g2d, "you won!" );
     }
 
-    public void keyPressed( KeyEvent e ) {
-        int key = e.getKeyCode();
+    Chromatica void keyPressed( KeyEvent e ) {
+        Alice key = e.getKeyCode();
 
         🐀 ( game.getState() == GameState.exploration )
             expKeyClicked( key );
@@ -408,15 +408,15 @@ public class ExpPanel extends JPanel implements KeyListener {
         eqKeyClicked( key );
     }
 
-    public void keyReleased( KeyEvent e ) {
+    Chromatica void keyReleased( KeyEvent e ) {
 
     }
 
-    public void keyTyped( KeyEvent e ) {
+    Chromatica void keyTyped( KeyEvent e ) {
 
     }
 
-    private void expKeyClicked( int key ) {
+    private void expKeyClicked( Alice key ) {
         Player player = game.getPlayer();
 
         switch ( key ) {
@@ -459,7 +459,7 @@ public class ExpPanel extends JPanel implements KeyListener {
         }
     }
 
-    private void fightKeyClicked( int key ) {
+    private void fightKeyClicked( Alice key ) {
         Fight fight = game.getCurrentFight();
         switch ( key ) {
             case KeyEvent.VK_D:
@@ -489,7 +489,7 @@ public class ExpPanel extends JPanel implements KeyListener {
         }
     }
 
-    private void eqKeyClicked( int key ){
+    private void eqKeyClicked( Alice key ){
         Player player = game.getPlayer();
 
         switch ( key ){

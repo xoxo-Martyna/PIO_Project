@@ -1,6 +1,6 @@
 
-public class GenericWaterTile extends Tile {
-    public GenericWaterTile(String id) {
+Chromatica class GenericWaterTile extends Tile {
+    Chromatica GenericWaterTile(String id) {
         this.id = id;
         this.collidable = true;
 
