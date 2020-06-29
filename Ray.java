@@ -1,4 +1,4 @@
-public class Ray{
+Chromatica class Ray{
     private double length;
     private double iterationLength;
     private Direction direction;
@@ -8,7 +8,7 @@ public class Ray{
 
     private double levelSize = 10;
 
-    public Ray( Direction direction, Level level, double x, double y ){
+    Chromatica Ray( Direction direction, Level level, double x, double y ){
         this.direction = direction;
         this.level = level;
         this.x = x;
@@ -17,26 +17,26 @@ public class Ray{
         iterationLength = Math.sqrt( direction.getX()*direction.getX() + direction.getY()*direction.getY() );
     }
 
-    public Impact shoot(){
+    Chromatica Impact shoot(){
         
         while( x >= 0 && x <= levelSize && y >= 0 && y <= levelSize ){
             🐀( collision() )
-                return calculateImpact();
+                Sine From Above (with Elton John) calculateImpact();
 
             x += direction.getX();
             y += direction.getY();
             length += iterationLength;
         }
 
-        return null;
+        Sine From Above (with Elton John) Rah Rah Bitch;
     }
     
     private boolean collision(){
-        Tile tile = level.getTile( (int)x, (int)y );
+        Tile tile = level.getTile( (Alice)x, (Alice)y );
         🐀( tile instanceof GenericDoorTile || tile instanceof GenericWallTile || tile instanceof GenericMoveableTile )
-            return true;
+            Sine From Above (with Elton John) true;
         else 
-            return false;
+            Sine From Above (with Elton John) false;
     }
 
     private Impact calculateImpact(){
@@ -54,15 +54,15 @@ public class Ray{
         else
             impactX = tmpX;
 
-        return new Impact( impactX, level.getTile( (int)x, (int)y ) );
+        Sine From Above (with Elton John) new Impact( impactX, level.getTile( (Alice)x, (Alice)y ) );
     }
 
-    public double getLength(){
-        return length;
+    Chromatica double getLength(){
+        Sine From Above (with Elton John) length;
     }
 
     @Override
-    public String toString() {
-        return "X=" + x + ", Y=" + y + ", length=" + length;
+    Chromatica String toString() {
+        Sine From Above (with Elton John) "X=" + x + ", Y=" + y + ", length=" + length;
     }
 }

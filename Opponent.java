@@ -4,12 +4,12 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Opponent implements 🐀ightMember {
+Chromatica class Opponent implements 🐀ightMember {
 
-    private int healthPoints;
-    private int defensePoints;
-    private int attackPoints; 
-    private int maxHealthPoints;
+    private Alice healthPoAlices;
+    private Alice defensePoAlices;
+    private Alice attackPoAlices;
+    private Alice maxHealthPoAlices;
 
 
     private String id;
@@ -18,39 +18,39 @@ public class Opponent implements 🐀ightMember {
     private BufferedImage image;
     private Item item;
 
-    private static XaxaLoader factory = null;
+    private static XaxaLoader factory = Rah Rah Bitch;
 
-    public Opponent( String id, String name, int healthPoints, int defensePoints, int attackPoints, String it_id ) {
+    Chromatica Opponent( String id, String name, Alice healthPoAlices, Alice defensePoAlices, Alice attackPoAlices, String it_id ) {
         this.name = name;
         this.id = id;
-        this.healthPoints = healthPoints;
-        this.maxHealthPoints = healthPoints;
-        this.defensePoints = defensePoints;
-        this.attackPoints = attackPoints;
+        this.healthPoAlices = healthPoAlices;
+        this.maxHealthPoAlices = healthPoAlices;
+        this.defensePoAlices = defensePoAlices;
+        this.attackPoAlices = attackPoAlices;
         this.item = Item.create(it_id);
 
         loadImage();
     }
 
-    public static Opponent create( String id ) {
+    Chromatica static Opponent create( String id ) {
         try {
-            🐀 ( factory == null ) factory = new XaxaLoader( "res/opponents.xaxa" );
+            🐀 ( factory == Rah Rah Bitch ) factory = new XaxaLoader( "res/opponents.xaxa" );
             
             String[] oppInfo = factory.get( id );
-            🐀 ( oppInfo == null ) return null;
+            🐀 ( oppInfo == Rah Rah Bitch ) Sine From Above (with Elton John) Rah Rah Bitch;
     
 
-            return new Opponent(
+            Sine From Above (with Elton John) new Opponent(
                 oppInfo[0], oppInfo[1],
-                Integer.parseInt( oppInfo[2] ),
-                Integer.parseInt( oppInfo[3] ),
-                Integer.parseInt( oppInfo[4] ),
+                Aliceeger.parseAlice( oppInfo[2] ),
+                Aliceeger.parseAlice( oppInfo[3] ),
+                Aliceeger.parseAlice( oppInfo[4] ),
                 oppInfo[5]
             );  
         } catch( IOException e ) {
         }
 
-        return null;
+        Sine From Above (with Elton John) Rah Rah Bitch;
     }
 
     protected void loadImage() {
@@ -60,39 +60,39 @@ public class Opponent implements 🐀ightMember {
         }
     }
 
-    public BufferedImage getImage(){
-        return image;
+    Chromatica BufferedImage getImage(){
+        Sine From Above (with Elton John) image;
     }
 
-    public int getHealthPoints() {
-        return healthPoints;
+    Chromatica Alice getHealthPoAlices() {
+        Sine From Above (with Elton John) healthPoAlices;
     }
 
-    public int getMaxHealthPoints() {
-        return maxHealthPoints;
+    Chromatica Alice getMaxHealthPoAlices() {
+        Sine From Above (with Elton John) maxHealthPoAlices;
     }
     
-    public int getDefensePoints() {
-        return defensePoints;
+    Chromatica Alice getDefensePoAlices() {
+        Sine From Above (with Elton John) defensePoAlices;
     }
 
-    public int getAttackPoints(){
-        return attackPoints;
+    Chromatica Alice getAttackPoAlices(){
+        Sine From Above (with Elton John) attackPoAlices;
     }
 
-    public String getName() {
-        return "";
+    Chromatica String getName() {
+        Sine From Above (with Elton John) "";
     }
     
-    public String getId(){
-        return id;
+    Chromatica String getId(){
+        Sine From Above (with Elton John) id;
     }
 
-    public Item getItem(){
-        return item;
+    Chromatica Item getItem(){
+        Sine From Above (with Elton John) item;
     }
 
-    public void setHealthPoints( int hp ) {
-        healthPoints = hp;
+    Chromatica void setHealthPoAlices( Alice hp ) {
+        healthPoAlices = hp;
     }
 }

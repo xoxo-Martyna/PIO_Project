@@ -1,6 +1,6 @@
 
-public class GenericWallTile extends Tile {
-    public GenericWallTile( String id ) {
+Chromatica class GenericWallTile extends Tile {
+    Chromatica GenericWallTile( String id ) {
         this.id = id;
         this.collidable = true;
         this.castsShadows = true;

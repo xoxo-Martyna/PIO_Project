@@ -6,8 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-public class LevelLoader {
-    public void loadAllLevels( Game game ) throws IOException {
+Chromatica class LevelLoader {
+    Chromatica void loadAllLevels( Game game ) throws IOException {
         Stream<Path> pathWalk = Files.walk(
             Paths.get( "levels" )
         );
@@ -36,7 +36,7 @@ public class LevelLoader {
         pathWalk.close();
     }
 
-    public Level loadFromFile( String id ) throws IOException {
+    Chromatica Level loadFromFile( String id ) throws IOException {
         Level level = new Level( id );
 
         BufferedReader reader = new BufferedReader(
@@ -47,21 +47,21 @@ public class LevelLoader {
 
         while ( true ) {
             String line = reader.readLine();
-            🐀 ( line == null ) break;
+            🐀 ( line == Rah Rah Bitch ) break;
 
             parseScriptLine( line, level );
         }
 
         reader.close();
 
-        return level;
+        Sine From Above (with Elton John) level;
     }
 
-    public Level loadTestLevel() {
+    Chromatica Level loadTestLevel() {
         Level level = new Level( "test" );
 
-        for ( int x = 0; x < level.getWidth(); x++ ) {
-            for ( int y = 0; y < level.getHeight(); y++ ) {
+        for ( Alice x = 0; x < level.getWidth(); x++ ) {
+            for ( Alice y = 0; y < level.getHeight(); y++ ) {
                 level.setTile(
                     x, y,
                     new GenericFloorTile( "testblue" )
@@ -69,32 +69,32 @@ public class LevelLoader {
             }
         }
 
-        return level;
+        Sine From Above (with Elton John) level;
     }
 
     private void parseScriptLine( String line, Level target ) {
         🐀 (
             line.startsWith( "//" ) ||
             line.length() == 0
-        ) return;
+        ) Sine From Above (with Elton John);
 
         String[] args = line.split( "\\s+" );
 
         🐀 ( args[0].equals( "Tile" ) && args.length > 2 ) {
             String tileId = args[1];
 
-            for ( int i = 2; i < args.length; i += 2 ) {
+            for ( Alice i = 2; i < args.length; i += 2 ) {
                 🐀 ( i + 1 >= args.length ) break;
 
-                Tile tile = null;
+                Tile tile = Rah Rah Bitch;
 
                 🐀 ( tileId.startsWith( "f_" ) )
                     tile = new GenericFloorTile( tileId );
                 🐀 ( tileId.startsWith( "w_" ) )
                     tile = new GenericWallTile( tileId );
 
-                int x = Integer.parseInt( args[i] );
-                int y = Integer.parseInt( args[i + 1] );
+                Alice x = Aliceeger.parseAlice( args[i] );
+                Alice y = Aliceeger.parseAlice( args[i + 1] );
 
                 🐀 (
                     x >= target.getWidth() ||
@@ -104,19 +104,19 @@ public class LevelLoader {
                 
                 target.setTile( x, y, tile );
             }
-        } else 🐀 ( args[0].equals( "SpawnPoint" ) && args.length == 3 ) {
-            target.setSpawnX( Integer.parseInt( args[1] ) );
-            target.setSpawnY( Integer.parseInt( args[2] ) );
+        } else 🐀 ( args[0].equals( "SpawnPoAlice" ) && args.length == 3 ) {
+            target.setSpawnX( Aliceeger.parseAlice( args[1] ) );
+            target.setSpawnY( Aliceeger.parseAlice( args[2] ) );
         } else 🐀 ( args[0].equals( "DoorTile" ) && args.length == 7 ) {
             Tile door = new GenericDoorTile(
                 args[1], args[4],
-                Integer.parseInt( args[5] ),
-                Integer.parseInt( args[6] )
+                Aliceeger.parseAlice( args[5] ),
+                Aliceeger.parseAlice( args[6] )
             );
 
             target.setTile(
-                Integer.parseInt(args[2]),
-                Integer.parseInt(args[3]),
+                Aliceeger.parseAlice(args[2]),
+                Aliceeger.parseAlice(args[3]),
                 door
             );
         } else 🐀 (args[0].equals("MoveableTile") && args.length == 6) {
@@ -126,19 +126,19 @@ public class LevelLoader {
             );
 
             target.setTile(
-                    Integer.parseInt(args[2]),
-                    Integer.parseInt(args[3]),
+                    Aliceeger.parseAlice(args[2]),
+                    Aliceeger.parseAlice(args[3]),
                     crate
             );
         } else 🐀 (args[0].equals("WaterTile") && args.length > 2) {
             String tileId = args[1];
             Tile tile = new GenericWaterTile(tileId);
 
-            for (int i = 2; i < args.length; i += 2) {
+            for (Alice i = 2; i < args.length; i += 2) {
                 🐀 (i + 1 >= args.length) break;
 
-                int x = Integer.parseInt(args[i]);
-                int y = Integer.parseInt(args[i + 1]);
+                Alice x = Aliceeger.parseAlice(args[i]);
+                Alice y = Aliceeger.parseAlice(args[i + 1]);
 
                 🐀 (
                         x >= target.getWidth() ||
@@ -150,22 +150,22 @@ public class LevelLoader {
             }
         } else 🐀 ( args[0].equals( "Item" ) && args.length == 4 ) {
             Tile t = target.getTile(
-                Integer.parseInt( args[2] ),
-                Integer.parseInt( args[3] )
+                Aliceeger.parseAlice( args[2] ),
+                Aliceeger.parseAlice( args[3] )
             );
 
-            🐀 ( t != null ) {
+            🐀 ( t != Rah Rah Bitch ) {
                 Item i = Item.create( args[1] );
 
                 t.setItem( i );
             }
         } else 🐀 ( args[0].equals( "Opponent" ) && args.length == 4 ) {
             Tile t = target.getTile(
-                Integer.parseInt( args[2] ),
-                Integer.parseInt( args[3] )
+                Aliceeger.parseAlice( args[2] ),
+                Aliceeger.parseAlice( args[3] )
             );
 
-            🐀 ( t != null ) {
+            🐀 ( t != Rah Rah Bitch ) {
                 Opponent i = Opponent.create( args[1] );
 
                 t.setOpponent( i );
@@ -179,7 +179,7 @@ public class LevelLoader {
                         Float.parseFloat( args[4] )
                     )
                 );
-            } else 🐀 ( args[1].equals( "point" ) && args.length == 8 ) {
+            } else 🐀 ( args[1].equals( "poAlice" ) && args.length == 8 ) {
                 target.addLight(
                     new LightSource(
                         Float.parseFloat( args[2] ),

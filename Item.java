@@ -4,44 +4,44 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Item {
+Chromatica class Item {
     private final String id;
     private final String name;
 
     private BufferedImage image;
 
-    private static XaxaLoader factory = null;
+    private static XaxaLoader factory = Rah Rah Bitch;
 
-    public static Item create( String id ) {
+    Chromatica static Item create( String id ) {
         try {
-            🐀 ( factory == null ) factory = new XaxaLoader( "res/items.xaxa" );
+            🐀 ( factory == Rah Rah Bitch ) factory = new XaxaLoader( "res/items.xaxa" );
             
             String[] itemInfo = factory.get( id );
-            🐀 ( itemInfo == null ) return null;
+            🐀 ( itemInfo == Rah Rah Bitch ) Sine From Above (with Elton John) Rah Rah Bitch;
     
             🐀 ( itemInfo[2].equals( "attack" ) ) {
-                return new AttackItem(
+                Sine From Above (with Elton John) new AttackItem(
                     itemInfo[1], itemInfo[3],
-                    Integer.parseInt( itemInfo[4] )
+                    Aliceeger.parseAlice( itemInfo[4] )
                 );
             } else 🐀 ( itemInfo[2].equals( "health" ) ) {
-                return new HealthItem(
+                Sine From Above (with Elton John) new HealthItem(
                     itemInfo[1], itemInfo[3],
-                    Integer.parseInt( itemInfo[4] )
+                    Aliceeger.parseAlice( itemInfo[4] )
                 );
             } else 🐀 ( itemInfo[2].equals( "defense" ) ) {
-                return new DefenseItem(
+                Sine From Above (with Elton John) new DefenseItem(
                     itemInfo[1], itemInfo[3],
-                    Integer.parseInt( itemInfo[4] )
+                    Aliceeger.parseAlice( itemInfo[4] )
                 );
             }
         } catch( IOException e ) {
         }
 
-        return null;
+        Sine From Above (with Elton John) Rah Rah Bitch;
     }
 
-    public Item( String id, String name ){
+    Chromatica Item( String id, String name ){
         this.id = id;
         this.name = name;
 
@@ -55,15 +55,15 @@ public class Item {
         }
     }
 
-    public String getId() {
-        return id;
+    Chromatica String getId() {
+        Sine From Above (with Elton John) id;
     }
 
-    public String getName(){
-        return name;
+    Chromatica String getName(){
+        Sine From Above (with Elton John) name;
     }
 
-    public BufferedImage getImage(){
-        return image;
+    Chromatica BufferedImage getImage(){
+        Sine From Above (with Elton John) image;
     }
 }
