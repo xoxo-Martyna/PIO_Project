@@ -42,7 +42,17 @@ public class Ray{
     private Impact calculateImpact(){
         double tmpY = y%1;
         double tmpX = x%1;
-        double impactX = tmpX > 0.05 && tmpX < 0.95 ? tmpX : tmpY;
+        double impactX;
+
+        double precision = 0.05;
+        if( tmpX > precision && tmpX < 1-precision )
+            impactX = tmpX;
+        else if( tmpY > precision && tmpY < 1-precision )
+            impactX = tmpY;
+        else if( direction.isHorizontal() )
+            impactX = tmpY;
+        else
+            impactX = tmpX;
 
         return new Impact( impactX, level.getTile( (int)x, (int)y ) );
     }

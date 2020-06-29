@@ -113,6 +113,8 @@ public class ExpPanel extends JPanel implements KeyListener {
         double dirHorizontal = 0.0065;
         double dirD = 2*dirHorizontal/(double)nRays;
 
+        boolean inverseDraw = (dirX == 0 && dirY > 0) || (dirY == 0 && dirX < 0) ? true : false;
+
 
         if( dirX == 0 )
             dirX = -1*dirHorizontal;
@@ -125,8 +127,13 @@ public class ExpPanel extends JPanel implements KeyListener {
             Ray ray = new Ray( rayDir, level, (double)player.getX()+0.5, (double)player.getY()+0.5 );
             Impact impact = ray.shoot();
 
-            if( impact != null )
-                drawTileLine( g2d, i*(imageSize*levelSize/nRays) , ray.getLength(), impact, imageSize*levelSize/nRays );
+            if( impact != null ){
+                if( inverseDraw )
+                    drawTileLine( g2d, (nRays-i)*(imageSize*levelSize/nRays) , ray.getLength(), impact, imageSize*levelSize/nRays );
+                else
+                    drawTileLine( g2d, i*(imageSize*levelSize/nRays) , ray.getLength(), impact, imageSize*levelSize/nRays );
+                
+            }
 
             if( playerDir.getX() == 0 )
                 dirX += dirD;
@@ -414,15 +421,24 @@ public class ExpPanel extends JPanel implements KeyListener {
 
         switch ( key ) {
             case KeyEvent.VK_D:
-                player.move( 1, 0 );
+                if( game.is3D() )
+                    player.changeDirection( 1 );
+                else
+                    player.move( 1, 0 );
                 break;
 
             case KeyEvent.VK_A:
-                player.move( -1, 0 );
+                if( game.is3D() )
+                    player.changeDirection( -1 );
+                else
+                    player.move( -1, 0 );
                 break;
 
             case KeyEvent.VK_W:
-                player.move( 0, -1 );
+                if( game.is3D() )
+                    player.moveForward();
+                else
+                    player.move( 0, -1 );
                 break;
 
             case KeyEvent.VK_S:
@@ -435,22 +451,6 @@ public class ExpPanel extends JPanel implements KeyListener {
 
             case KeyEvent.VK_L:
                 player.dropItem();
-                break;
-
-            case KeyEvent.VK_T:
-                player.changeDirection( 'N' );
-                break;
-
-            case KeyEvent.VK_G:
-                player.changeDirection( 'S' );
-                break;
-
-            case KeyEvent.VK_F:
-                player.changeDirection( 'W' );
-                break;
-
-            case KeyEvent.VK_H:
-                player.changeDirection( 'E' );
                 break;
 
             case KeyEvent.VK_3:

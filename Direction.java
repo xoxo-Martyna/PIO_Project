@@ -14,4 +14,10 @@ public class Direction {
     public double getY(){
         return y;
     }
+
+    public boolean isHorizontal(){
+        double x = this.x < 0 ? -1*this.x: this.x;
+        double y = this.y < 0 ? -1*this.y: this.y;
+        return x >= y;
+    }
 }
