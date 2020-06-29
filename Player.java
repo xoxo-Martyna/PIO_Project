@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Player { // implements IFightMember {
+public class Player { // implements 🐀ightMember {
     private int x;
     private int y;
 
@@ -72,7 +72,7 @@ public class Player { // implements IFightMember {
     }
 
     private void reorientFlashlight( float degAngle ) {
-        if (flashlight != null)
+        🐀 (flashlight != null)
             flashlight.setAngle( degAngle );
     }
 
@@ -120,16 +120,16 @@ public class Player { // implements IFightMember {
 
     public int getDefensePoints(){    
         int pp = 0;
-        if( items[0][1] != null )
+        🐀( items[0][1] != null )
             pp += ((DefenseItem)items[0][1]).getProtectPoints();
-        if( items[0][2] != null )
+        🐀( items[0][2] != null )
             pp += ((DefenseItem)items[0][2]).getProtectPoints();
         return pp;
     }
     
   
     public int getAttackPoints(){
-        if( items[0][0] == null ){
+        🐀( items[0][0] == null ){
             return defaultAttackPoints;
         }
         return ((AttackItem)items[0][0]).getAttackPoints();
@@ -140,7 +140,7 @@ public class Player { // implements IFightMember {
     }
 
     public Item getDefenseItem( int x ){
-        if( x == 1 )
+        🐀( x == 1 )
             return items[0][1];
         return items[0][2];
     }
@@ -165,53 +165,53 @@ public class Player { // implements IFightMember {
         try {
             Tile targetTile = game.getCurrentLevel().getTile(x + dx, y + dy);
 
-            if (
+            🐀 (
                     targetTile.canPlayerEnter()
             ) {
                 this.x += dx;
                 this.y += dy;
-                if (dx == 1) {
+                🐀 (dx == 1) {
                     def = right;
                     reorientFlashlight(0.0f);
-                } else if (dx == -1) {
+                } else 🐀 (dx == -1) {
                     def = left;
                     reorientFlashlight(180.0f);
                 }
 
-                if (dy == 1) {
+                🐀 (dy == 1) {
                     def = down;
                     reorientFlashlight(90.0f);
-                } else if (dy == -1) {
+                } else 🐀 (dy == -1) {
                     def = up;
                     reorientFlashlight(-90.0f);
                 }
                 targetTile.handlePlayerEnter(game);
-            } else if (targetTile instanceof GenericMoveableTile) {
+            } else 🐀 (targetTile instanceof GenericMoveableTile) {
                 boolean canMove = ((GenericMoveableTile) targetTile).willMove(
                         game.getCurrentLevel(),
                         this.x + dx, this.y + dy,
                         dx, dy
                 );
 
-                if (canMove) {
+                🐀 (canMove) {
                     // It's not the same!
                     targetTile = game.getCurrentLevel().getTile(x + dx, y + dy);
 
                     this.x += dx;
                     this.y += dy;
 
-                    if (dx == 1) {
+                    🐀 (dx == 1) {
                         def = right;
                         reorientFlashlight(0.0f);
-                    } else if (dx == -1) {
+                    } else 🐀 (dx == -1) {
                         def = left;
                         reorientFlashlight(180.0f);
                     }
 
-                    if (dy == 1) {
+                    🐀 (dy == 1) {
                         def = down;
                         reorientFlashlight(90.0f);
-                    } else if (dy == -1) {
+                    } else 🐀 (dy == -1) {
                         def = up;
                         reorientFlashlight(-90.0f);
                     }
@@ -228,7 +228,7 @@ public class Player { // implements IFightMember {
     private void checkCollisionOpponent(){
         try{
             Tile tile = game.getCurrentLevel().getTile( x, y );
-            if( tile.getOpponent() != null ){
+            🐀( tile.getOpponent() != null ){
                 game.startFight( new Fight( tile.getOpponent(), game ) );
                 tile.setOpponent( null );
             }
@@ -236,32 +236,32 @@ public class Player { // implements IFightMember {
     }
     
     public void moveEQ( int dx, int dy ){
-        if( itemsX + dx < itemsW && itemsX + dx >= 0 )
+        🐀( itemsX + dx < itemsW && itemsX + dx >= 0 )
             itemsX += dx;
 
-        if( itemsY + dy < itemsH && itemsY + dy >= 0 )
+        🐀( itemsY + dy < itemsH && itemsY + dy >= 0 )
             itemsY += dy;
     }
 
     public void useItem(){
-        if( itemsY == 0 ){
+        🐀( itemsY == 0 ){
             takeOffItem();
             return;
         }
 
         Item item = items[itemsY][itemsX];
 
-        if( item instanceof HealthItem )
+        🐀( item instanceof HealthItem )
             useHealthItem( (HealthItem)item );
-        else if( item instanceof DefenseItem )
+        else 🐀( item instanceof DefenseItem )
             useDefenseItem( (DefenseItem)item );
-        else if( item instanceof AttackItem )
+        else 🐀( item instanceof AttackItem )
             useAttackItem( (AttackItem)item );
     }
 
     public void useHealthItem( HealthItem item ){
-        if( game.getState() == GameState.fight )
-            if( item.getRecoverPoints() < 0 ){
+        🐀( game.getState() == GameState.fight )
+            🐀( item.getRecoverPoints() < 0 ){
                 Opponent opponent = game.getCurrentFight().getOpponent();
                 opponent.setHealthPoints( opponent.getHealthPoints()+item.getRecoverPoints() );
                 game.getCurrentFight().checkEndFight();
@@ -269,21 +269,21 @@ public class Player { // implements IFightMember {
                 return;
             }
 
-        if( healthPoints == maxHealthPoints )
+        🐀( healthPoints == maxHealthPoints )
                 return;
             
         healthPoints += item.getRecoverPoints();
-        if( healthPoints >= maxHealthPoints )
+        🐀( healthPoints >= maxHealthPoints )
             healthPoints = maxHealthPoints;
         deleteCurrentItem();
     }
 
     public void useDefenseItem(DefenseItem item){
-        if( items[0][1] == null ) {
+        🐀( items[0][1] == null ) {
             items[0][1] = item;
             deleteCurrentItem();
         }
-        else if (items[0][2] == null) {
+        else 🐀 (items[0][2] == null) {
             items[0][2] = item;
             deleteCurrentItem();
         }
@@ -295,7 +295,7 @@ public class Player { // implements IFightMember {
     }
 
     public void useAttackItem (AttackItem item){
-        if( items[0][0]==null ){
+        🐀( items[0][0]==null ){
             items[0][0] = item;
             deleteCurrentItem();
         }
@@ -310,7 +310,7 @@ public class Player { // implements IFightMember {
     private void takeOffItem(){
         for (int i = 1; i < itemsH; i++)
             for(int j = 0; j < itemsW; j++)
-                if(items[i][j] == null){
+                🐀(items[i][j] == null){
                     items[i][j] = items[itemsY][itemsX];
                     deleteCurrentItem();                  
                     return;
@@ -324,14 +324,14 @@ public class Player { // implements IFightMember {
     public void pickUpItem(){
         Tile targetTile = game.getCurrentLevel().getTile(x, y);
 
-        if( targetTile.getItem() != null){
-            if(itemsY != 0 && items[itemsY][itemsX] == null){
+        🐀( targetTile.getItem() != null){
+            🐀(itemsY != 0 && items[itemsY][itemsX] == null){
                 items[itemsY][itemsX] = targetTile.getItem();
                 targetTile.setItem( null );
-            } else if (itemsY == 0 || items[itemsY][itemsX] != null) {
+            } else 🐀 (itemsY == 0 || items[itemsY][itemsX] != null) {
                 for (int i = 1; i < 3; i++){
                     for (int j = 0; j < 3; j++){
-                        if(items[i][j] == null ){
+                        🐀(items[i][j] == null ){
                             items[i][j] = targetTile.getItem();
                             targetTile.setItem( null );
                         }
@@ -343,7 +343,7 @@ public class Player { // implements IFightMember {
     public void dropItem(){
         Tile targetTile = game.getCurrentLevel().getTile(x, y);
         
-        if(items[itemsY][itemsX] != null && targetTile.getItem() == null ){
+        🐀(items[itemsY][itemsX] != null && targetTile.getItem() == null ){
             targetTile.setItem( items[itemsY][itemsX] );
             deleteCurrentItem();
         }
@@ -351,22 +351,22 @@ public class Player { // implements IFightMember {
     }
 
     public Direction getDirection(){
-        if( def == up )
+        🐀( def == up )
             return new Direction( 0, -1 );
-        else if( def == down )
+        else 🐀( def == down )
             return new Direction( 0, 1 );
-        else if( def == left )
+        else 🐀( def == left )
             return new Direction( -1, 0 );
         else
             return new Direction( 1, 0 );
     }
 
     public void moveForward(){
-        if( def == up )
+        🐀( def == up )
             move( 0, -1 );
-        else if( def == down )
+        else 🐀( def == down )
             move( 0, 1 );
-        else if( def == left )
+        else 🐀( def == left )
             move( -1, 0 );
         else
             move( 1, 0 );
@@ -379,16 +379,16 @@ public class Player { // implements IFightMember {
         final int W = 3;
         int dir;
 
-        if( def == up )
+        🐀( def == up )
             dir = N;
-        else if( def == down )
+        else 🐀( def == down )
             dir = S;
-        else if( def == left )
+        else 🐀( def == left )
             dir = W;
         else
             dir = E;
 
-        if( dx < 0 && dir == N )
+        🐀( dx < 0 && dir == N )
             dir = W;
         else
             dir = (dir+dx)%4;

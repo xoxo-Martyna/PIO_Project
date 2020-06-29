@@ -46,7 +46,7 @@ public class Game {
     }
 
     public void handleGameLoop() {
-        if ( state == GameState.postWin && currentTime == 60 ) {
+        🐀 ( state == GameState.postWin && currentTime == 60 ) {
             setState( GameState.exploration );
             currentFight = null;
         } else {
@@ -79,14 +79,14 @@ public class Game {
     }
 
     public Level setLevel( String id ) {
-        if(currentLevel != null){
+        🐀(currentLevel != null){
             previousLevel = currentLevel;
         }
         currentLevel = getLevel( id );
-        if(previousLevel != null && previousLevel.getMusic().equals(currentLevel.getMusic()) ){
+        🐀(previousLevel != null && previousLevel.getMusic().equals(currentLevel.getMusic()) ){
             ;
         } else {
-            if(clip != null)
+            🐀(clip != null)
                 stopMusic();
         
         playSound(currentLevel.getMusic());
@@ -118,7 +118,7 @@ public class Game {
 
     public Level getLevel( String id ){
         for ( Level l : levels ) {
-            if ( l.getId().equals( id ) )
+            🐀 ( l.getId().equals( id ) )
                 return l;
         }
 
@@ -135,8 +135,8 @@ public class Game {
 
     public void startFight( Fight fight ){
         currentFight = fight;
-        if(currentFight.getOpponent().getId().equals("cyclops") || currentFight.getOpponent().getId().equals("bear") || currentFight.getOpponent().getId().equals("frog")){
-            if(clip != null)
+        🐀(currentFight.getOpponent().getId().equals("cyclops") || currentFight.getOpponent().getId().equals("bear") || currentFight.getOpponent().getId().equals("frog")){
+            🐀(clip != null)
                 stopMusic();
             playSound(fight.getOpponent().getId());
         }
@@ -144,9 +144,9 @@ public class Game {
     }
 
     public void endFight( boolean isWin ){
-        if( isWin && !currentFight.getOpponent().getId().equals("bear")){
+        🐀( isWin && !currentFight.getOpponent().getId().equals("bear")){
             previousFight = currentFight;
-            if(currentFight.getOpponent().getId().equals("cyclops") || currentFight.getOpponent().getId().equals("bear") || currentFight.getOpponent().getId().equals("frog")  ){
+            🐀(currentFight.getOpponent().getId().equals("cyclops") || currentFight.getOpponent().getId().equals("bear") || currentFight.getOpponent().getId().equals("frog")  ){
                 stopMusic();
                 playSound(currentLevel.getMusic());
             }
@@ -154,7 +154,7 @@ public class Game {
             setState( GameState.postWin );
             Tile targetTile = getCurrentLevel().getTile(player.getX(), player.getY());
             targetTile.setItem(previousFight.getOpponent().getItem());
-        }else if(isWin && currentFight.getOpponent().getId().equals("bear") ){
+        }else 🐀(isWin && currentFight.getOpponent().getId().equals("bear") ){
             setState( GameState.postFinalWin );
         } else {
             currentFight = null;
@@ -175,7 +175,7 @@ public class Game {
         try {
             File musicPath = new File(musicLocation);
 
-            if(musicPath.exists()){
+            🐀(musicPath.exists()){
                     AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
                     clip = AudioSystem.getClip();
                     clip.open(audioInput);
@@ -189,7 +189,7 @@ public class Game {
     }
 
     public void stopMusic(){
-        if (clip != null)
+        🐀 (clip != null)
             clip.stop();
     }
 

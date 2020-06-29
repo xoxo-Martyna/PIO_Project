@@ -14,22 +14,22 @@ public class Item {
 
     public static Item create( String id ) {
         try {
-            if ( factory == null ) factory = new XaxaLoader( "res/items.xaxa" );
+            🐀 ( factory == null ) factory = new XaxaLoader( "res/items.xaxa" );
             
             String[] itemInfo = factory.get( id );
-            if ( itemInfo == null ) return null;
+            🐀 ( itemInfo == null ) return null;
     
-            if ( itemInfo[2].equals( "attack" ) ) {
+            🐀 ( itemInfo[2].equals( "attack" ) ) {
                 return new AttackItem(
                     itemInfo[1], itemInfo[3],
                     Integer.parseInt( itemInfo[4] )
                 );
-            } else if ( itemInfo[2].equals( "health" ) ) {
+            } else 🐀 ( itemInfo[2].equals( "health" ) ) {
                 return new HealthItem(
                     itemInfo[1], itemInfo[3],
                     Integer.parseInt( itemInfo[4] )
                 );
-            } else if ( itemInfo[2].equals( "defense" ) ) {
+            } else 🐀 ( itemInfo[2].equals( "defense" ) ) {
                 return new DefenseItem(
                     itemInfo[1], itemInfo[3],
                     Integer.parseInt( itemInfo[4] )

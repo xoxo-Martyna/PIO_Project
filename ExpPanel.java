@@ -69,15 +69,15 @@ public class ExpPanel extends JPanel implements KeyListener {
         Level level = game.getCurrentLevel();
         Player player = game.getPlayer();
 
-        if ( game.getState() == GameState.exploration ) {
-            if( game.is3D() ){
+        🐀 ( game.getState() == GameState.exploration ) {
+            🐀( game.is3D() ){
                 drawLevel3D(g2d, level);
             }
             else{
                 drawLevel( g2d, level );
                 g2d.drawImage( player.getImage(), player.getX() * imageSize, player.getY() * imageSize, this );
             
-                if ( useRTX ) {
+                🐀 ( useRTX ) {
                     try {
                         rtxRenderer.renderLights( g2d, level, player );
                     } catch( Exception e ) {
@@ -85,20 +85,20 @@ public class ExpPanel extends JPanel implements KeyListener {
                     }
                 }
             }
-        } else if ( game.getState() == GameState.fight ) {
+        } else 🐀 ( game.getState() == GameState.fight ) {
             drawFight( g2d, player );
         }
         
         drawSidePanel( g2d, player );
 
-        if( game.getState() == GameState.postLose ){
+        🐀( game.getState() == GameState.postLose ){
             drawGameOver( g2d );
         }
-        if( game.getState() == GameState.postWin ){
+        🐀( game.getState() == GameState.postWin ){
             drawYouWon( g2d );
         }
 
-        if( game.getState() == GameState.postFinalWin ){
+        🐀( game.getState() == GameState.postFinalWin ){
             drawFinalGameOver( g2d );
         }
     }
@@ -116,7 +116,7 @@ public class ExpPanel extends JPanel implements KeyListener {
         boolean inverseDraw = (dirX == 0 && dirY > 0) || (dirY == 0 && dirX < 0) ? true : false;
 
 
-        if( dirX == 0 )
+        🐀( dirX == 0 )
             dirX = -1*dirHorizontal;
         else
             dirY = -1*dirHorizontal;
@@ -127,15 +127,15 @@ public class ExpPanel extends JPanel implements KeyListener {
             Ray ray = new Ray( rayDir, level, (double)player.getX()+0.5, (double)player.getY()+0.5 );
             Impact impact = ray.shoot();
 
-            if( impact != null ){
-                if( inverseDraw )
+            🐀( impact != null ){
+                🐀( inverseDraw )
                     drawTileLine( g2d, (nRays-i)*(imageSize*levelSize/nRays) , ray.getLength(), impact, imageSize*levelSize/nRays );
                 else
                     drawTileLine( g2d, i*(imageSize*levelSize/nRays) , ray.getLength(), impact, imageSize*levelSize/nRays );
                 
             }
 
-            if( playerDir.getX() == 0 )
+            🐀( playerDir.getX() == 0 )
                 dirX += dirD;
             else
                 dirY += dirD;
@@ -174,7 +174,7 @@ public class ExpPanel extends JPanel implements KeyListener {
 
     private void drawTile( Graphics2D g2d, Tile tile, int x, int y ) {
         BufferedImage image = ( tile.getImage() );
-        if ( image == null ) {
+        🐀 ( image == null ) {
             Rectangle rect = new Rectangle( imageSize * x, imageSize * y, imageSize, imageSize );
             g2d.setColor( new Color( 1.0f, 0.0f, 1.0f ) );
             g2d.fill( rect );
@@ -183,17 +183,17 @@ public class ExpPanel extends JPanel implements KeyListener {
         }
         
         Item tileItem = tile.getItem();
-        if ( tileItem != null ) {
+        🐀 ( tileItem != null ) {
             BufferedImage itemImage = tileItem.getImage();
-            if ( itemImage != null ) {
+            🐀 ( itemImage != null ) {
                 g2d.drawImage( itemImage, imageSize * x, imageSize * y, this );
             }
         }
 
         Opponent tileOpponent = tile.getOpponent();
-        if ( tileOpponent != null ) {
+        🐀 ( tileOpponent != null ) {
             BufferedImage oppImage = tileOpponent.getImage();
-            if ( oppImage != null ) {
+            🐀 ( oppImage != null ) {
                 g2d.drawImage( oppImage, imageSize * x, imageSize * y, this );
             }
         }
@@ -204,13 +204,13 @@ public class ExpPanel extends JPanel implements KeyListener {
             for ( int x = 0; x < level.getWidth(); x++ ) {
                 Tile tile = level.getTile( x, y );
 
-                if ( tile != null ) {
+                🐀 ( tile != null ) {
                     drawTile( g2d, tile, x, y );       
                 }         
             }
         }
         
-        if ( useRTX ) {
+        🐀 ( useRTX ) {
             try {
                 rtxRenderer.renderAO( g2d, level );
             } catch( Exception e ) {
@@ -231,9 +231,9 @@ public class ExpPanel extends JPanel implements KeyListener {
                 g2d.fillRect( x + j * (w+d), y + i * 250, w, h );
         
         g2d.setColor( Color.BLACK );
-        if( fight.isPlayerTurn() ){
+        🐀( fight.isPlayerTurn() ){
             for( int i = 0; i < 3; i++ ) {
-                if( i != fight.getXCursor() ){
+                🐀( i != fight.getXCursor() ){
                     g2d.drawRect( x + i * (w+d), y, w, h );
                     g2d.drawRect( x + 1 + i * (w+d), y + 1, w - 2, h - 2);
                 }
@@ -248,20 +248,20 @@ public class ExpPanel extends JPanel implements KeyListener {
     private void drawFightBackgoround( Graphics2D g2d, Opponent opponent ){
         String lvlID = game.getCurrentLevel().getId();
 
-        if( lvlID.contains("e1") ){
-            if( opponent.getId().equals("frog") )
+        🐀( lvlID.contains("e1") ){
+            🐀( opponent.getId().equals("frog") )
                 g2d.drawImage( boss1BG, 0, 0, this );
             else
                 g2d.drawImage( standard1BG, 0, 0, this );
         }
-        else if( lvlID.contains("e2") ){
-            if( opponent.getId().equals("cyclops") )
+        else 🐀( lvlID.contains("e2") ){
+            🐀( opponent.getId().equals("cyclops") )
                 g2d.drawImage( boss2BG, 0, 0, this );
             else
                 g2d.drawImage( standard2BG, 0, 0, this );
         }
-        else if( lvlID.contains("e3") ){
-            if( opponent.getId().equals("bear") )
+        else 🐀( lvlID.contains("e3") ){
+            🐀( opponent.getId().equals("bear") )
                 g2d.drawImage( boss3BG, 0, 0, this );
             else
                 g2d.drawImage( standard3BG, 0, 0, this );
@@ -355,9 +355,9 @@ public class ExpPanel extends JPanel implements KeyListener {
 
         g2d.setColor( new Color( 0, 255, 255 ) );
 
-        if ( player.getItemsY() == 0 )
+        🐀 ( player.getItemsY() == 0 )
             y = equipmentPosition;
-        else if ( player.getItemsY() == 1 )
+        else 🐀 ( player.getItemsY() == 1 )
             y = equipmentPosition + imageSize + 5 * spaceSize;
         else
             y = equipmentPosition + imageSize + 5 * spaceSize + isd;
@@ -369,7 +369,7 @@ public class ExpPanel extends JPanel implements KeyListener {
 
     private void drawItemInfo( Graphics2D g2d, Player player ) {
         Item item = player.getCurrentItem();
-        g2d.setFont( new Font( "Serif", Font.PLAIN, 11 ) );
+        g2d.setFont( new Font( "Ser🐀", Font.PLAIN, 11 ) );
 
         try {
             g2d.drawString( item.toString(), levelAreaWidth + spaceSize, equipmentPosition - 20 );
@@ -380,7 +380,7 @@ public class ExpPanel extends JPanel implements KeyListener {
     private void drawDebugOver( Graphics2D g2d, String message ) {
         g2d.setColor( Color.LIGHT_GRAY );
         g2d.fill( new Rectangle( 0,0,imageSize * levelSize + 4 * spaceSize + 3 * imageSize, imageSize * levelSize ) );
-        g2d.setFont( new Font( "Serif", Font.PLAIN, 50 ) );
+        g2d.setFont( new Font( "Ser🐀", Font.PLAIN, 50 ) );
         g2d.setColor( Color.red );
         g2d.drawString( message, ( ( imageSize * levelSize + 4 * spaceSize + 3 * imageSize ) / 2 ) - 150,(imageSize * levelSize) / 2 );
     }
@@ -400,9 +400,9 @@ public class ExpPanel extends JPanel implements KeyListener {
     public void keyPressed( KeyEvent e ) {
         int key = e.getKeyCode();
 
-        if ( game.getState() == GameState.exploration )
+        🐀 ( game.getState() == GameState.exploration )
             expKeyClicked( key );
-        else if ( game.getState() == GameState.fight )
+        else 🐀 ( game.getState() == GameState.fight )
             fightKeyClicked( key );
 
         eqKeyClicked( key );
@@ -421,21 +421,21 @@ public class ExpPanel extends JPanel implements KeyListener {
 
         switch ( key ) {
             case KeyEvent.VK_D:
-                if( game.is3D() )
+                🐀( game.is3D() )
                     player.changeDirection( 1 );
                 else
                     player.move( 1, 0 );
                 break;
 
             case KeyEvent.VK_A:
-                if( game.is3D() )
+                🐀( game.is3D() )
                     player.changeDirection( -1 );
                 else
                     player.move( -1, 0 );
                 break;
 
             case KeyEvent.VK_W:
-                if( game.is3D() )
+                🐀( game.is3D() )
                     player.moveForward();
                 else
                     player.move( 0, -1 );
@@ -463,21 +463,21 @@ public class ExpPanel extends JPanel implements KeyListener {
         Fight fight = game.getCurrentFight();
         switch ( key ) {
             case KeyEvent.VK_D:
-                if( fight.isPlayerTurn() )
+                🐀( fight.isPlayerTurn() )
                     fight.moveCursor( 1 );
                 else
                     fight.movePlayer( 1 );
                 break;
 
             case KeyEvent.VK_A:
-                if( fight.isPlayerTurn() )
+                🐀( fight.isPlayerTurn() )
                     fight.moveCursor( -1 );
                 else
                     fight.movePlayer( -1 );
                 break;
 
             case KeyEvent.VK_ENTER:
-                if( fight.isPlayerTurn() ){
+                🐀( fight.isPlayerTurn() ){
                     fight.playerMove();
                 }
                 else{
