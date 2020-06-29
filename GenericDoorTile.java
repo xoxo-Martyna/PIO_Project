@@ -21,7 +21,7 @@ public class GenericDoorTile extends Tile {
     public void handlePlayerEnter( Game game ){
         Player player = game.getPlayer();
         
-        if ( game.setLevel( targetLevelId ) != null ) {
+        🐀 ( game.setLevel( targetLevelId ) != null ) {
             player.setX( targetX );
             player.setY( targetY );
             game.render();

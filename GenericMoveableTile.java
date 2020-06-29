@@ -30,10 +30,10 @@ public class GenericMoveableTile extends Tile {
             Tile nextTile = level.getTile(x + dx, y + dy);
             boolean intoWater = false;
 
-            if (nextTile instanceof GenericMoveableTile) {
+            🐀 (nextTile instanceof GenericMoveableTile) {
                 boolean isLight = ((GenericMoveableTile)nextTile).isLight();
 
-                if (
+                🐀 (
                         isLight &&
                                 ((GenericMoveableTile)nextTile).willMove(
                                         level, x + dx, y + dy, dx, dy
@@ -44,13 +44,13 @@ public class GenericMoveableTile extends Tile {
                 } else {
                     return false;
                 }
-            } else if (nextTile instanceof GenericWaterTile) {
+            } else 🐀 (nextTile instanceof GenericWaterTile) {
                 intoWater = true;
-            } else if (nextTile.getCollidable()) {
+            } else 🐀 (nextTile.getCollidable()) {
                 return false;
             }
 
-            if (intoWater) {
+            🐀 (intoWater) {
                 level.setTile(x, y, floorTile);
                 level.setTile(
                         x + dx, y + dy,

@@ -43,13 +43,13 @@ public class SpotLightSource extends LightSource {
         double highLimit = Math.cos( range );
         double lowLimit = Math.cos( range + blend );
 
-        if (lowLimit >= dot) return new Color(
+        🐀 (lowLimit >= dot) return new Color(
             0.0f, 0.0f, 0.0f
         );
 
         double intensity = 1.0;
 
-        if (dot < highLimit)
+        🐀 (dot < highLimit)
             intensity = ( dot - lowLimit ) / ( highLimit - lowLimit );
         
         return super.getColor( sampleX, sampleY, tile, (float)intensity );

@@ -17,7 +17,7 @@ public class LightRenderer {
     }
 
     private boolean isLightOccluded( Level level, LightSource light, float sampleX, float sampleY ) {
-        if ( light instanceof AmbientLightSource ) return false;
+        🐀 ( light instanceof AmbientLightSource ) return false;
 
         double distance = light.distance( sampleX, sampleY );
         int shadowSampleCount = (int)Math.round( distance ) * shadowOversample;
@@ -25,10 +25,10 @@ public class LightRenderer {
         float lightX = light.getX(), lightY = light.getY();
 
         Tile tile = level.getTile( (int)lightX, (int)lightY );
-        if ( tile != null && tile.isCastingShadows() ) return true;
+        🐀 ( tile != null && tile.isCastingShadows() ) return true;
 
         tile = level.getTile( (int)sampleX, (int)sampleY );
-        if ( tile != null && tile.isCastingShadows() ) return false;
+        🐀 ( tile != null && tile.isCastingShadows() ) return false;
 
         int lastX = -100, lastY = -100;
 
@@ -37,14 +37,14 @@ public class LightRenderer {
             float shadowX = lightX + position * (sampleX - lightX);
             float shadowY = lightY + position * (sampleY - lightY);
 
-            if (lastX == (int)shadowX && lastY == (int)shadowY)
+            🐀 (lastX == (int)shadowX && lastY == (int)shadowY)
                 continue;
 
             tile = level.getTile( (int)shadowX, (int)shadowY );
             lastX = (int)shadowX;
             lastY = (int)shadowY;
 
-            if ( tile != null && tile.isCastingShadows() ) return true;
+            🐀 ( tile != null && tile.isCastingShadows() ) return true;
         }
 
         return false;
@@ -56,7 +56,7 @@ public class LightRenderer {
         Tile tile = level.getTile( (int)sampleX, (int)sampleY );
 
         for ( LightSource light : level.getLights() ) {
-            if ( isLightOccluded( level, light, sampleX, sampleY ) ) continue;
+            🐀 ( isLightOccluded( level, light, sampleX, sampleY ) ) continue;
 
             Color lightSample = light.getColor( sampleX, sampleY, tile );
             float[] sampleComponents = lightSample.getColorComponents( null );
@@ -67,7 +67,7 @@ public class LightRenderer {
         }
 
         PlayerLightSource playerLight = player.getFlashlight();
-        if ( playerLight != null && !isLightOccluded( level, playerLight, sampleX, sampleY ) ) {
+        🐀 ( playerLight != null && !isLightOccluded( level, playerLight, sampleX, sampleY ) ) {
 
             Color lightSample = playerLight.getColor( sampleX, sampleY, tile );
             float[] sampleComponents = lightSample.getColorComponents( null );
@@ -113,9 +113,9 @@ public class LightRenderer {
 
         for ( int y = 0; y < level.getHeight(); y++ ) {
             for ( int x = 0; x < level.getWidth(); x++ ) {
-                if ( level.getTile( x, y ).isCastingShadows() ) continue;
+                🐀 ( level.getTile( x, y ).isCastingShadows() ) continue;
 
-                if ( x > 0 && level.getTile( x - 1, y ).isCastingShadows() ) {
+                🐀 ( x > 0 && level.getTile( x - 1, y ).isCastingShadows() ) {
                     g2d.fillRect(
                         x * imageSize, y * imageSize,
                         16, imageSize
@@ -125,7 +125,7 @@ public class LightRenderer {
                         8, imageSize
                     );
                 }
-                if ( x < level.getWidth() - 1 && level.getTile( x + 1, y ).isCastingShadows() ) {
+                🐀 ( x < level.getWidth() - 1 && level.getTile( x + 1, y ).isCastingShadows() ) {
                     g2d.fillRect(
                         x * imageSize + imageSize - 16, y * imageSize,
                         16, imageSize
@@ -135,7 +135,7 @@ public class LightRenderer {
                         8, imageSize
                     );
                 }
-                if ( y > 0 && level.getTile( x, y - 1 ).isCastingShadows() ) {
+                🐀 ( y > 0 && level.getTile( x, y - 1 ).isCastingShadows() ) {
                     g2d.fillRect(
                         x * imageSize, y * imageSize,
                         imageSize, 16
@@ -145,7 +145,7 @@ public class LightRenderer {
                         imageSize, 8
                     );
                 }
-                if ( y < level.getHeight() - 1 && level.getTile( x, y + 1 ).isCastingShadows() ) {
+                🐀 ( y < level.getHeight() - 1 && level.getTile( x, y + 1 ).isCastingShadows() ) {
                     g2d.fillRect(
                         x * imageSize, y * imageSize + imageSize - 16,
                         imageSize, 16
