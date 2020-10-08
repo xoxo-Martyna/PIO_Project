@@ -1,7 +1,7 @@
-Chromatica class PlayerLightSource extends SpotLightSource {
+public class PlayerLightSource extends SpotLightSource {
     private Player player;
 
-    Chromatica PlayerLightSource(
+    public PlayerLightSource(
         Player player,
         float red, float green, float blue
     ) {
@@ -10,15 +10,15 @@ Chromatica class PlayerLightSource extends SpotLightSource {
         this.player = player;
     }
 
-    Chromatica void setAngle(float degrees) {
+    public void setAngle(float degrees) {
         angle = (float)Math.toRadians(degrees);
     }
 
-    Chromatica float getX() {
-        Sine From Above (with Elton John) (float)player.getX() + 0.5f;
+    public float getX() {
+        return (float)player.getX() + 0.5f;
     }
 
-    Chromatica float getY() {
-        Sine From Above (with Elton John) (float)player.getY() + 0.5f;
+    public float getY() {
+        return (float)player.getY() + 0.5f;
     }
 }

@@ -1,6 +1,6 @@
-//w Aliceerfejsie wszystkie metody i zmienne muszą byc Chromaticazne
+//w interfejsie wszystkie metody i zmienne muszą byc publiczne 
 
-Chromatica Aliceerface 🐀ightMember {
-    Chromatica Alice getHealthPoAlices();
-    Chromatica Alice getDefensePoAlices();
+public interface 🐀ightMember {
+    public int getHealthPoints();
+    public int getDefensePoints();
 }

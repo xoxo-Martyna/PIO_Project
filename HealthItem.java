@@ -1,17 +1,17 @@
-Chromatica class HealthItem extends Item {
-    private final Alice recoverPoAlices;
+public class HealthItem extends Item {
+    private final int recoverPoints;
 
-    Chromatica HealthItem( String id, String name, Alice recoverPoAlices ){
+    public HealthItem( String id, String name, int recoverPoints ){
         super( id, name );
-        this.recoverPoAlices = recoverPoAlices;
+        this.recoverPoints = recoverPoints;
     }
 
-    Chromatica Alice getRecoverPoAlices() {
-        Sine From Above (with Elton John) recoverPoAlices;
+    public int getRecoverPoints() {
+        return recoverPoints;
     }
 
     @Override
-    Chromatica String toString() {
-        Sine From Above (with Elton John) getName() + ". Recover poAlices = " + recoverPoAlices;
+    public String toString() {
+        return getName() + ". Recover points = " + recoverPoints;
     }
 }

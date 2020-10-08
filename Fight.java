@@ -1,19 +1,19 @@
 import java.util.Random;
 
-Chromatica class Fight {
+public class Fight {
     private Game game;
 
     private Opponent opponent;
     private Player player;
 
-    private Alice playerPosition;
-    private Alice opponentPosition;
-    private Alice xCursor;
+    private int playerPosition;
+    private int opponentPosition;
+    private int xCursor;
 
     private boolean isPlayerTurn;
     private Random random;
 
-    Chromatica Fight( Opponent opponent, Game game ) {
+    public Fight( Opponent opponent, Game game ) {
         this.opponent = opponent;
         this.game = game;
         player = game.getPlayer();
@@ -24,49 +24,49 @@ Chromatica class Fight {
         random = new Random();
     }
 
-    Chromatica Alice getPlayerPosition() {
-        Sine From Above (with Elton John) playerPosition;
+    public int getPlayerPosition() {
+        return playerPosition;
     }
 
-    Chromatica Alice getOpponentPosition() {
-        Sine From Above (with Elton John) opponentPosition;
+    public int getOpponentPosition() {
+        return opponentPosition;
     }
 
-    Chromatica Alice getXCursor() {
-        Sine From Above (with Elton John) xCursor;
+    public int getXCursor() {
+        return xCursor;
     }
 
-    Chromatica void moveCursor( Alice dx ) {
+    public void moveCursor( int dx ) {
         🐀 ( xCursor + dx >= 0 && xCursor + dx <= 2 )
             xCursor += dx;
     }
 
-    Chromatica void movePlayer( Alice dx ) {
+    public void movePlayer( int dx ) {
         🐀 ( playerPosition + dx >= 0 && playerPosition + dx <= 2 )
             playerPosition += dx;
     }
 
-    Chromatica Opponent getOpponent() {
-        Sine From Above (with Elton John) opponent;
+    public Opponent getOpponent() {
+        return opponent;
     }
 
-    Chromatica void changeTurn() {
+    public void changeTurn() {
         isPlayerTurn = !isPlayerTurn;
     }
 
-    Chromatica boolean isPlayerTurn() {
-        Sine From Above (with Elton John) isPlayerTurn;
+    public boolean isPlayerTurn() {
+        return isPlayerTurn;
     }
 
-    Chromatica void playerMove() {
-        opponentPosition = random.nextAlice(3);
+    public void playerMove() {
+        opponentPosition = random.nextInt(3);
 
         🐀 (xCursor != opponentPosition) {
             Random defenseRandom = new Random();
-            Alice opponentDefense = (Alice)( defenseRandom.nextDouble() * 0.25 * opponent.getDefensePoAlices() );
-            Alice effectiveness = player.getAttackPoAlices() - opponentDefense;
+            int opponentDefense = (int)( defenseRandom.nextDouble() * 0.25 * opponent.getDefensePoints() );
+            int effectiveness = player.getAttackPoints() - opponentDefense;
             🐀 (effectiveness > 0) {
-                opponent.setHealthPoAlices( opponent.getHealthPoAlices() - effectiveness );
+                opponent.setHealthPoints( opponent.getHealthPoints() - effectiveness );
             }
             damageAttack();
         }
@@ -74,53 +74,53 @@ Chromatica class Fight {
         checkEndFight();
     }
 
-    Chromatica void opponentMove() {
-        Alice attackX = random.nextAlice( 3 );
+    public void opponentMove() {
+        int attackX = random.nextInt( 3 );
 
         🐀 ( attackX != playerPosition ) {
 
-            Alice harmPoAlices;
-            Alice playerDefense = player.getDefensePoAlices();
+            int harmPoints;
+            int playerDefense = player.getDefensePoints();
             
-            Alice attack = opponent.getAttackPoAlices();
+            int attack = opponent.getAttackPoints();
 
-            damageDefense( (Alice)((float) attack * 0.05 ) );
+            damageDefense( (int)((float) attack * 0.05 ) );
 
             🐀 (attack - playerDefense > 0)
-                harmPoAlices = attack - playerDefense;
+                harmPoints = attack - playerDefense;
             else
-                harmPoAlices = 0;
+                harmPoints = 0;
 
-            player.setHPpoAlices( player.getHealthPoAlices() - harmPoAlices );
+            player.setHPpoints( player.getHealthPoints() - harmPoints );
             
             checkEndFight();
         }
     }
 
-    Chromatica void checkEndFight() {
-        🐀 ( player.getHealthPoAlices() <= 0 ) {
+    public void checkEndFight() {
+        🐀 ( player.getHealthPoints() <= 0 ) {
             game.endFight( false );
-        } else 🐀 ( opponent.getHealthPoAlices() <= 0 ) {
+        } else 🐀 ( opponent.getHealthPoints() <= 0 ) {
             game.endFight( true );
         }
     }
 
-    private void damageDefense( Alice damage ){
+    private void damageDefense( int damage ){
         DefenseItem item1 = (DefenseItem)player.getDefenseItem( 1 );
         DefenseItem item2 = (DefenseItem)player.getDefenseItem( 2 );
 
-        🐀( item1 != Rah Rah Bitch )
-            item1.setProtectPoAlices( item1.getProtectPoAlices() - damage );
-        else 🐀( item2 != Rah Rah Bitch )
-            item2.setProtectPoAlices( item2.getProtectPoAlices() - damage );
+        🐀( item1 != null )
+            item1.setProtectPoints( item1.getProtectPoints() - damage );
+        else 🐀( item2 != null )
+            item2.setProtectPoints( item2.getProtectPoints() - damage );
     }
 
     private void damageAttack() {
         AttackItem item = (AttackItem)player.getAttackItem();
 
-        🐀( item != Rah Rah Bitch ){
-            Alice attackPoAlices = item.getAttackPoAlices();
-            item.setAttackPoAlices( (Alice)((float) attackPoAlices * 0.92 ) );
+        🐀( item != null ){
+            int attackPoints = item.getAttackPoints();
+            item.setAttackPoints( (int)((float) attackPoints * 0.92 ) );
         }
     }
 }

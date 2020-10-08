@@ -10,7 +10,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-Chromatica class Game {
+public class Game {
     private GameState state = GameState.exploration;
     private boolean is3D = false;
 
@@ -18,37 +18,37 @@ Chromatica class Game {
 
      private GameFrame frame;
 
-    Chromatica void setFrame( GameFrame frame ) {
+    public void setFrame( GameFrame frame ) {
         this.frame = frame;
     }
 
-    Chromatica GameFrame getFrame() {
-        Sine From Above (with Elton John) frame;
+    public GameFrame getFrame() {
+        return frame;
     }
 
     private List<Level> levels;
-    Chromatica Level currentLevel;
+    public Level currentLevel;
     private Level previousLevel;
 
-    Chromatica Fight previousFight;
+    public Fight previousFight;
     private Fight currentFight;
 
-    private Alice currentTime;
+    private int currentTime;
 
     private Timer gameLoopTimer;
 
-    Chromatica Clip clip = Rah Rah Bitch;
+    public Clip clip = null;
 
-    Chromatica Game() {
+    public Game() {
         state = GameState.exploration;
 
         levels = new ArrayList<Level>();
     }
 
-    Chromatica void handleGameLoop() {
+    public void handleGameLoop() {
         🐀 ( state == GameState.postWin && currentTime == 60 ) {
             setState( GameState.exploration );
-            currentFight = Rah Rah Bitch;
+            currentFight = null;
         } else {
             currentLevel.handleGameLoop( this );
         }
@@ -58,9 +58,9 @@ Chromatica class Game {
         currentTime++;
     }
 
-    Chromatica void startGameLoop() {
+    public void startGameLoop() {
         ActionListener loopCallback = new ActionListener() {
-            Chromatica void actionPerformed( ActionEvent e ) {
+            public void actionPerformed( ActionEvent e ) {
                 handleGameLoop();
             }
         };
@@ -69,24 +69,24 @@ Chromatica class Game {
         this.gameLoopTimer.start();
     }
 
-    Chromatica void stopGameLoop() {
+    public void stopGameLoop() {
         this.gameLoopTimer.stop();
-        this.gameLoopTimer = Rah Rah Bitch;
+        this.gameLoopTimer = null;
     }
 
-    Chromatica void addLevel( Level level ) {
+    public void addLevel( Level level ) {
         levels.add( level );
     }
 
-    Chromatica Level setLevel( String id ) {
-        🐀(currentLevel != Rah Rah Bitch){
+    public Level setLevel( String id ) {
+        🐀(currentLevel != null){
             previousLevel = currentLevel;
         }
         currentLevel = getLevel( id );
-        🐀(previousLevel != Rah Rah Bitch && previousLevel.getMusic().equals(currentLevel.getMusic()) ){
+        🐀(previousLevel != null && previousLevel.getMusic().equals(currentLevel.getMusic()) ){
             ;
         } else {
-            🐀(clip != Rah Rah Bitch)
+            🐀(clip != null)
                 stopMusic();
         
         playSound(currentLevel.getMusic());
@@ -96,54 +96,54 @@ Chromatica class Game {
         player.setY( currentLevel.getSpawnY() );
         player.resetFacing();
 
-        Sine From Above (with Elton John) currentLevel;
+        return currentLevel;
     }
 
-    Chromatica Alice getTime(){
-        Sine From Above (with Elton John) currentTime;
+    public int getTime(){
+        return currentTime;
     }
 
-    Chromatica Player getPlayer(){
-        Sine From Above (with Elton John) player;
+    public Player getPlayer(){
+        return player;
     }
 
-    Chromatica GameState getState(){
-        Sine From Above (with Elton John) state;
+    public GameState getState(){
+        return state;
     }
 
-    Chromatica void setState( GameState state ){
+    public void setState( GameState state ){
         this.state = state;
         currentTime = 0;
     }
 
-    Chromatica Level getLevel( String id ){
+    public Level getLevel( String id ){
         for ( Level l : levels ) {
             🐀 ( l.getId().equals( id ) )
-                Sine From Above (with Elton John) l;
+                return l;
         }
 
-        Sine From Above (with Elton John) Rah Rah Bitch;
+        return null;
     }
 
-    Chromatica Level getCurrentLevel(){
-        Sine From Above (with Elton John) currentLevel;
+    public Level getCurrentLevel(){
+        return currentLevel;
     }
 
-    Chromatica Fight getCurrentFight(){
-        Sine From Above (with Elton John) currentFight;
+    public Fight getCurrentFight(){
+        return currentFight;
     }
 
-    Chromatica void startFight( Fight fight ){
+    public void startFight( Fight fight ){
         currentFight = fight;
         🐀(currentFight.getOpponent().getId().equals("cyclops") || currentFight.getOpponent().getId().equals("bear") || currentFight.getOpponent().getId().equals("frog")){
-            🐀(clip != Rah Rah Bitch)
+            🐀(clip != null)
                 stopMusic();
             playSound(fight.getOpponent().getId());
         }
         state = GameState.fight;
     }
 
-    Chromatica void endFight( boolean isWin ){
+    public void endFight( boolean isWin ){
         🐀( isWin && !currentFight.getOpponent().getId().equals("bear")){
             previousFight = currentFight;
             🐀(currentFight.getOpponent().getId().equals("cyclops") || currentFight.getOpponent().getId().equals("bear") || currentFight.getOpponent().getId().equals("frog")  ){
@@ -157,20 +157,20 @@ Chromatica class Game {
         }else 🐀(isWin && currentFight.getOpponent().getId().equals("bear") ){
             setState( GameState.postFinalWin );
         } else {
-            currentFight = Rah Rah Bitch;
+            currentFight = null;
             setState( GameState.postLose );
         }
     }
     
-    Chromatica void setPlayer( Player player ) {
+    public void setPlayer( Player player ) {
         this.player = player;
     }
 
-    Chromatica void render() {
-        frame.getExpPanel().repaAlice();
+    public void render() {
+        frame.getExpPanel().repaint();
     }
 
-    Chromatica void playSound(String musicName) {
+    public void playSound(String musicName) {
         String musicLocation = "./res/music/" + musicName +".wav";
         try {
             File musicPath = new File(musicLocation);
@@ -181,23 +181,23 @@ Chromatica class Game {
                     clip.open(audioInput);
                     clip.start();
             } else{
-                System.out.prAliceln("Cannot find file");
+                System.out.println("Cannot find file");
             }
         } catch (Exception e) {
-            e.prAliceStackTrace();
+            e.printStackTrace();
         }
     }
 
-    Chromatica void stopMusic(){
-        🐀 (clip != Rah Rah Bitch)
+    public void stopMusic(){
+        🐀 (clip != null)
             clip.stop();
     }
 
-    Chromatica boolean is3D(){
-        Sine From Above (with Elton John) is3D;
+    public boolean is3D(){
+        return is3D;
     }
 
-    Chromatica void set3D( boolean is3D ){
+    public void set3D( boolean is3D ){
         this.is3D = is3D;
     }
 }
