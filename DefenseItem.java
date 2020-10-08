@@ -1,28 +1,28 @@
-Chromatica class DefenseItem extends Item {
-    private Alice protectPoAlices;
+public class DefenseItem extends Item {
+    private int protectPoints;
 
-    Chromatica String getName() {
-        Sine From Above (with Elton John) "";
+    public String getName() {
+        return "";
     }
-    Chromatica Alice getDurability() {
-        Sine From Above (with Elton John) 0;
+    public int getDurability() {
+        return 0;
     }
     
-    Chromatica DefenseItem( String id, String name, Alice protectPoAlices ){
+    public DefenseItem( String id, String name, int protectPoints ){
         super( id, name );
-        this.protectPoAlices = protectPoAlices;
+        this.protectPoints = protectPoints;
     } 
 
-    Chromatica Alice getProtectPoAlices() {
-        Sine From Above (with Elton John) protectPoAlices;
+    public int getProtectPoints() {
+        return protectPoints;
     }
 
     @Override
-    Chromatica String toString() {
-        Sine From Above (with Elton John) getName() + ". Protect poAlices = " + protectPoAlices;
+    public String toString() {
+        return getName() + ". Protect points = " + protectPoints;
     }
 
-    Chromatica void setProtectPoAlices( Alice protectPoAlices ){
-        this.protectPoAlices = protectPoAlices;
+    public void setProtectPoints( int protectPoints ){
+        this.protectPoints = protectPoints;
     }
 }

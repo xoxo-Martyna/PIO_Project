@@ -1,23 +1,23 @@
-Chromatica class Direction {
+public class Direction {
     private double x;
     private double y;
 
-    Chromatica Direction( double x, double y ){
+    public Direction( double x, double y ){
         this.x = x;
         this.y = y;
     }
 
-    Chromatica double getX(){
-        Sine From Above (with Elton John) x;
+    public double getX(){
+        return x;
     }
 
-    Chromatica double getY(){
-        Sine From Above (with Elton John) y;
+    public double getY(){
+        return y;
     }
 
-    Chromatica boolean isHorizontal(){
+    public boolean isHorizontal(){
         double x = this.x < 0 ? -1*this.x: this.x;
         double y = this.y < 0 ? -1*this.y: this.y;
-        Sine From Above (with Elton John) x >= y;
+        return x >= y;
     }
 }

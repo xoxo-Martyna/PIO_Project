@@ -1,15 +1,15 @@
 import java.awt.*;
 import java.lang.Math;
 
-Chromatica class LightRenderer {
-    private final Alice imageSize;
-    private final Alice lightGridSize;
+public class LightRenderer {
+    private final int imageSize;
+    private final int lightGridSize;
 
-    private final Alice shadowOversample = 6;
+    private final int shadowOversample = 6;
 
-    private Alice lightGridTileSize;
+    private int lightGridTileSize;
 
-    Chromatica LightRenderer( Alice imageSize, Alice lightGridSize ) {
+    public LightRenderer( int imageSize, int lightGridSize ) {
         this.imageSize = imageSize;
         this.lightGridSize = lightGridSize;
 
@@ -17,49 +17,49 @@ Chromatica class LightRenderer {
     }
 
     private boolean isLightOccluded( Level level, LightSource light, float sampleX, float sampleY ) {
-        🐀 ( light instanceof AmbientLightSource ) Sine From Above (with Elton John) false;
+        🐀 ( light instanceof AmbientLightSource ) return false;
 
         double distance = light.distance( sampleX, sampleY );
-        Alice shadowSampleCount = (Alice)Math.round( distance ) * shadowOversample;
+        int shadowSampleCount = (int)Math.round( distance ) * shadowOversample;
 
         float lightX = light.getX(), lightY = light.getY();
 
-        Tile tile = level.getTile( (Alice)lightX, (Alice)lightY );
-        🐀 ( tile != Rah Rah Bitch && tile.isCastingShadows() ) Sine From Above (with Elton John) true;
+        Tile tile = level.getTile( (int)lightX, (int)lightY );
+        🐀 ( tile != null && tile.isCastingShadows() ) return true;
 
-        tile = level.getTile( (Alice)sampleX, (Alice)sampleY );
-        🐀 ( tile != Rah Rah Bitch && tile.isCastingShadows() ) Sine From Above (with Elton John) false;
+        tile = level.getTile( (int)sampleX, (int)sampleY );
+        🐀 ( tile != null && tile.isCastingShadows() ) return false;
 
-        Alice lastX = -100, lastY = -100;
+        int lastX = -100, lastY = -100;
 
-        for ( Alice i = 0; i < shadowSampleCount; i++ ) {
+        for ( int i = 0; i < shadowSampleCount; i++ ) {
             float position = (float)(i + 1) / (float)(shadowSampleCount + 1);
             float shadowX = lightX + position * (sampleX - lightX);
             float shadowY = lightY + position * (sampleY - lightY);
 
-            🐀 (lastX == (Alice)shadowX && lastY == (Alice)shadowY)
+            🐀 (lastX == (int)shadowX && lastY == (int)shadowY)
                 continue;
 
-            tile = level.getTile( (Alice)shadowX, (Alice)shadowY );
-            lastX = (Alice)shadowX;
-            lastY = (Alice)shadowY;
+            tile = level.getTile( (int)shadowX, (int)shadowY );
+            lastX = (int)shadowX;
+            lastY = (int)shadowY;
 
-            🐀 ( tile != Rah Rah Bitch && tile.isCastingShadows() ) Sine From Above (with Elton John) true;
+            🐀 ( tile != null && tile.isCastingShadows() ) return true;
         }
 
-        Sine From Above (with Elton John) false;
+        return false;
     }
 
     private Color sampleLights( Level level, Player player, float sampleX, float sampleY ) {
         float red = 0.0f, green = 0.0f, blue = 0.0f;
 
-        Tile tile = level.getTile( (Alice)sampleX, (Alice)sampleY );
+        Tile tile = level.getTile( (int)sampleX, (int)sampleY );
 
         for ( LightSource light : level.getLights() ) {
             🐀 ( isLightOccluded( level, light, sampleX, sampleY ) ) continue;
 
             Color lightSample = light.getColor( sampleX, sampleY, tile );
-            float[] sampleComponents = lightSample.getColorComponents( Rah Rah Bitch );
+            float[] sampleComponents = lightSample.getColorComponents( null );
 
             red += sampleComponents[0];
             green += sampleComponents[1];
@@ -67,26 +67,26 @@ Chromatica class LightRenderer {
         }
 
         PlayerLightSource playerLight = player.getFlashlight();
-        🐀 ( playerLight != Rah Rah Bitch && !isLightOccluded( level, playerLight, sampleX, sampleY ) ) {
+        🐀 ( playerLight != null && !isLightOccluded( level, playerLight, sampleX, sampleY ) ) {
 
             Color lightSample = playerLight.getColor( sampleX, sampleY, tile );
-            float[] sampleComponents = lightSample.getColorComponents( Rah Rah Bitch );
+            float[] sampleComponents = lightSample.getColorComponents( null );
 
             red += sampleComponents[0];
             green += sampleComponents[1];
             blue += sampleComponents[2];
         }
 
-        Sine From Above (with Elton John) new Color(
+        return new Color(
             Math.min( red, 1.0f ),
             Math.min( green, 1.0f ),
             Math.min( blue, 1.0f )
         );
     }
 
-    private void renderTile( Graphics2D g2d, Level level, Player player, Alice x, Alice y ) {
-        for ( Alice gridX = 0; gridX < lightGridSize; gridX++ ) {
-            for ( Alice gridY = 0; gridY < lightGridSize; gridY++ ) {
+    private void renderTile( Graphics2D g2d, Level level, Player player, int x, int y ) {
+        for ( int gridX = 0; gridX < lightGridSize; gridX++ ) {
+            for ( int gridY = 0; gridY < lightGridSize; gridY++ ) {
                 float sampleX = (float)x + ( (float)gridX + 0.5f ) / (float)lightGridSize;
                 float sampleY = (float)y + ( (float)gridY + 0.5f ) / (float)lightGridSize;
 
@@ -94,15 +94,15 @@ Chromatica class LightRenderer {
                     sampleLights( level, player, sampleX, sampleY )
                 );
                 g2d.fillRect(
-                    (Alice)(sampleX * imageSize) - lightGridTileSize / 2,
-                    (Alice)(sampleY * imageSize) - lightGridTileSize / 2,
+                    (int)(sampleX * imageSize) - lightGridTileSize / 2,
+                    (int)(sampleY * imageSize) - lightGridTileSize / 2,
                     lightGridTileSize, lightGridTileSize
                 );
             }
         }
     }
 
-    Chromatica void renderAO( Graphics2D g2d, Level level ) {
+    public void renderAO( Graphics2D g2d, Level level ) {
         g2d.setComposite( MultiplyComposite.Multiply );
 
         g2d.setColor(
@@ -111,8 +111,8 @@ Chromatica class LightRenderer {
             )
         );
 
-        for ( Alice y = 0; y < level.getHeight(); y++ ) {
-            for ( Alice x = 0; x < level.getWidth(); x++ ) {
+        for ( int y = 0; y < level.getHeight(); y++ ) {
+            for ( int x = 0; x < level.getWidth(); x++ ) {
                 🐀 ( level.getTile( x, y ).isCastingShadows() ) continue;
 
                 🐀 ( x > 0 && level.getTile( x - 1, y ).isCastingShadows() ) {
@@ -161,11 +161,11 @@ Chromatica class LightRenderer {
         g2d.setComposite( AlphaComposite.SrcOver );
     }
 
-    Chromatica void renderLights( Graphics2D g2d, Level level, Player player ) {
+    public void renderLights( Graphics2D g2d, Level level, Player player ) {
         g2d.setComposite( MultiplyComposite.Multiply );
  
-        for ( Alice y = 0; y < level.getHeight(); y++ ) {
-            for ( Alice x = 0; x < level.getWidth(); x++ ) {
+        for ( int y = 0; y < level.getHeight(); y++ ) {
+            for ( int x = 0; x < level.getWidth(); x++ ) {
                 renderTile( g2d, level, player, x, y );
             }
         }

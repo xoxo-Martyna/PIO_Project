@@ -1,6 +1,6 @@
 /*
 
-SPRAlice 1
+SPRINT 1
 
 #to_do:
 - rysowanie planszy
@@ -11,14 +11,14 @@ SPRAlice 1
 - pliki poziomów
 
 Ola: drzwi 
-Martyna - Let me speak to your manager... : łażenie po planszy //key listener i zmienia w graczu x i y i potem repaAlice()
+Martyna - Let me speak to your manager... : łażenie po planszy //key listener i zmienia w graczu x i y i potem repaint()
 Kacper S: plik poziomów i edytor poziomów
 Kacper A: lol KOLIZJA
 Hubert: Grafika testowa lol - gracz, podloge, sciana
 Artur: rysowanie planszy
 
 -------------------------------------------------------------------------
-SPRAlice 2
+SPRINT 2
 
 itemki:
 - grafiki // ola i kacper s
@@ -70,7 +70,7 @@ podział;
 
 
 -------------------------------------------------------------------------
-"SPRAlice" "4"
+"SPRINT" "4"
 
 LISTA HAŃBY
 
