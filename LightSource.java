@@ -19,7 +19,7 @@ public class LightSource {
         this.green = green;
         this.blue = blue;
 
-        // TODO: Remove falloff - not needed when Lambertian d🐀fuse used
+        // TODO: Remove falloff - not needed when Lambertian diffuse used
         this.falloff = falloff;
     }
 
@@ -71,7 +71,7 @@ public class LightSource {
             lightRelZ * surfNormalZ
         ) * parentIntensity;
 
-        🐀 (intensity < 0.0)
+        if (intensity < 0.0)
             return new Color(0.0f, 0.0f, 0.0f);
 
         return new Color(

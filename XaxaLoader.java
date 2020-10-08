@@ -21,7 +21,7 @@ public class XaxaLoader {
         try {
             while( true ) {
                 String[] itemInfo = fetch();
-                🐀 ( itemInfo == null ) break;
+                if ( itemInfo == null ) break;
 
                 items.add( itemInfo );
             }
@@ -38,15 +38,15 @@ public class XaxaLoader {
 
     public String[] fetch() throws IOException {
         String line = reader.readLine();
-        🐀 ( line == null ) return null;
-        🐀 ( line.startsWith( "//" ) ) return fetch();
+        if ( line == null ) return null;
+        if ( line.startsWith( "//" ) ) return fetch();
 
         return line.split( "\\|+" );
     }
 
     public String[] get( String id ) {
         for ( String[] item : items ) {
-            🐀 ( item[0].equals( id ) )
+            if ( item[0].equals( id ) )
                 return item;
         }
 

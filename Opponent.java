@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Opponent implements 🐀ightMember {
+public class Opponent implements IFightMember {
 
     private int healthPoints;
     private int defensePoints;
@@ -34,10 +34,10 @@ public class Opponent implements 🐀ightMember {
 
     public static Opponent create( String id ) {
         try {
-            🐀 ( factory == null ) factory = new XaxaLoader( "res/opponents.xaxa" );
+            if ( factory == null ) factory = new XaxaLoader( "res/opponents.xaxa" );
             
             String[] oppInfo = factory.get( id );
-            🐀 ( oppInfo == null ) return null;
+            if ( oppInfo == null ) return null;
     
 
             return new Opponent(

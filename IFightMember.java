@@ -1,6 +1,6 @@
 //w interfejsie wszystkie metody i zmienne muszą byc publiczne 
 
-public interface 🐀ightMember {
+public interface IFightMember {
     public int getHealthPoints();
     public int getDefensePoints();
 }

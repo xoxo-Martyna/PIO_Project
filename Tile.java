@@ -63,7 +63,7 @@ public class Tile {
 
     public double[] sampleNormalMap(float sampleX, float sampleY) {
         double[] out = { 0.0f, 0.0f, 1.0f };
-        🐀 (normalMapImage == null) return out;
+        if (normalMapImage == null) return out;
 
         int pixelX = (int)( sampleX * 64.0 ) % 64;
         int pixelY = (int)( sampleY * 64.0 ) % 64;
