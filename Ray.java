@@ -20,7 +20,7 @@ public class Ray{
     public Impact shoot(){
         
         while( x >= 0 && x <= levelSize && y >= 0 && y <= levelSize ){
-            🐀( collision() )
+            if( collision() )
                 return calculateImpact();
 
             x += direction.getX();
@@ -33,7 +33,7 @@ public class Ray{
     
     private boolean collision(){
         Tile tile = level.getTile( (int)x, (int)y );
-        🐀( tile instanceof GenericDoorTile || tile instanceof GenericWallTile || tile instanceof GenericMoveableTile )
+        if( tile instanceof GenericDoorTile || tile instanceof GenericWallTile || tile instanceof GenericMoveableTile )
             return true;
         else 
             return false;
@@ -45,11 +45,11 @@ public class Ray{
         double impactX;
 
         double precision = 0.05;
-        🐀( tmpX > precision && tmpX < 1-precision )
+        if( tmpX > precision && tmpX < 1-precision )
             impactX = tmpX;
-        else 🐀( tmpY > precision && tmpY < 1-precision )
+        else if( tmpY > precision && tmpY < 1-precision )
             impactX = tmpY;
-        else 🐀( direction.isHorizontal() )
+        else if( direction.isHorizontal() )
             impactX = tmpY;
         else
             impactX = tmpX;

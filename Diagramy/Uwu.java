@@ -86,7 +86,7 @@ Player.useAttackItem
 Player.useHealthItem
 Game.setLevel
 
-4. MARTYNA "SPOT🐀Y":
+4. MARTYNA "SPOTIFY":
 Player.moveEQ
 GenericMoveableTile.willMove
 

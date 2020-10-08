@@ -37,12 +37,12 @@ public class Fight {
     }
 
     public void moveCursor( int dx ) {
-        🐀 ( xCursor + dx >= 0 && xCursor + dx <= 2 )
+        if ( xCursor + dx >= 0 && xCursor + dx <= 2 )
             xCursor += dx;
     }
 
     public void movePlayer( int dx ) {
-        🐀 ( playerPosition + dx >= 0 && playerPosition + dx <= 2 )
+        if ( playerPosition + dx >= 0 && playerPosition + dx <= 2 )
             playerPosition += dx;
     }
 
@@ -61,11 +61,11 @@ public class Fight {
     public void playerMove() {
         opponentPosition = random.nextInt(3);
 
-        🐀 (xCursor != opponentPosition) {
+        if (xCursor != opponentPosition) {
             Random defenseRandom = new Random();
             int opponentDefense = (int)( defenseRandom.nextDouble() * 0.25 * opponent.getDefensePoints() );
             int effectiveness = player.getAttackPoints() - opponentDefense;
-            🐀 (effectiveness > 0) {
+            if (effectiveness > 0) {
                 opponent.setHealthPoints( opponent.getHealthPoints() - effectiveness );
             }
             damageAttack();
@@ -77,7 +77,7 @@ public class Fight {
     public void opponentMove() {
         int attackX = random.nextInt( 3 );
 
-        🐀 ( attackX != playerPosition ) {
+        if ( attackX != playerPosition ) {
 
             int harmPoints;
             int playerDefense = player.getDefensePoints();
@@ -86,7 +86,7 @@ public class Fight {
 
             damageDefense( (int)((float) attack * 0.05 ) );
 
-            🐀 (attack - playerDefense > 0)
+            if (attack - playerDefense > 0)
                 harmPoints = attack - playerDefense;
             else
                 harmPoints = 0;
@@ -98,9 +98,9 @@ public class Fight {
     }
 
     public void checkEndFight() {
-        🐀 ( player.getHealthPoints() <= 0 ) {
+        if ( player.getHealthPoints() <= 0 ) {
             game.endFight( false );
-        } else 🐀 ( opponent.getHealthPoints() <= 0 ) {
+        } else if ( opponent.getHealthPoints() <= 0 ) {
             game.endFight( true );
         }
     }
@@ -109,16 +109,16 @@ public class Fight {
         DefenseItem item1 = (DefenseItem)player.getDefenseItem( 1 );
         DefenseItem item2 = (DefenseItem)player.getDefenseItem( 2 );
 
-        🐀( item1 != null )
+        if( item1 != null )
             item1.setProtectPoints( item1.getProtectPoints() - damage );
-        else 🐀( item2 != null )
+        else if( item2 != null )
             item2.setProtectPoints( item2.getProtectPoints() - damage );
     }
 
     private void damageAttack() {
         AttackItem item = (AttackItem)player.getAttackItem();
 
-        🐀( item != null ){
+        if( item != null ){
             int attackPoints = item.getAttackPoints();
             item.setAttackPoints( (int)((float) attackPoints * 0.92 ) );
         }
